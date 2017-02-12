@@ -1,12 +1,18 @@
 pacman_packages:
   - ansible
   - atom
-  - awesome
+  - compton
+  - curl
+  - feh
   - firefox
   - fontconfig
   - git
+  - i3-wm
   - neovim
   - noto-fonts
   - pavucontrol
+  - powerline
   - pulseaudio
   - rxvt-unicode
+  - wget
+  - xproto
