@@ -1,0 +1,9 @@
+package_update: yes
+package_upgrade: yes
+pacman_packages: []
+
+brew_taps:
+  - tap=caskroom/cask
+  - tap=caskroom/fonts
+brew_packages: []
+cask_packages: []

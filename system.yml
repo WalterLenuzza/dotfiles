@@ -1,0 +1,13 @@
+---
+- name: Collecting Facts
+  hosts: local
+  gather_facts: yes
+
+- name: Configure local workstation
+  hosts: all
+  roles:
+  - packages
+  vars_prompt:
+  - name: "ansible_sudo_pass"
+    prompt: "[sudo] password"
+    private: yes

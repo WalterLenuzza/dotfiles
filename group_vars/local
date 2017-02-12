@@ -1,0 +1,12 @@
+pacman_packages:
+  - ansible
+  - atom
+  - awesome
+  - firefox
+  - fontconfig
+  - git
+  - neovim
+  - noto-fonts
+  - pavucontrol
+  - pulseaudio
+  - rxvt-unicode

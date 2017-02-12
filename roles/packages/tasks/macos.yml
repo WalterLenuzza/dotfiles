@@ -1,0 +1,19 @@
+- name: "Homebrew: add taps"
+  homebrew_tap: name={{item}} state=present
+  with_items: '{{brew_taps}}'
+
+- name: "Homebrew: update package cache"
+  homebrew: update_cache=yes
+  when: package_update
+
+- name: "Homebrew: update packages"
+  homebrew: upgrade=yes
+  when: package_upgrade
+
+- name: "Homebrew: install packages"
+  homebrew: name={{item}} state=present
+  with_items: '{{brew_packages}}'
+
+- name: "Homebrew: install Cask packages"
+  homebrew: name={{item}} state=present
+  with_items: '{{cask_packages}}'

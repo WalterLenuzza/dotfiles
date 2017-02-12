@@ -1,0 +1,2 @@
+# dotfiles
+Accommodating idiosyncrasies

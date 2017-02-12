@@ -1,0 +1,9 @@
+---
+- name: Collecting Facts
+  hosts: local
+  gather_facts: yes
+
+- name: Configure dotfiles
+  hosts: all
+  roles:
+  - dotfiles
