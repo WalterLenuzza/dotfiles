@@ -1,0 +1,11 @@
+- name: "Xorg: xinitrc"
+  copy:
+    src: xinitrc
+    dest: "{{ ansible_user_dir }}/.xinitrc"
+    backup: yes
+
+- name: "Xorg: Xprofile"
+  copy:
+    src: xprofile
+    dest: "{{ ansible_user_dir }}/.Xprofile"
+    backup: yes

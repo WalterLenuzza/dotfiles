@@ -1,0 +1,9 @@
+# run the merge for good colors
+[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
+[ -f ~/.Xdefaults ] && xrdb -merge ~/.Xdefaults
+
+# Compositor
+compton -bc
+
+# Set wallpaper
+feh --bg-fill ~/back.jpg

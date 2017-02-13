@@ -1,5 +1,11 @@
+- include: xdg.yml
+
+- include: shell.yml
+
 - include: linux.yml
   when: ansible_system == "Linux"
 
 - include: macos.yml
   when: ansible_os_family == "Darwin"
+
+- include: powerline.yml

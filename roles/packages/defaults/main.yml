@@ -1,9 +1,26 @@
-package_update: yes
-package_upgrade: yes
-pacman_packages: []
-
 brew_taps:
   - tap=caskroom/cask
   - tap=caskroom/fonts
 brew_packages: []
 cask_packages: []
+
+pacman_packages:
+  - ansible
+  - atom
+  - compton
+  - curl
+  - feh
+  - firefox
+  - fontconfig
+  - git
+  - i3-wm
+  - neovim
+  - noto-fonts
+  - pavucontrol
+  - powerline
+  - pulseaudio
+  - rxvt-unicode
+  - wget
+  - xorg-xrdb
+  - xproto
+  - zsh
