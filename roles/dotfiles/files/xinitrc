@@ -1,5 +1,7 @@
-# Make sure this is before the 'exec' command or it won't be sourced.
-[ -f ~/.xprofile ] && source ~/.xprofile
+#!/usr/bin/env sh
+
+# Source ~/.Xprofile first
+[ -f ~/.Xprofile ] && . ~/.Xprofile
 
 # Set i3wm as default
 session=${1:-i3}

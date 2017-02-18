@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# Merge Xresources and Xdefaults
+[ -f ~/.Xresources ] && command -v xrdb >/dev/null 2>&1 && xrdb -merge ~/.Xresources
+[ -f ~/.Xdefaults  ] && command -v xrdb >/dev/null 2>&1 && xrdb -merge ~/.Xdefaults
+
+# Run composite manager (Compton)
+command -v compton >/dev/null 2>&1 && compton -bc
+
+# Set wallpaper (Feh)
+command -v feh >/dev/null 2>&1 && feh --bg-fill ~/back.jpg
