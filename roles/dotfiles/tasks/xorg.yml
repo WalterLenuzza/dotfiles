@@ -9,3 +9,9 @@
     src: xprofile
     dest: "{{ ansible_user_dir }}/.Xprofile"
     backup: yes
+
+- name: "Xorg: Xresources"
+  copy:
+    src: xresources
+    dest: "{{ ansible_user_dir }}/.Xresources"
+    backup: yes
