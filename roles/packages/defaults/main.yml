@@ -1,6 +1,6 @@
 brew_taps:
-  - tap=caskroom/cask
-  - tap=caskroom/fonts
+  - caskroom/cask
+  - caskroom/fonts
 brew_packages: []
 cask_packages: []
 

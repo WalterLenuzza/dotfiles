@@ -1,4 +1,4 @@
 - name: "Python pip: keep packages up-to-date"
-  pacman: name={{item}} state=latest
+  pip: name={{item}} state=latest
   with_items: '{{pip_system_packages}}'
   become: true

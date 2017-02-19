@@ -1,7 +1,7 @@
 - name: "Install Anonymice Powerline Nerd Font (MacOS)"
   get_url:
     url: "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/AnonymousPro/complete/Anonymice%20Powerline%20Nerd%20Font%20Complete%20Mono.ttf?raw=true"
-    dest: "{{ ansible_user_dir }}/Library/Fonts/"
-    mode: 0440
+    dest: "{{ ansible_user_dir }}/Library/Fonts/AnonymousPro.ttf"
     checksum: sha256:6600d6e6a52a277ced42beb07fd30159847ec89462ff8cf9c221df0775412400
   register: install_font_macos
+
