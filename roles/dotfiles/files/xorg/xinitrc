@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-# Source ~/.Xprofile first
-[ -f ~/.Xprofile ] && . ~/.Xprofile
+# Source ~/.config/xorg/Xprofile first
+[ -f ~/.config/xorg/Xprofile ] && . ~/.config/xorg/Xprofile
 
 # Set i3wm as default
 session=${1:-i3}
