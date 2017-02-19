@@ -3,3 +3,5 @@
 
 - include: macos.yml
   when: ansible_os_family == "Darwin"
+
+- include: pip.yml

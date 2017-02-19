@@ -24,3 +24,6 @@ pacman_packages:
   - xorg-xrdb
   - xproto
   - zsh
+
+pip_system_packages:
+  - ansible
