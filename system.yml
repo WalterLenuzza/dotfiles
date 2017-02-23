@@ -1,9 +1,9 @@
 ---
-- name: Collecting Facts
+- name: "Collecting Facts"
   hosts: local
   gather_facts: yes
 
-- name: Configure local workstation
+- name: "Configure local workstation"
   hosts: all
   roles:
   - packages
