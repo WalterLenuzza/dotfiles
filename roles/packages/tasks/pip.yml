@@ -1,4 +1,6 @@
 - name: "Python pip: keep packages up-to-date"
-  pip: name={{item}} state=latest
-  with_items: '{{pip_system_packages}}'
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ pip_system_packages }}"
   become: true

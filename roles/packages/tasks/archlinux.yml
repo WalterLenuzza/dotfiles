@@ -1,14 +1,41 @@
 - name: "Pacman: update package cache"
-  pacman: update_cache=yes
+  pacman:
+    update_cache: yes
   when: package_update
   become: true
 
 - name: "Pacman: update packages"
-  pacman: upgrade=yes
+  pacman:
+    upgrade: yes
   when: package_upgrade
   become: true
 
 - name: "Pacman: install packages"
-  pacman: name={{item}} state=present
-  with_items: '{{pacman_packages}}'
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ pacman_packages }}"
+  become: true
+
+- name: "AUR: cache directory"
+  file:
+    path: "{{ xdg_cache_home }}/aur"
+    state: directory
+    mode: 0755
+
+- name: "AUR: install Cower"
+  aur:
+    name: cower
+    dir:  "{{ xdg_cache_home }}/aur"
+    user: "{{ ansible_user }}"
+    skip_pgp: yes
+  with_items: '{{ aur_packages }}'
+  become: true
+
+- name: "AUR: install packages"
+  aur:
+    name: "{{ item }}"
+    dir:  "{{ xdg_cache_home }}/aur"
+    user: "{{ ansible_user }}"
+  with_items: '{{ aur_packages }}'
   become: true
