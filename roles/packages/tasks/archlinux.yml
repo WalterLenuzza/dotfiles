@@ -23,7 +23,7 @@
     state: directory
     mode: 0755
 
-- name: "AUR: install Cower"
+- name: "AUR: install helper"
   aur:
     name: "{{ aur_helper }}"
     dir:  "{{ xdg_cache_home }}/aur"
