@@ -1,9 +1,11 @@
-package_update: yes
-package_upgrade: yes
-
 xdg_config_home: "{{ ansible_user_dir }}/.config"
 xdg_cache_home:  "{{ ansible_user_dir }}/.cache"
 xdg_data_home:   "{{ ansible_user_dir }}/.local/share"
+
+package_update: yes
+package_upgrade: yes
+
+pip_system_packages: []
 
 # MacOS
 brew_taps:
@@ -38,5 +40,3 @@ pacman_packages:
   - xorg-xrdb
   - xproto
   - zsh
-
-pip_system_packages: []

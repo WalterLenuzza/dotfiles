@@ -5,14 +5,14 @@
     mode: 0755
 
 - name: "Xorg: xinitrc"
-  copy:
-    src: xorg/xinitrc
+  template:
+    src: xorg/xinitrc.j2
     dest: "{{ ansible_user_dir }}/.xinitrc"
     backup: yes
 
 - name: "Xorg: Xprofile"
-  copy:
-    src: xorg/xprofile
+  template:
+    src: xorg/xprofile.j2
     dest: "{{ xdg_config_home }}/xorg/Xprofile"
     backup: yes
 

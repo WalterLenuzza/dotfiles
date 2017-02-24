@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Source ~/.config/xorg/Xprofile first
-[ -f ~/.config/xorg/Xprofile ] && . ~/.config/xorg/Xprofile
+[ -f "{{ xdg_config_home }}/xorg/Xprofile" ] && . "{{ xdg_config_home }}/xorg/Xprofile"
 
 # Set i3wm as default
 session=${1:-i3}
