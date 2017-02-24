@@ -29,6 +29,7 @@ pacman_packages:
   - fontconfig
   - git
   - i3lock
+  - jsoncpp
   - neovim
   - noto-fonts
   - pavucontrol
