@@ -5,14 +5,18 @@ xdg_config_home: "{{ ansible_user_dir }}/.config"
 xdg_cache_home:  "{{ ansible_user_dir }}/.cache"
 xdg_data_home:   "{{ ansible_user_dir }}/.local/share"
 
+# MacOS
 brew_taps:
   - caskroom/cask
   - caskroom/fonts
 brew_packages: []
 cask_packages: []
 
-aur_packages: []
-
+# ArchLinux
+aur_helper: cower
+aur_packages:
+  - i3-gaps-git
+  - polybar
 pacman_packages:
   - ansible
   - atom
@@ -22,7 +26,7 @@ pacman_packages:
   - firefox
   - fontconfig
   - git
-  - i3-wm
+  - i3lock
   - neovim
   - noto-fonts
   - pavucontrol

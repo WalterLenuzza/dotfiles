@@ -25,11 +25,10 @@
 
 - name: "AUR: install Cower"
   aur:
-    name: cower
+    name: "{{ aur_helper }}"
     dir:  "{{ xdg_cache_home }}/aur"
     user: "{{ ansible_user }}"
     skip_pgp: yes
-  with_items: '{{ aur_packages }}'
   become: true
 
 - name: "AUR: install packages"
@@ -37,5 +36,5 @@
     name: "{{ item }}"
     dir:  "{{ xdg_cache_home }}/aur"
     user: "{{ ansible_user }}"
-  with_items: '{{ aur_packages }}'
+  with_items: "{{ aur_packages }}"
   become: true
