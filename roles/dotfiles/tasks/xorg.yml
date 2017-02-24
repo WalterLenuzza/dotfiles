@@ -21,3 +21,27 @@
     src: xorg/xresources
     dest: "{{ xdg_config_home }}/xorg/Xresources"
     backup: yes
+
+- name: "i3: config directory"
+  file:
+    path: "{{ xdg_config_home }}/i3"
+    state: directory
+    mode: 0755
+
+- name: "i3: config file"
+  template:
+    src: xorg/i3
+    dest: "{{ xdg_config_home }}/i3/config"
+    backup: yes
+
+- name: "Compton: config directory"
+  file:
+    path: "{{ xdg_config_home }}/compton"
+    state: directory
+    mode: 0755
+
+- name: "Compton: config file"
+  template:
+    src: xorg/compton
+    dest: "{{ xdg_config_home }}/compton/config"
+    backup: yes
