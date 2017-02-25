@@ -2,13 +2,12 @@
   copy:
     src: locale
     dest: "{{ xdg_config_home }}/locale.conf"
-    backup: yes
 
 - name: "User fonts: directory"
   file:
     path: "{{ xdg_data_home }}/fonts"
     state: directory
-    mode: 0755
+    mode: 0700
 
 - name: "Install Anonymice Powerline Nerd Font"
   get_url:

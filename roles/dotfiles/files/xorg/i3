@@ -18,7 +18,7 @@ assign [class="^Chromium-browser$"] $tag3
 assign [class="^Firefox$"] $tag3
 
 # Borders style for new windows
-new_window pixel 1
+new_window pixel 2
 #for_window [class="^.*"] border pixel 0
 #for_window [class="^Atom$"] border pixel 1
 #for_window [class="^URxvt$"] border pixel 1
