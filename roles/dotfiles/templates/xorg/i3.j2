@@ -4,7 +4,7 @@
 # Fork: https://github.com/Airblader/i3
 
 # Polybar
-exec_always --no-startup-id polybar desktop
+exec_always --no-startup-id "{{ xdg_config_home }}/polybar/launcher"
 
 # Workspace naming
 set $tag1 "1:Terminal"
