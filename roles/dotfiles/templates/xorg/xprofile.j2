@@ -22,7 +22,7 @@
 
 # Run composite manager (Compton)
 command -v compton >/dev/null 2>&- && \
-  compton --config "{{ xdg_config_home }}/compton/config" -bci
+  compton --config "{{ xdg_config_home }}/compton/config" -bc
 
 # Set wallpaper (Feh)
 command -v feh >/dev/null 2>&- && \
