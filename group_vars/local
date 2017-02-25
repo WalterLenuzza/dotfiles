@@ -37,6 +37,7 @@ pacman_packages:
   - pulseaudio
   - rsync
   - rxvt-unicode
+  - the_silver_searcher
   - wget
   - xorg-xrdb
   - xproto
