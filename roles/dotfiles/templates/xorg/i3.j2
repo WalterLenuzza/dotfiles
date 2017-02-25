@@ -17,25 +17,23 @@ assign [class="^Atom$"] $tag2
 assign [class="^Chromium-browser$"] $tag3
 assign [class="^Firefox$"] $tag3
 
-# Borders style for new windows
-new_window pixel 2
-#for_window [class="^.*"] border pixel 0
-#for_window [class="^Atom$"] border pixel 1
-#for_window [class="^URxvt$"] border pixel 1
+# Window borders style
+for_window [class="^.*"] border pixel 3
 
-# class                 border  backgr. text    indicator child_border
-client.focused          #a7e22e #8fc029 #ffffff #d4c96e   #8fc029
-client.focused_inactive #76715e #48483e #ffffff #d4c96e   #48483e
-client.unfocused        #76715e #48483e #ffffff #d4c96e   #48483e
-client.urgent           #fa2772 #dc2566 #ffffff #d4c96e   #900000
-client.placeholder      #66efd5 #56b7a5 #ffffff #d4c96e   #0c0c0c
-client.background       #48483e
+# Gruvbox palette
+client.focused          #665c54 #665c54 #eddbb2 #2e9ef4   #665c54
+client.focused_inactive #282828 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #3c3836 #3c3836 #a89984 #292d2e   #222222
+client.urgent           #cc241d #cc241d #ebdbb2 #cc241d   #cc241d
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background #ffffff
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans Mono 8
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -66,7 +64,7 @@ workspace_auto_back_and_forth yes
 # window visible, but keeps them on workspaces with multiple windows visible.
 # Default is none.
 #hide_edge_borders smart
-smart_borders on
+#smart_borders on
 
 #
 # KeyBindings
@@ -93,7 +91,8 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id rofi -show run -no-levenshtein-sort -lines 10 -width 50 -opacity "85"
 
 # change focus
 bindsym $mod+j focus left
@@ -174,6 +173,8 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # i3-gaps
+gaps inner 15
+
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)

@@ -19,6 +19,16 @@
     src: xorg/xresources.j2
     dest: "{{ xdg_config_home }}/xorg/Xresources"
 
+- name: "Xorg: Rofi's Xresources"
+  template:
+    src: xorg/rofi_xresources.j2
+    dest: "{{ xdg_config_home }}/xorg/Xresources.rofi"
+
+- name: "Xorg: rxvt-unicode256's Xresources"
+  template:
+    src: xorg/urxvt256_xresources.j2
+    dest: "{{ xdg_config_home }}/xorg/Xresources.urxvt256"
+
 - name: "Compton: config directory"
   file:
     path: "{{ xdg_config_home }}/compton"

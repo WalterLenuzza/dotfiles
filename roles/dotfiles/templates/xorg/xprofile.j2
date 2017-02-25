@@ -5,6 +5,16 @@
   command -v xrdb >/dev/null 2>&- && \
   xrdb -merge "{{ xdg_config_home }}/xorg/Xresources"
 
+# Merge Rofi's Xresources
+[ -f "{{ xdg_config_home }}/xorg/Xresources.rofi" ] && \
+  command -v xrdb >/dev/null 2>&- && \
+  xrdb -merge "{{ xdg_config_home }}/xorg/Xresources.rofi"
+
+# Merge rxvt-unicode256's Xresources
+[ -f "{{ xdg_config_home }}/xorg/Xresources.urxvt256" ] && \
+  command -v xrdb >/dev/null 2>&- && \
+  xrdb -merge "{{ xdg_config_home }}/xorg/Xresources.urxvt256"
+
 # Merge Xdefaults
 [ -f "{{ xdg_config_home }}/xorg/Xdefaults"  ] && \
   command -v xrdb >/dev/null 2>&- && \

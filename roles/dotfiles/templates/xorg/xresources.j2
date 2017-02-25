@@ -1,44 +1,39 @@
-!
-! Monokai color scheme
-!
-! special
-*.foreground:   #f1ebeb
-*.background:   #272822
-*.cursorColor:  #f1ebeb
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
 
-! black
-*.color0:       #48483e
-*.color8:       #76715e
-
-! red
-*.color1:       #dc2566
-*.color9:       #fa2772
-
-! green
-*.color2:       #8fc029
-*.color10:      #a7e22e
-
-! yellow
-*.color3:       #d4c96e
-*.color11:      #e7db75
-
-! blue
-*.color4:       #55bcce
-*.color12:      #66d9ee
-
-! magenta
-*.color5:       #9358fe
-*.color13:      #ae82ff
-
-! cyan
-*.color6:       #56b7a5
-*.color14:      #66efd5
-
-! white
-*.color7:       #acada1
-*.color15:      #cfd0c2
-
-*.colorBD:     #ffffff
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
 
 *depth:                 32
 *utf8:                  1
@@ -50,49 +45,5 @@ Xft.hintstyle: hintslight
 Xft.hinting: 1
 Xft.antialias: 1
 
-URxvt.font: xft:AnonymicePowerline Nerd Font:size=11
-URxvt.boldFont: xft:AnonymicePowerline Nerd Font:style:Bold,size=11
-
 *faceSize:              10
 *bellIsUrgent:          true
-
-! Disable scrollbar
-URxvt*scrollBar: false
-
-! do not scroll with output
-URxvt*scrollTtyOutput: false
-
-! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
-URxvt*scrollWithBuffer: true
-
-! scroll back to the bottom on keypress
-URxvt*scrollTtyKeypress: true
-
-!! scrollback buffer
-URxvt.secondaryScreen:  1
-URxvt.secondaryScroll:  0
-URxvt.secondaryWheel:   1
-
-!! copy paste
-URxvt*clipboard.copycmd:    xclip -i -selection clipboard
-URxvt*clipboard.pastecmd:   xclip -o -selection clipboard
-
-!! disable default bindings for Control-Shift
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-
-!! Control-Shift-C for copy
-!URxvt.keysym.C-C: perl:clipboard:copy
-!URxvt.keysym.C-V: perl:clipboard:paste
-
-!! get option over to work
-URxvt.keysym.M-Left:        \033[1;5D
-URxvt.keysym.M-Right:       \033[1;5C
-URxvt.keysym.Control-Left:  \033[1;5D
-URxvt.keysym.Control-Right: \033[1;5C
-
-! URL launcher mod+lclick
-URxvt.perl-ext-common:      default,matcher,selection-to-clipboard
-URxvt.url-launcher:         /usr/bin/xdg-open
-URxvt.matcher.button:       1
-URxvt.url-select.underline: true
