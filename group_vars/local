@@ -19,6 +19,7 @@ aur_helper: cower
 aur_packages:
   - i3-gaps-git
   - polybar
+  - rxvt-unicode-256xresources
 pacman_packages:
   - ansible
   - atom
@@ -36,7 +37,6 @@ pacman_packages:
   - powerline
   - pulseaudio
   - rsync
-  - rxvt-unicode
   - the_silver_searcher
   - wget
   - xorg-xrdb
