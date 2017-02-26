@@ -7,15 +7,13 @@
 exec_always --no-startup-id "{{ xdg_config_home }}/polybar/launcher"
 
 # Workspace naming
-set $tag1 "1:Terminal"
-set $tag2 "2:Editor"
-set $tag3 "3:Browser"
+set $tag1 "1:Code"
+set $tag2 "2:Browser"
 
 # Workspace assignments
-#assign [class="^URxvt$"] $tag1
-assign [class="^Atom$"] $tag2
-assign [class="^Chromium-browser$"] $tag3
-assign [class="^Firefox$"] $tag3
+assign [class="^Atom$"] $tag1
+assign [class="^Chromium-browser$"] $tag2
+assign [class="^Firefox$"] $tag2
 
 # Window borders style
 for_window [class="^.*"] border pixel 3
@@ -26,8 +24,7 @@ client.focused_inactive #282828 #5f676a #ffffff #484e50 #5f676a
 client.unfocused        #3c3836 #3c3836 #a89984 #292d2e #222222
 client.urgent           #cc241d #cc241d #ebdbb2 #cc241d #cc241d
 client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
-
-client.background #ffffff
+client.background       #ffffff
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -43,7 +40,7 @@ client.background #ffffff
 font pango:AnonymicePowerline Nerd Font 11
 
 # lock screen
-bindsym $mod+F1 exec i3lock -c 48483e
+bindsym $mod+F1 exec i3lock -c 282828
 
 # As explained in-depth in http://i3wm.org/docs/multi-monitor.html,
 # some X11 video drivers (especially the nVidia binary driver) only provide support
@@ -64,7 +61,6 @@ workspace_auto_back_and_forth yes
 # window visible, but keeps them on workspaces with multiple windows visible.
 # Default is none.
 #hide_edge_borders smart
-#smart_borders on
 
 #
 # KeyBindings
@@ -73,7 +69,7 @@ workspace_auto_back_and_forth yes
 # Set Main key
 set $mod Mod4
 
-# audio controls
+# Audio controls
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"
 bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
@@ -92,6 +88,8 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# Use Rofi
 bindsym $mod+d exec --no-startup-id rofi -show run -no-levenshtein-sort -lines 10 -width 50 -opacity "85"
 
 # change focus
@@ -173,7 +171,20 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # i3-gaps
+# https://github.com/Airblader/i3#gaps
 gaps inner 15
+
+# Smart Gaps
+# Disable all gaps (outer and inner) on the workspace whenever only one container
+# is on the current workspace.
+smart_gaps on
+
+# Smart Borders
+# Draw borders around a container only if it is not the only container in this workspace.
+# It is disabled by default and can be activated with the command below.
+# on will always activate it, while no_gaps will only activate it  if the gap size
+# to the edge of the screen is 0.
+smart_borders no_gaps
 
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -181,35 +192,23 @@ set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  bindsym o      mode "$mode_gaps_outer"
+  bindsym i      mode "$mode_gaps_inner"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
+  bindsym plus  gaps outer current plus 5
+  bindsym minus gaps outer current minus 5
+  bindsym 0     gaps outer current set 0
 
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
+  bindsym Shift+plus  gaps outer all plus 5
+  bindsym Shift+minus gaps outer all minus 5
+  bindsym Shift+0     gaps outer all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 # resize window (you can also use the mouse for that)
