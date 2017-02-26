@@ -1,60 +1,178 @@
-;:set syn=dosini
-
-[global/wm]
-margin-top = 5
-margin-bottom = 5
-
-
-[colors]
-white = #fbf1c7
-gray = #585858
-black = #282828
-red = #c795ae
-blue = #95aec7
-yellow = #c7ae95
-green = #aec795
-
-
 [bar/desktop]
+modules-left = powermenu separator1 i3
+modules-center = xwindow
+modules-right = mpd volume updates battery backlight cpu memory wlan eth filesystem date
+
+; Locale used to localize various module data (e.g. date)
+; Expects a valid libc locale, for example: sv_SE.UTF-8
+locale = en_GB.utf8
+
+; Fonts are defined using <font-name>;<vertical-offset>
+; Font names are specified using a fontconfig pattern.
+;   font-0 = NotoSans-Regular:size=8;2
+;   font-1 = MaterialIcons:size=10
+;   font-2 = Termsynu:size=8;-1
+;   font-3 = FontAwesome:size=10
+; See the Fonts wiki page for more details
+font-0 = NotoSans-Regular:size=10;-2
+font-1 = AnonymicePowerline Nerd Font:size=10;-2
+
+; Put the bar at the top of the screen
 bottom = false
-dock = false
-wm-restack = i3
+
+; Prefer fixed center position for the `modules-center` block
+; When false, the center position will be based on the size of the other blocks.
+fixed-center = true
+
+; Dimensions defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 width = 100%
-height = 22
+;height = 20
 
-enable-ipc = true
+; Number of spaces to add at the beginning/end of the bar
+; Individual side values can be defined using:
+;   padding-{left,right}
+padding-left = 2
+padding-right = 2
 
-padding-left = 0
-padding-right = 1
-
+; Number of spaces to add before/after each module
+; Individual side values can be defined using:
+;   module-margin-{left,right}
 module-margin-right = 1
 module-margin-left = 1
 
-modules-right = updates filesystem battery date menu0
-modules-center = mpd volume
-modules-left = i3 wlan eth cpu memory
+; Background argb color (e.g. #f00, #ff992a, #ddff1023)
+background = #dd282828
 
-background = ${colors.black}
+; Foreground argb color (e.g. #f00, #ff992a, #ddff1023)
 foreground = ${colors.white}
 
-underline-size = 2
-underline-color = ${colors.white}
+; Position of the system tray window
+; If empty or undefined, tray support will be disabled
+; NOTE: A center aligned tray will cover center aligned modules
+; Available positions: left, center, right
+tray-position = left
 
+; If true, the bar will not shift its
+; contents when the tray changes
 tray-detached = false
-tray-position = right
-tray-offset-x =
-tray-maxsize =
-tray-padding =
 
-font-0 = terminus:size=8;0
-font-1 = FontAwesome:size=10;0
-font-2 = TakaoGothic:weight=bold:size=10;0
-font-3 = FontAwesome:size=8;0
+; Tray icon max size
+tray-maxsize = 50
+
+; Pad the sides of each tray icon
+tray-padding = 0
+
+; Tell the Window Manager not to configure the window.
+; Use this to detach the bar if your WM is locking its size/position.
+;override-redirect = true
+
+; Restack the bar window and put it above the selected window manager's root
+; Fixes the issue where the bar is being drawn on top of fullscreen window's
+; Currently supported WM's:
+;   bspwm
+;   i3 (requires: `override-redirect = true`)
+;wm-restack = true
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = false
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+spacing = 0
+
+Define fallback values used by all module formats
+format-foreground =
+format-background =
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
+; Background argb color (e.g. #f00, #ff992a, #ddff1023)
+background = #dd282828
+
+; Foreground argb color (e.g. #f00, #ff992a, #ddff1023)
+foreground = ${colors.white}
+
+[colors]
+white = #ebdbb2
+darkgray = #928374
+lightgray = #a89984
+black = #282828
+red = #fb4934
+blue = #83a598
+yellow = #fabd2f
+green = #b8bb26
+
+;
+; Modules
+;
+
+[module/powermenu]
+type = custom/menu
+
+format-background = #dd282828
+format-foreground = #dd928374
+
+format = <label-toggle> <menu>
+format-underline = ${colors.green}
+format-padding = 1
+
+menu-0-0 = "|    |"
+menu-0-1 = "    |"
+menu-0-1-exec = echo
+menu-0-2 = "    "
+menu-0-2-exec = shutdown -r now
+menu-0-3 = "|    |"
+menu-0-3-exec = shutdown now
+
+label-open =  
+label-close =
+
+[module/separator1]
+type = custom/text
+content = %{F#dd282828 B#dd928374}
+
+[module/i3]
+type = internal/i3
+format = <label-mode> <label-state>
+index-sort = true
+
+label-focused-font = 4
+label-unfocused-font = 4
+label-urgent-font = 4
+label-visible-font = 4
+
+label-focused = 
+!label-focused = %index%
+label-focused-background = ${colors.darkgray}
+label-focused-padding = 1.5
+
+;label-unfocused = 
+;label-unfocused = %index%
+label-unfocused-padding = 1.5
+;label-unfocused-background = ${colors.black}
+label-unfocused-underlinde = ${colors.white}
+label-unfocused-foreground = #848484
+
+label-urgent = 
+!label-urgent = %index%!
+label-urgent-background = ${colors.red}
+label-urgent-padding = 1
+label-urgent-foreground = ${colors.red}
+
+label-visible = 
+!label-visible = %index%
+label-visible-foreground = ${colors.white}
+label-visible-padding = 1
 
 [module/xwindow]
 type = internal/xwindow
 label = %title%
-label-maxlen = 30
 
 
 [module/filesystem]
@@ -73,75 +191,19 @@ label-unmounted =
 label-unmounted-foreground = ${colors.black}
 
 
-[module/bspwm]
-type = internal/bspwm
-ws-icon-default = x
-
-label-active = %index%
-label-active-background = #ee333333
-label-active-underline= #cc333333
-label-active-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%
-label-urgent-background = #bd2c40
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = #55
-label-empty-padding = 2
-
-
-[module/i3]
-type = internal/i3
-format = <label-mode> <label-state>
-index-sort = true
-
-label-focused-font = 4
-label-unfocused-font = 4
-label-urgent-font = 4
-label-visible-font = 4
-
-;label-focused = 
-;label-focused = %index%
-;label-focused-background = ${colors.gray}
-label-focused-padding = 1.5
-
-;label-unfocused = 
-;label-unfocused = %index%
-label-unfocused-padding = 1.5
-;label-unfocused-background = ${colors.black}
-label-unfocused-underlinde = ${colors.white}
-label-unfocused-foreground = #848484
-
-label-urgent = 
-;label-urgent = %index%!
-;label-urgent-background = ${colors.red}
-label-urgent-padding = 1
-label-urgent-foreground = ${colors.red}
-
-label-visible = 
-;label-visible = %index%
-label-visible-foreground = ${colors.white}
-label-visible-padding = 1
-
-
 
 [module/mpd]
 type = internal/mpd
 
 host = 127.0.0.1
 port = 4200
-
 intervel = 2
 
 format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next>
 format-offline = <label-offline>
 
 label-offline =  no music
-label-offline-foreground = ${colors.gray}
+label-offline-foreground = ${colors.darkgray}
 
 label-song = %artist% - %title%
 label-song-maxlen = 95
@@ -161,7 +223,6 @@ icon-repeat = R
 toggle-on-foreground = #e60053
 toggle-off-foreground = #66
 
-
 [module/backlight]
 type = internal/xbacklight
 
@@ -178,7 +239,6 @@ bar-fill-foreground = #9f78e1
 bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = #55
-
 
 [module/cpu]
 format-label = internal/cpu
@@ -212,7 +272,7 @@ label-foreground = ${colors.white}
 
 [module/wlan]
 type = internal/network
-interface = wlp12s0
+interface = wlp4s0
 interval = 3.0
 
 format-connected-padding = 1
@@ -220,27 +280,27 @@ format-disconnected-padding = 1
 
 format-connected = <label-connected>
 format-connected-underline = ${colors.white}
-format-disconnected-underline = ${colors.gray}
+format-disconnected-underline = ${colors.darkgray}
 
 label-connected = %essid%
 label-disconnected = 
-label-disconnected-foreground = ${colors.gray}
+label-disconnected-foreground = ${colors.darkgray}
 
 
 [module/eth]
 type = internal/network
-interface = enp9s0
+interface = enp3s0
 interval = 3.0
 
 format-connected-padding = 1
 format-disconnected-padding = 1
 
 format-connected-underline = ${colors.white}
-format-disconnected-underline = ${colors.gray}
+format-disconnected-underline = ${colors.darkgray}
 
 label-connected = 
 label-disconnected = 
-label-disconnected-foreground = ${colors.gray}
+label-disconnected-foreground = ${colors.darkgray}
 
 
 [module/date]
@@ -253,6 +313,11 @@ format-underline = ${colors.white}
 format-foreground = ${colors.white}
 format-padding = 1
 
+#[module/date]
+#type = internal/date
+#date =    %%${Fcolors.white}%Y-%m-%d%%{F-}  %%${Fcolors.white}%H:%M%%{F-}
+#date-alt = %%${colors.white}%A, %d %B %Y  %%${colors.white}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+
 
 [module/volume]
 type = internal/volume
@@ -263,7 +328,7 @@ label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
 label-muted =  sound muted
-label-muted-foreground = ${colors.gray}
+label-muted-foreground = ${colors.darkgray}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #fbf1c7
@@ -280,7 +345,7 @@ bar-volume-fill = 
 bar-volume-fill-font = 4
 bar-volume-empty = 
 bar-volume-empty-font = 4
-bar-volume-empty-foreground = ${colors.gray}
+bar-volume-empty-foreground = ${colors.darkgray}
 
 
 [module/battery]
@@ -338,50 +403,9 @@ ramp-2 = 
 ramp-foreground = #55
 
 
-[module/menu0]
-type = custom/menu
 
-format = <label-toggle> <menu>
-format-underline = ${colors.white}
-format-padding = 1
-
-menu-0-0 = |  |
-menu-0-0-exec = shutdown now
-menu-0-1 = |  |
-menu-0-1-exec = shutdown -r now
-menu-0-2 = |  |
-
-
-label-open =  
-label-close =
 
 [module/updates]
 type = custom/script
 
 exec = echo
-
-
-[module/powermenu]
-type = custom/menu
-
-label-open =  power
-label-open-foreground = #e60053
-label-close =  cancel
-label-close-foreground = #e60053
-label-separator = |
-label-separator-foreground = #55
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
