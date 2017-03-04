@@ -5,7 +5,8 @@ xdg_data_home:   "{{ ansible_user_dir }}/.local/share"
 package_update: yes
 package_upgrade: yes
 
-pip_system_packages: []
+pip_system_packages:
+  - i3ipc
 
 # MacOS
 brew_taps:
@@ -17,9 +18,13 @@ cask_packages: []
 # ArchLinux
 aur_helper: cower
 aur_packages:
+  - i3blocks-gaps-git
   - i3-gaps-git
+  - lemonbar-xft-git
+  - neofetch
+  - pacaur
   - polybar
-  - rxvt-unicode-256xresources
+
 pacman_packages:
   - ansible
   - atom
@@ -36,9 +41,13 @@ pacman_packages:
   - pavucontrol
   - powerline
   - pulseaudio
+  - python
+  - python-pip
   - rsync
+  - rxvt-unicode
   - the_silver_searcher
   - wget
   - xorg-xrdb
+  - xorg-xrandr
   - xproto
   - zsh
