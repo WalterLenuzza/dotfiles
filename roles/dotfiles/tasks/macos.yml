@@ -1,7 +1,6 @@
 - name: "Install Anonymice Powerline Nerd Font (MacOS)"
   get_url:
-    url: "{{ anonymous_ttf }}"
+    url: "{{ anonymous_ttf_url }}"
     dest: "{{ ansible_user_dir }}/Library/Fonts/AnonymousPro.ttf"
     checksum: "{{ anonymous_ttf_sha }}"
   register: install_font_macos
-

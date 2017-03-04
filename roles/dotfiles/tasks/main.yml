@@ -2,9 +2,10 @@
 
 - include: shell.yml
 
+- include: vi.yml
+
 - include: linux.yml
   when: ansible_system == "Linux"
 
 - include: macos.yml
   when: ansible_os_family == "Darwin"
-

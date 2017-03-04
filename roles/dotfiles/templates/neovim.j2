@@ -1,0 +1,27 @@
+" vim_plug (https://github.com/junegunn/vim-plug)
+
+" Specify a directory for plugins
+call plug#begin('{{ xdg_data_home }}/nvim/plugged')
+
+Plug 'https://github.com/morhetz/gruvbox'
+Plug 'https://github.com/vim-airline/vim-airline'
+Plug 'https://github.com/edkolev/tmuxline.vim'
+Plug 'https://github.com/edkolev/promptline.vim'
+Plug 'https://github.com/airblade/vim-gitgutter'
+
+Plug 'vim-airline/vim-airline-themes'
+
+" Initialize plugin system
+call plug#end()
+
+" Enable TrueColor
+set termguicolors
+
+" Always show statusline
+set laststatus=2
+
+" Enable Powerline symbols
+let g:airline_powerline_fonts = 1
+
+" Set Airline's theme (Gruvbox)
+:let g:airline_theme='gruvbox'
