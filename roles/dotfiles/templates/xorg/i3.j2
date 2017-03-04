@@ -1,10 +1,75 @@
 # i3-gaps config file (v4)
-#
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # Fork: https://github.com/Airblader/i3
 
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Define colors by loading them from the Xresource database (+fallback)
+set_from_resource $black       color0  #282828
+set_from_resource $darkgrey    color8  #928374
+
+set_from_resource $darkred     color1  #cc241d
+set_from_resource $red         color9  #fb4934
+
+set_from_resource $darkgreen   color2  #98971a
+set_from_resource $green       color10 #b8bb26
+
+set_from_resource $darkyellow  color3  #d79921
+set_from_resource $yellow      color11 #fabd2f
+
+set_from_resource $darkblue    color4  #458588
+set_from_resource $blue        color12 #83a598
+
+set_from_resource $darkmagenta color5  #b16286
+set_from_resource $magenta     color13 #d3869b
+
+set_from_resource $darkcyan    color6  #689d6a
+set_from_resource $cyan        color14 #8ec07c
+
+set_from_resource $lightgrey   color7  #a89984
+set_from_resource $white       color15 #ebdbb2
+
+set $orange #d65d0e
+set $transparent #282828DD
+
+#bar {
+#  id desktop
+#
+#  # Experimental transparency
+#  i3bar_command i3bar -t
+#  status_command i3blocks
+#
+#  position top
+#  mode dock
+#  tray_output primary
+#
+#  workspace_buttons yes
+#  strip_workspace_numbers yes
+#  binding_mode_indicator yes
+#
+##  separator_symbol ""
+#  font pango:AnonymicePowerline Nerd Font 10
+## tray_padding 0
+## verbose yes
+#
+#  colors {
+#    statusline         $white
+#    background         $transparent
+#    separator          $orange
+#
+##                      BORDER     BACKGROUND  TEXT
+#    focused_workspace  $orange    $orange     $black
+#    inactive_workspace $darkgrey  $darkgrey   $black
+#    active_workspace   $lightgrey $lightgrey  $white
+#    urgent_workspace   $darkred   $darkred    $white
+#    binding_mode       $darkred   $darkred    $white
+#  }
+#}
+
+#
+exec-always --no-startup-id python /usr/lib64/python3.6/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py -i3 - -f "AnonymicePowerline Nerd Font 10"
+
 # Polybar
-exec_always --no-startup-id "{{ xdg_config_home }}/polybar/launcher"
+#exec_always --no-startup-id "{{ xdg_config_home }}/polybar/launcher"
 
 # Workspace naming
 set $tag1 "1:Code"
@@ -19,12 +84,13 @@ assign [class="^Firefox$"] $tag2
 for_window [class="^.*"] border pixel 3
 
 # Gruvbox palette
-client.focused          #d65d0e #665c54 #eddbb2 #2e9ef4 #d65d0e
-client.focused_inactive #282828 #5f676a #ffffff #484e50 #5f676a
-client.unfocused        #3c3836 #3c3836 #a89984 #292d2e #222222
-client.urgent           #cc241d #cc241d #ebdbb2 #cc241d #cc241d
-client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
-client.background       #ffffff
+# <colorclass>          <border>  <background>  <text>    <indicator>  <child_border>
+client.focused          $orange     $orange      $black   $darkblue    $orange
+client.focused_inactive $black      $black       $white   $darkblue    $black
+client.unfocused        $black      $black       $white   $darkblue    $black
+client.urgent           $darkred    $darkred     $white   $darkblue    $darkred
+client.placeholder      #000000     #000000      #ffffff  $darkblue    #000000
+client.background       $black
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.

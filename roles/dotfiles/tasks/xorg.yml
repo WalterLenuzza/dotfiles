@@ -61,6 +61,8 @@
   template:
     src: xorg/polybar.j2
     dest: "{{ xdg_config_home }}/polybar/config"
+  tags:
+    - debug
 
 - name: "Polybar: WM launcher"
   template:
