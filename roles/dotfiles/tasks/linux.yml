@@ -19,6 +19,3 @@
 - name: "Update font cache"
   command: "fc-cache -f -v"
   when: install_font_linux.changed
-
-- include: xorg.yml
-  when: ansible_system == "Linux"

@@ -7,3 +7,13 @@
   hosts: all
   roles:
   - dotfiles
+
+- name: Configure VI
+  hosts: all
+  roles:
+  - vi
+
+- name: Configure Xorg
+  hosts: all
+  roles:
+  - xorg
