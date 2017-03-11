@@ -23,11 +23,12 @@ orange      = ${xrdb:color_orange }
 transparent = #00282828
 transparent_black = #cc282828
 
-[bar/desktop]
+
+[bar/{{ polybar_name }}]
 ; Modules
 modules-left   = powermenu i3
 modules-center = xwindow
-modules-right  = date_time
+modules-right  = cpu memory date_time
 
 ; Put the bar at the top of the screen
 bottom = false
@@ -85,14 +86,14 @@ tray-padding = 0
 tray-scale = 1
 
 ; Background argb color (e.g. #f00, #ff992a, #ddff1023)
-background = ${colors.yellow}
+background = ${colors.transparent_black}
 
 ; Foreground argb color (e.g. #f00, #ff992a, #ddff1023)
-foreground = ${colors.foreground}
+foreground = ${colors.white}
 
 ;border-left-size = 15
 ;border-right-size = 15
-;border-color = ${self.background}
+;border-color = ${colors.green}
 
 ; Tell the Window Manager not to configure the window.
 ; Use this to detach the bar if your WM is locking its size/position.
@@ -108,6 +109,7 @@ foreground = ${colors.foreground}
 ; Enable support for inter-process messaging
 ; See the Messaging wiki page for more details.
 enable-ipc = false
+
 
 [module/powermenu]
 type = custom/menu
@@ -129,20 +131,21 @@ format-suffix            = 
 format-suffix-foreground = ${colors.darkred}
 format-suffix-background = ${colors.black}
 
+
 [module/i3]
 type = internal/i3
 
 ; Only show workspaces defined on the same output as the bar
 ; Useful if you want to show monitor specific workspaces
 ; on different bars
-;pin-workspaces = true
+pin-workspaces = false
 
 ; Split the workspace name on ':'
 strip-wsnumbers = true
 
 ; Sort the workspaces by index instead of the default
 ; sorting that groups the workspaces by output
-;index-sort = true
+index-sort = false
 
 ; Create click handler used to focus workspace
 enable-click = true
@@ -160,33 +163,70 @@ reverse-scroll = false
 format = <label-state> <label-mode>
 
 ; Mode
-label-mode = %{B#689d6a F#282828}%{F#282828 B#689d6a}   %mode%   %{B#282828 F#689d6a}
+label-mode      = %{B#cc98971a F#cc282828}%{B#cc98971a F#cc282828}%{F#cc282828 B#cc98971a}   %mode%   %{B#cc98971a F#cc282828}%{B#cc282828 F#cc98971a}
 
 ; Workspaces
 ; Available tokens:  %name% %icon% %index% %output%
-label-focused    = %{B#d65d0e F#282828}%{F#282828 B#d65d0e}   %name%   %{B#282828 F#d65d0e}
-label-unfocused  = %{B#282828 F#282828}%{B#282828 F#928374}%{F#ebdbb2 B#282828}   %name%   %{B#282828 F#282828}
-label-visible    = %{B#282828 F#282828}%{B#282828 F#928374}%{F#ebdbb2 B#282828}   %name%   %{B#282828 F#282828}
-label-urgent     = %{B#cc241d F#282828}%{B#282828 F#282828}%{F#282828 B#cc241d}   %name%   %{B#282828 F#cc241d}
+label-focused   = %{B#ccd65d0e F#cc282828}%{B#ccd65d0e F#cc282828}%{F#cc282828 B#ccd65d0e}   %name%   %{B#ccd65d0e F#cc282828}%{B#cc282828 F#ccd65d0e}
+label-unfocused = %{B#cc282828 F#cc282828}%{B#cc282828 F#cc928374}%{F#ccebdbb2 B#cc282828}   %name%   %{B#cc282828 F#cc928374}%{B#cc282828 F#cc282828}
+label-visible   = %{B#cc282828 F#cc282828}%{B#cc282828 F#cc928374}%{F#ccebdbb2 B#cc282828}   %name%   %{B#cc282828 F#cc928374}%{B#cc282828 F#cc282828}
+label-urgent    = %{B#cccc241d F#cc282828}%{B#cc282828 F#cc928374}%{F#ccebdbb2 B#cc282828}   %name%   %{B#cc282828 F#cc928374}%{B#cc282828 F#cc282828}
 
 
 [module/xwindow]
 type = internal/xwindow
 
-label-background = ${colors.transparent_black}
+label-background = ${colors.black}
 label-foreground = ${colors.white}
 label-padding    = 10
-format-padding   = 0
-format           = <label>
-label = %title%
+format = <label>
+label  = %title%
 
 format-prefix            = 
-format-prefix-foreground = ${colors.transparent_black}
-format-prefix-background = ${colors.transparent}
+format-prefix-background = ${colors.transparent_black}
+format-prefix-foreground = ${colors.black}
 
 format-suffix            = 
+format-suffix-background = ${colors.transparent_black}
+format-suffix-foreground = ${colors.black}
+
+
+[module/cpu]
+type     = internal/cpu
+interval = 2
+
+label-background = ${colors.darkcyan}
+label-foreground = ${colors.black}
+label-padding   =  5
+format           = <label>
+label            =  %percentage%%
+
+format-prefix            = 
+format-prefix-foreground = ${colors.darkcyan}
+format-prefix-background = ${colors.transparent_black}
+
+format-suffix            = 
 format-suffix-foreground = ${colors.transparent_black}
-format-suffix-background = ${colors.transparent}
+format-suffix-background = ${colors.darkcyan}
+
+
+[module/memory]
+type     = internal/memory
+interval = 10
+
+label-background = ${colors.darkcyan}
+label-foreground = ${colors.black}
+label-padding   =  5
+format           = <label>
+label            =  %percentage_used%%
+
+format-prefix            = 
+format-prefix-foreground = ${colors.darkcyan}
+format-prefix-background = ${colors.transparent_black}
+
+format-suffix            = 
+format-suffix-foreground = ${colors.transparent_black}
+format-suffix-background = ${colors.darkcyan}
 
 
 [module/date_time]
@@ -207,112 +247,17 @@ label            = %date%    %time%
 
 format-prefix            = 
 format-prefix-foreground = ${colors.darkblue}
-format-prefix-background = ${colors.transparent}
+format-prefix-background = ${colors.transparent_black}
 
-format-suffix            = 
-format-suffix-foreground = ${colors.transparent}
-format-suffix-background = ${colors.darkblue}
-
-#[module/clock]
-#type = custom/script
-#interval = 1
-#format = <label>
-#exec = printf " $(date '+%H:%M')
-#
-#label-background = ${colors.green}
-#format-underline = ${colors.black}
-#label-padding   =  2
-#
-#format-prefix            = 
-#format-prefix-background = #AD9CC3
-#format-prefix-foreground = ${self.label-background}
-#
-#format-suffix            = 
-#format-suffix-background = #DDCADB
-#format-suffix-foreground = #25232A
+;format-suffix            = 
+;format-suffix-foreground = ${colors.transparent}
+;format-suffix-background = ${colors.darkblue}
 
 
 
 
 
 
-
-
-#[module/mpd]
-#type                  = internal/mpd
-#
-#label-song            =   %artist% - %title%
-#label-song-maxlen     = 40
-#label-song-ellipsis   = true
-#
-#format-online         = <label-song><toggle>
-## <icon-prev>    <icon-seekb>  <toggle>  <icon-seekf>    <icon-next>     <icon-random>  <icon-repeat>
-#
-#label-song-foreground = ${colors.foreground}
-#label-song-background = ${colors.t5}
-#icon-pause-background = ${self.label-song-background}
-#icon-play-background  = ${self.label-song-background}
-#icon-pause-foreground = ${self.label-song-foreground}
-#icon-play-foreground  = ${self.label-song-foreground}
-#
-#label-song-padding = 2
-#icon-pause-padding-right = 2
-#icon-play-padding-right = 2
-#
-#icon-prev  = 
-#icon-seekb = 
-#icon-stop  = 
-#icon-pause = 
-#icon-play  = 
-#icon-next  = 
-#icon-seekf = 
-#
-#icon-random = 
-#icon-repeat = 
-#toggle-off-foreground = ${colors.grey}
-#toggle-on-foreground  = ${colors.blue}
-#
-#
-#format-online-prefix            = 
-#format-online-prefix-foreground = ${module/xwindow.format-background}
-#format-online-prefix-background = ${self.label-song-background}
-#
-#format-online-suffix            = 
-#format-online-suffix-foreground = ${self.label-song-background}
-
-
-
-[module/memory]
-type             = internal/memory
-interval         = 2
-format           = <label>
-
-label            =  %percentage_used%%
-
-label-background = ${colors.t5}
-format-underline = ${colors.cyan}
-label-padding   =  2
-
-format-prefix            = 
-format-prefix-background = #D3C1D6
-format-prefix-foreground = ${self.label-background}
-
-format-suffix            = 
-format-suffix-background = ${self.label-background}
-format-suffix-foreground = ${module/cpu.format-background}
-
-
-[module/cpu]
-format-label       = internal/cpu
-
-format             = <label>
-format-background = ${colors.t3}
-format-padding     = 2
-
-type      = internal/cpu
-interval  = 2
-label     =  %percentage%%
-padding   = 0
 
 [module/wlan]
 type      = internal/network
@@ -560,3 +505,45 @@ ramp-2 = " "
 #format-suffix            = 
 #format-suffix-background = ${self.label-background}
 #format-suffix-foreground = #B6A5C8
+
+#[module/mpd]
+#type                  = internal/mpd
+#
+#label-song            =   %artist% - %title%
+#label-song-maxlen     = 40
+#label-song-ellipsis   = true
+#
+#format-online         = <label-song><toggle>
+## <icon-prev>    <icon-seekb>  <toggle>  <icon-seekf>    <icon-next>     <icon-random>  <icon-repeat>
+#
+#label-song-foreground = ${colors.foreground}
+#label-song-background = ${colors.t5}
+#icon-pause-background = ${self.label-song-background}
+#icon-play-background  = ${self.label-song-background}
+#icon-pause-foreground = ${self.label-song-foreground}
+#icon-play-foreground  = ${self.label-song-foreground}
+#
+#label-song-padding = 2
+#icon-pause-padding-right = 2
+#icon-play-padding-right = 2
+#
+#icon-prev  = 
+#icon-seekb = 
+#icon-stop  = 
+#icon-pause = 
+#icon-play  = 
+#icon-next  = 
+#icon-seekf = 
+#
+#icon-random = 
+#icon-repeat = 
+#toggle-off-foreground = ${colors.grey}
+#toggle-on-foreground  = ${colors.blue}
+#
+#
+#format-online-prefix            = 
+#format-online-prefix-foreground = ${module/xwindow.format-background}
+#format-online-prefix-background = ${self.label-song-background}
+#
+#format-online-suffix            = 
+#format-online-suffix-foreground = ${self.label-song-background}

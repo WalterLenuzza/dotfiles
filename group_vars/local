@@ -46,6 +46,7 @@ pacman_packages:
   - rsync
   - rxvt-unicode
   - the_silver_searcher
+  - tree
   - wget
   - xorg-xrdb
   - xorg-xrandr
