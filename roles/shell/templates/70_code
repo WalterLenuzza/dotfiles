@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+
+## Golang
+export GOPATH=$HOME/Dev/golang
+export PATH=$PATH:$HOME/Dev/golang/bin
+
+
+## Python (pyenv)
+export PYENV_ROOT="$HOME/Dev/python"
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+# TEMP: Prompt changing will be removed from future release
+# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+[ $(command -v pyenv) ] && eval "$(pyenv init -)"
+[ $(command -v pyenv-virtualenv-init) ] && eval "$(pyenv virtualenv-init -)"
+
+
+# Ruby (RBenv)
+export RBENV_ROOT="$HOME/Dev/ruby"
+[ $(command -v rbenv) ] && eval "$(rbenv init -)"

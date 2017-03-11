@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+
+# Print pretty system logo/info (archey)
+[ $(command -v archey) ] && archey -c -o
+
+# Fortune
+[ $(command -v fortune) ] && fortune computers science && echo
+
+# Show today's anniversaries
+[ $(command -v calendar) ] && [ -r /usr/share/calendar/calendar.world ] && {
+  calendar -A 0 -f /usr/share/calendar/calendar.world; }
+

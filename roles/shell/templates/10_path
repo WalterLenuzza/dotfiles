@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+
+# GNU core utilities
+# export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+
