@@ -31,45 +31,8 @@ set_from_resource $white       color15 #ebdbb2
 set $orange #d65d0e
 set $transparent #282828DD
 
-#bar {
-#  id desktop
-#
-#  # Experimental transparency
-#  i3bar_command i3bar -t
-#  status_command i3blocks
-#
-#  position top
-#  mode dock
-#  tray_output primary
-#
-#  workspace_buttons yes
-#  strip_workspace_numbers yes
-#  binding_mode_indicator yes
-#
-##  separator_symbol ""
-#  font pango:AnonymicePowerline Nerd Font 10
-## tray_padding 0
-## verbose yes
-#
-#  colors {
-#    statusline         $white
-#    background         $transparent
-#    separator          $orange
-#
-##                      BORDER     BACKGROUND  TEXT
-#    focused_workspace  $orange    $orange     $black
-#    inactive_workspace $darkgrey  $darkgrey   $black
-#    active_workspace   $lightgrey $lightgrey  $white
-#    urgent_workspace   $darkred   $darkred    $white
-#    binding_mode       $darkred   $darkred    $white
-#  }
-#}
-
-#
-exec-always --no-startup-id python /usr/lib64/python3.6/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py -i3 - -f "AnonymicePowerline Nerd Font 10"
-
 # Polybar
-#exec_always --no-startup-id "{{ xdg_config_home }}/polybar/launcher"
+exec_always --no-startup-id "{{ xdg_config_home }}/polybar/launcher"
 
 # Workspace naming
 set $tag1 "1:Code"
@@ -215,7 +178,7 @@ bindsym $mod+Shift+Tab workspace prev
 # switch to workspace
 bindsym $mod+1 workspace $tag1
 bindsym $mod+2 workspace $tag2
-bindsym $mod+3 workspace $tag3
+bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
@@ -227,7 +190,7 @@ bindsym $mod+0 workspace 10
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $tag1
 bindsym $mod+Shift+2 move container to workspace $tag2
-bindsym $mod+Shift+3 move container to workspace $tag3
+bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
