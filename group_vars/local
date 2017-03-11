@@ -8,13 +8,6 @@ package_upgrade: yes
 pip_system_packages:
   - i3ipc
 
-# MacOS
-brew_taps:
-  - caskroom/cask
-  - caskroom/fonts
-brew_packages: []
-cask_packages: []
-
 # ArchLinux
 aur_helper: cower
 aur_packages:
@@ -52,3 +45,79 @@ pacman_packages:
   - xorg-xrandr
   - xproto
   - zsh
+
+# MacOS
+brew_taps:
+  - caskroom/cask
+  - caskroom/fonts
+  - homebrew/completions
+
+brew_packages:
+  - ack
+  - archey
+  - awscli
+  - bash
+  - bats
+  - fortune
+  - git
+  - go
+  - gpg-agent
+  - htop
+  - hub
+  - kubernetes-cli
+  - jq
+  - lynx
+  - midnight-commander
+  - ncdu
+  - nmap
+  - openssl
+  - packer
+  - pstree
+  - pyenv
+  - pyenv-virtualenv
+  - pyenv-virtualenvwrapper
+  - reattach-to-user-namespace
+  - rbenv
+  - shellcheck
+  - ssh-copy-id
+  - task
+  - terminal-notifier
+  - terraform
+  - tig
+  - tmux
+  - tree
+  - vault
+  - vim
+  - watch
+  - wget
+
+cask_packages:
+  - adium
+  - atom
+  - calibre
+  - chromium
+  - cyberduck
+  - dash
+  - disk-inventory-x
+  - docker
+  - evernote
+  - filebot
+  - firefox
+  - flux
+  - github-desktop
+  - google-drive
+  - gpgtools
+  - iterm2
+  - macdown
+  - macpass
+  - mplayerx
+  - plex-home-theater
+  - slack
+  - spectacle
+  - spotify
+  - textmate
+  - the-unarchiver
+  - torbrowser
+  - transmission
+  - vagrant
+  - virtualbox
