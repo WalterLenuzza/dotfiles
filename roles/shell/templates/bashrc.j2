@@ -15,3 +15,4 @@ function source_dotfiles() {
 # Main (if interactive)
 [ -n "$PS1" ] && source_dotfiles && unset source_dotfiles
 
+#[[ $- != *i* ]] && return
