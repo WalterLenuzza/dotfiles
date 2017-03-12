@@ -24,15 +24,16 @@ set laststatus=2
 colorscheme gruvbox
 set background=dark
 
+" Automatically display all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
+
 " Enable Powerline symbols
 let g:airline_powerline_fonts = 1
 
 " Set Airline's theme (Gruvbox)
 :let g:airline_theme='gruvbox'
 
-" Set Airline's theme (Gruvbox)
-:let g:airline_theme='gruvbox'
-
+" Set Promptline's theme (Gruvbox)
 let g:promptline_theme = 'airline'
 
 " sections (a, b, c, x, y, z, warn) are optional
