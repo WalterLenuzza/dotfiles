@@ -1,21 +1,21 @@
-- name: "Set locale"
+- name: Set locale
   copy:
     src: locale
     dest: "{{ xdg_config_home }}/locale.conf"
 
-- name: "User fonts: directory"
+- name: User fonts directory
   file:
     path: "{{ xdg_data_home }}/fonts"
     state: directory
     mode: 0700
 
-- name: "Install Anonymice Powerline Nerd Font"
+- name: Install Anonymice Powerline Nerd Font (Linux)
   get_url:
     url: "{{ anonymous_ttf_url }}"
     dest: "{{ xdg_data_home }}/fonts/AnonymousPro.ttf"
     checksum: "{{ anonymous_ttf_sha }}"
   register: install_font_linux
 
-- name: "Update font cache"
+- name: Update font cache
   command: "fc-cache -f -v"
   when: install_font_linux.changed

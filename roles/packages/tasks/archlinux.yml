@@ -1,29 +1,29 @@
-- name: "Pacman: update package cache"
+- name: Pacman: update package cache
   pacman:
     update_cache: yes
   when: package_update
   become: true
 
-- name: "Pacman: update packages"
+- name: Pacman: update packages
   pacman:
     upgrade: yes
   when: package_upgrade
   become: true
 
-- name: "Pacman: install packages"
+- name: Pacman: install packages
   pacman:
     name: "{{ item }}"
     state: present
   with_items: "{{ pacman_packages }}"
   become: true
 
-- name: "AUR: cache directory"
+- name: AUR: cache directory
   file:
     path: "{{ xdg_cache_home }}/aur"
     state: directory
     mode: 0755
 
-- name: "AUR: install helper"
+- name: AUR: install helper
   aur:
     name: "{{ aur_helper }}"
     dir:  "{{ xdg_cache_home }}/aur"
@@ -31,7 +31,7 @@
     skip_pgp: yes
   become: true
 
-- name: "AUR: install packages"
+- name: AUR: install packages
   aur:
     name: "{{ item }}"
     dir:  "{{ xdg_cache_home }}/aur"

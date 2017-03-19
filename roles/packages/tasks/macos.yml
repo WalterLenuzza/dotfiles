@@ -1,25 +1,25 @@
-- name: "Homebrew: update package manager"
+- name: Homebrew: update package manager
   homebrew:
     update_homebrew: yes
 
-- name: "Homebrew: add taps"
+- name: Homebrew: add taps
   homebrew_tap:
     name: "{{ item }}"
     state: present
   with_items: "{{ brew_taps }}"
 
-- name: "Homebrew: update packages"
+- name: Homebrew: update packages
   homebrew:
     upgrade_all: yes
   when: package_upgrade
 
-- name: "Homebrew: install packages"
+- name: Homebrew: install packages
   homebrew:
     name: "{{ item }}"
     state: present
   with_items: "{{ brew_packages }}"
 
-- name: "Homebrew: install Cask packages"
+- name: Homebrew: install Cask packages
   homebrew_cask:
     name: "{{ item }}"
     state: present
