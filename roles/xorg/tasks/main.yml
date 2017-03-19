@@ -1,4 +1,4 @@
-- name: "Xorg: config directory"
+- name: Config directory
   file:
     path: "{{ xdg_config_home }}/xorg"
     state: directory

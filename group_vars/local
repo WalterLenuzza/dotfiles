@@ -17,6 +17,7 @@ aur_packages:
   - neofetch
   - pacaur
   - polybar
+  - xst-git
 
 pacman_packages:
   - ansible
