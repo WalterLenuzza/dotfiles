@@ -8,7 +8,7 @@
   roles:
   - dotfiles
 
-- name: Configure VI
+- name: Configure vi
   hosts: all
   roles:
   - vi
