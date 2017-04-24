@@ -1,4 +1,4 @@
-- name: Python pip: keep packages up-to-date
+- name: "Python system pip : keep packages up-to-date"
   pip:
     name: "{{ item }}"
     state: present

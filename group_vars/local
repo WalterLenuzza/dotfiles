@@ -5,15 +5,10 @@ xdg_data_home:   "{{ ansible_user_dir }}/.local/share"
 package_update: yes
 package_upgrade: yes
 
-pip_system_packages:
-  - i3ipc
-
 # ArchLinux
 aur_helper: cower
 aur_packages:
-  - i3blocks-gaps-git
   - i3-gaps-git
-  - lemonbar-xft-git
   - neofetch
   - pacaur
   - polybar
@@ -21,7 +16,6 @@ aur_packages:
 
 pacman_packages:
   - ansible
-  - atom
   - compton
   - curl
   - feh
@@ -32,6 +26,7 @@ pacman_packages:
   - jsoncpp
   - neovim
   - noto-fonts
+  - ntp
   - pavucontrol
   - powerline
   - pulseaudio
@@ -122,3 +117,7 @@ cask_packages:
   - transmission
   - vagrant
   - virtualbox
+
+# Python PIP
+pip_system_packages: []
+

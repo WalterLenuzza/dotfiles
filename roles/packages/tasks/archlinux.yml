@@ -1,40 +1,35 @@
-- name: Pacman: update package cache
+- name: "ArchLinux Pacman : update packages"
   pacman:
     update_cache: yes
-  when: package_update
-  become: true
-
-- name: Pacman: update packages
-  pacman:
     upgrade: yes
   when: package_upgrade
   become: true
 
-- name: Pacman: install packages
+- name: "ArchLinux Pacman : install packages"
   pacman:
     name: "{{ item }}"
     state: present
   with_items: "{{ pacman_packages }}"
   become: true
 
-- name: AUR: cache directory
+- name: "ArchLinux AUR : cache directory"
   file:
     path: "{{ xdg_cache_home }}/aur"
     state: directory
     mode: 0755
 
-- name: AUR: install helper
+- name: "ArchLinux AUR : install helper"
   aur:
     name: "{{ aur_helper }}"
     dir:  "{{ xdg_cache_home }}/aur"
-    user: "{{ ansible_user }}"
+    user: "{{ ansible_user_id }}"
     skip_pgp: yes
   become: true
 
-- name: AUR: install packages
+- name: "ArchLinux AUR : install packages"
   aur:
     name: "{{ item }}"
     dir:  "{{ xdg_cache_home }}/aur"
-    user: "{{ ansible_user }}"
+    user: "{{ ansible_user_id }}"
   with_items: "{{ aur_packages }}"
   become: true

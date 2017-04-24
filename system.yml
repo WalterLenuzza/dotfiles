@@ -1,10 +1,7 @@
 ---
-- name: "Collecting Facts"
-  hosts: local
-  gather_facts: yes
-
 - name: "Configure local workstation"
   hosts: all
+  gather_facts: yes
   roles:
   - packages
   vars_prompt:
