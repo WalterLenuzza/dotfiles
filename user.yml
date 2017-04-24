@@ -1,0 +1,8 @@
+---
+- name: Configure user preferences
+  hosts: all
+  gather_facts: yes
+  roles:
+  - dotfiles
+  - vi
+  - xorg

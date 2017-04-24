@@ -1,4 +1,4 @@
-- name: Install Anonymice Powerline Nerd Font (MacOS)
+- name: "MacOS : Anonymice Powerline Nerd Font"
   get_url:
     url: "{{ anonymous_ttf_url }}"
     dest: "{{ ansible_user_dir }}/Library/Fonts/AnonymousPro.ttf"

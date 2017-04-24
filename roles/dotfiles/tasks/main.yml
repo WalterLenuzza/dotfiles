@@ -5,3 +5,14 @@
 
 - include: macos.yml
   when: ansible_os_family == "Darwin"
+
+- include: shell.yml
+
+- include: bash.yml
+
+- include: zsh.yml
+
+- include: git.yml
+
+- include: ssh.yml
+

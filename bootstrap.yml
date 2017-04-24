@@ -1,4 +1,4 @@
 ---
 # file: bootstrap.yml
 - include: system.yml
-- include: dotfiles.yml
+- include: user.yml
