@@ -8,6 +8,8 @@ Plug 'https://github.com/vim-airline/vim-airline'
 Plug 'https://github.com/edkolev/tmuxline.vim'
 Plug 'https://github.com/edkolev/promptline.vim'
 Plug 'https://github.com/airblade/vim-gitgutter'
+Plug 'https://github.com/scrooloose/nerdtree'
+Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin'
 
 " Initialize plugin system
 call plug#end()
@@ -39,8 +41,12 @@ let g:promptline_preset = {
         \'b' : [ promptline#slices#cwd() ],
         \'c' : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
         \'x' : [ promptline#slices#jobs() ],
-        \'warn' : [ promptline#slices#last_exit_code() ]
-}
+        \'warn' : [ promptline#slices#last_exit_code() ]}
+
+" NerdTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let NERDTreeMinimalUI=1
 
 set showcmd             " Show (partial) command in status line.
 set showmatch           " Show matching brackets.
