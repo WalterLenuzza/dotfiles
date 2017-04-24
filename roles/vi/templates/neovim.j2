@@ -1,7 +1,7 @@
-" vim_plug (https://github.com/junegunn/vim-plug)
-" Specify a directory for plugins
-call plug#begin('{{ xdg_data_home }}/nvim/plugged')
+" Plugins managed through vim_plug (https://github.com/junegunn/vim-plug)
+call plug#begin('{{ xdg_data_home }}/nvim/plugged') " Plugins directory
 
+" Plugins list
 Plug 'https://github.com/tpope/vim-sensible'
 Plug 'https://github.com/morhetz/gruvbox'
 Plug 'https://github.com/vim-airline/vim-airline'
@@ -11,8 +11,8 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin'
 
-" Initialize plugin system
-call plug#end()
+call plug#end() " Initialize plugin system
+
 
 " Enable TrueColor
 set termguicolors

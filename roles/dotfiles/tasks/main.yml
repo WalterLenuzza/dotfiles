@@ -1,11 +1,5 @@
 - include: xdg.yml
 
-- include: linux.yml
-  when: ansible_system == "Linux"
-
-- include: macos.yml
-  when: ansible_os_family == "Darwin"
-
 - include: shell.yml
 
 - include: bash.yml
@@ -16,3 +10,8 @@
 
 - include: ssh.yml
 
+- include: linux.yml
+  when: ansible_system == "Linux"
+
+- include: macos.yml
+  when: ansible_os_family == "Darwin"

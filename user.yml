@@ -3,6 +3,6 @@
   hosts: all
   gather_facts: yes
   roles:
-  - dotfiles
+    #  - dotfiles
   - vi
-  - xorg
+#  - xorg

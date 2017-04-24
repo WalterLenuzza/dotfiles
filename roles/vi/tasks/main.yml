@@ -1,5 +1,5 @@
-- include: neovim.yml
-
 - include: vi.yml
 
 - include: vim.yml
+
+- include: neovim.yml

@@ -1,32 +1,32 @@
-- name: "Neovim: config directory"
+- name: "Neovim : config directory"
   file:
     path: "{{ xdg_config_home }}/nvim"
     state: directory
     mode: 0700
 
-- name: "Neovim: autoload directory"
+- name: "Neovim : autoload directory"
   file:
     path: "{{ xdg_data_home }}/nvim/site/autoload"
     state: directory
     mode: 0700
 
-- name: "Neovim: download vim-plug"
+- name: "Neovim : download vim-plug"
   get_url:
     url: "{{ vim_plug_url }}"
     dest: "{{ xdg_data_home }}/nvim/site/autoload/plug.vim"
     checksum: "{{ vim_plug_sha }}"
   register: download_nvim_vim_plug
 
-# name: "Neovim: install vim-plug"
-#  command: nvim -c 'PlugInstall! | q! | q!'
-#  args:
-#    creates: "{{ xdg_data_home }}/nvim/plugged"
-#  register: install_nvim_vim_plug
+- name: "Neovim : install vim-plug"
+  command: nvim -c PlugInstall! | q! | q!
+  args:
+    creates: "{{ xdg_data_home }}/nvim/plugged"
+  register: install_nvim_vim_plug
 
-- name: "Neovim: config"
-  template:
-    src: neovim.j2
-    dest: "{{ xdg_config_home }}/nvim/init.vim"
+#- name: "Neovim: config"
+#  template:
+#    src: neovim.j2
+#    dest: "{{ xdg_config_home }}/nvim/init.vim"
 
   #- name: "Neovim: promptline theme"
   #template:
