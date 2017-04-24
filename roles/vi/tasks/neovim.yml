@@ -10,28 +10,27 @@
     state: directory
     mode: 0700
 
-- name: "Neovim : download vim-plug"
+- name: "Neovim : download pathogen.vim"
   get_url:
-    url: "{{ vim_plug_url }}"
-    dest: "{{ xdg_data_home }}/nvim/site/autoload/plug.vim"
-    checksum: "{{ vim_plug_sha }}"
-  register: download_nvim_vim_plug
+    url: "{{ pathogen_vim_url }}"
+    dest: "{{ xdg_data_home }}/nvim/site/autoload/pathogen.vim"
+    checksum: "{{ pathogen_vim_sha }}"
 
-- name: "Neovim : install vim-plug"
-  command: nvim -c PlugInstall! | q! | q!
-  args:
-    creates: "{{ xdg_data_home }}/nvim/plugged"
-  register: install_nvim_vim_plug
+- name: "Neovim : clone plugins"
+  git:
+    repo: "{{ item.url }}"
+    dest: "{{ xdg_data_home }}/nvim/bundle/{{ item.dest }}"
+  with_items: "{{ vim_plugins }}"
 
-#- name: "Neovim: config"
-#  template:
-#    src: neovim.j2
-#    dest: "{{ xdg_config_home }}/nvim/init.vim"
+- name: "Neovim : config"
+  template:
+    src: neovim.j2
+    dest: "{{ xdg_config_home }}/nvim/init.vim"
 
-  #- name: "Neovim: promptline theme"
-  #template:
-  #  src: promptline.j2
-  #  dest: "{{ xdg_data_home }}/nvim/plugged/promptline.vim/autoload/promptline/themes/custom.vim"
+#- name: "Neovim: promptline theme"
+#template:
+#  src: promptline.j2
+#  dest: "{{ xdg_data_home }}/nvim/plugged/promptline.vim/autoload/promptline/themes/custom.vim"
 
 #- name: "Neovim: install vim-airline theme"
 #  get_url:

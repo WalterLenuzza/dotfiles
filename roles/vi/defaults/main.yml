@@ -1,5 +1,15 @@
 vim_airline_theme_url: "https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/airline/themes/gruvbox.vim"
 vim_airline_theme_sha: "sha256:84510d8b2a2b94296085dd47afe57bdb3e635f087769fb38673f9261b2601cd6"
 
-vim_plug_url: "https://github.com/junegunn/vim-plug/releases/download/0.9.1/plug.vim"
-vim_plug_sha: "sha256:42324f63f6b7e2239b2665340e29b12caffc9a1688b467b276f0819b77dfd41e."
+pathogen_vim_url: "https://tpo.pe/pathogen.vim"
+pathogen_vim_sha: "sha256:b05ef1d37eaf81a93ee07f52e443e0b53ea24eaef752e918763d2eff7758d70e."
+
+vim_plugins:
+- { url: 'https://github.com/tpope/vim-sensible', dest: 'vim-sensible' }
+- { url: 'https://github.com/morhetz/gruvbox', dest: 'gruvbox' }
+- { url: 'https://github.com/vim-airline/vim-airline', dest: 'vim-airline' }
+- { url: 'https://github.com/edkolev/tmuxline.vim', dest: 'tmuxline.vim' }
+- { url: 'https://github.com/edkolev/promptline.vim', dest: 'promptline.vim' }
+- { url: 'https://github.com/airblade/vim-gitgutter', dest: 'vim-gitgutter' }
+- { url: 'https://github.com/scrooloose/nerdtree', dest: 'nerdtree' }
+- { url: 'https://github.com/Xuyuanp/nerdtree-git-plugin', dest: 'nerdtree-git-plugin' }
