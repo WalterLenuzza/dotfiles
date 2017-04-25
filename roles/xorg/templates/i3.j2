@@ -101,10 +101,10 @@ exec_always --no-startup-id "{{ xdg_config_home }}/polybar/launcher"
 bindsym $mod+F1 exec i3lock -c 282828
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec st
 
 # Use Rofi (instead of dmenu)
-bindsym $mod+d exec --no-startup-id rofi -show run -no-levenshtein-sort -lines 10 -width 50 -opacity "85"
+bindsym $mod+d exec --no-startup-id rofi -show run -no-levenshtein-sort -lines 10 -width 50 -opacity "95"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
