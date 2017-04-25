@@ -27,14 +27,14 @@
     src: neovim.j2
     dest: "{{ xdg_config_home }}/nvim/init.vim"
 
-#- name: "Neovim: promptline theme"
-#template:
-#  src: promptline.j2
-#  dest: "{{ xdg_data_home }}/nvim/plugged/promptline.vim/autoload/promptline/themes/custom.vim"
+- name: "Neovim: promptline theme"
+  template:
+    src: promptline.j2
+    dest: "{{ xdg_data_home }}/nvim/bundle/promptline.vim/autoload/promptline/themes/custom.vim"
 
-#- name: "Neovim: install vim-airline theme"
-#  get_url:
-#    url: "{{ vim_airline_theme_url }}"
-#    dest: "{{ xdg_data_home }}/nvim/plugged/vim-airline/autoload/airline/themes/gruvbox.vim"
-#    checksum: "{{ vim_airline_theme_sha }}"
-#  register: install_vim_airline_theme
+- name: "Neovim: install vim-airline theme"
+  get_url:
+    url: "{{ vim_airline_theme_url }}"
+    dest: "{{ xdg_data_home }}/nvim/bundle/vim-airline/autoload/airline/themes/gruvbox.vim"
+    checksum: "{{ vim_airline_theme_sha }}"
+  register: install_vim_airline_theme
