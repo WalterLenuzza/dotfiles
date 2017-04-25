@@ -5,6 +5,8 @@ xdg_data_home:   "{{ ansible_user_dir }}/.local/share"
 package_update: yes
 package_upgrade: yes
 
+wallpaper_url: "https://interfacelift.com/wallpaper/7yz4ma1/04007_autumnsunlightthroughthetrees_2560x1080.jpg"
+
 # ArchLinux
 aur_helper: cower
 aur_packages:

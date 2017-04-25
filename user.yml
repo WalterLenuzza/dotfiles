@@ -3,6 +3,6 @@
   hosts: all
   gather_facts: yes
   roles:
-    #  - dotfiles
+ # - dotfiles
   - vi
-#  - xorg
+  - { role: xorg, when: ansible_system == 'Linux' }

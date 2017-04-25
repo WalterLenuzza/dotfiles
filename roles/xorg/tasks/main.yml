@@ -3,16 +3,13 @@
     path: "{{ xdg_config_home }}/xorg"
     state: directory
     mode: 0700
-  when: ansible_system == "Linux"
+
+- include: wallpaper.yml
 
 - include: xsettings.yml
-  when: ansible_system == "Linux"
 
 - include: compton.yml
-  when: ansible_system == "Linux"
 
 - include: i3.yml
-  when: ansible_system == "Linux"
 
 - include: polybar.yml
-  when: ansible_system == "Linux"
