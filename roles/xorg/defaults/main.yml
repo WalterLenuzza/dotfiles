@@ -15,6 +15,6 @@ palette:
   color13: "#d3869b"
   color14: "#8ec07c"
   color15: "#ebdbb2"
-  color_orange: "#d65d0e"
+  color166: "#d65d0e"
 
 polybar_name: desktop

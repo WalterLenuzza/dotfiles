@@ -10,7 +10,7 @@
   command -v xrdb >/dev/null 2>&- && \
   xrdb -merge '{{ xdg_config_home }}/xorg/Xresources.st'
 
-# Merge rxvt-unicode256's Xresources (secondary terminal)
+# Merge rxvt-unicode's Xresources (secondary terminal)
 [ -f '{{ xdg_config_home }}/xorg/Xresources.urxvt' ] && \
   command -v xrdb >/dev/null 2>&- && \
   xrdb -merge '{{ xdg_config_home }}/xorg/Xresources.urxvt'
