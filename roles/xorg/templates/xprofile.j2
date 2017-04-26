@@ -1,34 +1,34 @@
 #!/usr/bin/env sh
 
 # Merge Xresources
-[ -f "{{ xdg_config_home }}/xorg/Xresources" ] && \
+[ -f '{{ xdg_config_home }}/xorg/Xresources' ] && \
   command -v xrdb >/dev/null 2>&- && \
-  xrdb -merge "{{ xdg_config_home }}/xorg/Xresources"
+  xrdb -merge '{{ xdg_config_home }}/xorg/Xresources'
 
 # Merge st's Xresources (primary terminal)
-[ -f "{{ xdg_config_home }}/xorg/Xresources.xst" ] && \
+[ -f '{{ xdg_config_home }}/xorg/Xresources.st' ] && \
   command -v xrdb >/dev/null 2>&- && \
-  xrdb -merge "{{ xdg_config_home }}/xorg/Xresources.st"
+  xrdb -merge '{{ xdg_config_home }}/xorg/Xresources.st'
 
 # Merge rxvt-unicode256's Xresources (secondary terminal)
-[ -f "{{ xdg_config_home }}/xorg/Xresources.urxvt256" ] && \
+[ -f '{{ xdg_config_home }}/xorg/Xresources.urxvt' ] && \
   command -v xrdb >/dev/null 2>&- && \
-  xrdb -merge "{{ xdg_config_home }}/xorg/Xresources.urxvt256"
+  xrdb -merge '{{ xdg_config_home }}/xorg/Xresources.urxvt'
 
 # Merge Rofi's Xresources
-[ -f "{{ xdg_config_home }}/xorg/Xresources.rofi" ] && \
+[ -f '{{ xdg_config_home }}/xorg/Xresources.rofi' ] && \
   command -v xrdb >/dev/null 2>&- && \
-  xrdb -merge "{{ xdg_config_home }}/xorg/Xresources.rofi"
+  xrdb -merge '{{ xdg_config_home }}/xorg/Xresources.rofi'
 
 # Merge Xdefaults
-[ -f "{{ xdg_config_home }}/xorg/Xdefaults"  ] && \
+[ -f '{{ xdg_config_home }}/xorg/Xdefaults'  ] && \
   command -v xrdb >/dev/null 2>&- && \
-  xrdb -merge "{{ xdg_config_home }}/xorg/Xdefaults"
+  xrdb -merge '{{ xdg_config_home }}/xorg/Xdefaults'
 
 # Run composite manager (Compton)
 command -v compton >/dev/null 2>&- && \
-  compton --config "{{ xdg_config_home }}/compton/config" -bc
+  compton --config '{{ xdg_config_home }}/compton/config' -bc
 
 # Set wallpaper (Feh)
 command -v feh >/dev/null 2>&- && \
-  feh --bg-fill '{{ xdg_config_home }}/xorg/wallpaper'
+  feh --bg-fill '{{ xdg_data_home }}/xorg/wallpaper'

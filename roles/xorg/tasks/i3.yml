@@ -1,10 +1,11 @@
-- name: "i3: config directory"
+- name: "i3 : config directory"
   file:
     path: "{{ xdg_config_home }}/i3"
     state: directory
     mode: 0700
 
-- name: "i3: config file"
+- name: "i3 : config file"
   template:
     src: i3.j2
     dest: "{{ xdg_config_home }}/i3/config"
+  with_dict: "{{ palette }}"

@@ -1,16 +1,17 @@
-- name: "Polybar: config directory"
+- name: "Polybar : config directory"
   file:
     path: "{{ xdg_config_home }}/polybar"
     state: directory
     mode: 0700
 
-- name: "Polybar: config file"
-  template:
-    src: polybar.j2
-    dest: "{{ xdg_config_home }}/polybar/config"
-
-- name: "Polybar: WM launcher"
+- name: "Polybar : WM launcher"
   template:
     src: polybar_launcher.j2
     dest: "{{ xdg_config_home }}/polybar/launcher"
     mode: 0700
+
+- name: "Polybar : config file"
+  template:
+    src: polybar.j2
+    dest: "{{ xdg_config_home }}/polybar/config"
+  with_dict: "{{ palette }}"

@@ -1,37 +1,11 @@
 # i3-gaps config file (v4)
 # Fork: https://github.com/Airblader/i3
-
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Define colors by loading them from the Xresource database (+fallback)
-set_from_resource $black       color0  #282828
-set_from_resource $darkgrey    color8  #928374
-
-set_from_resource $darkred     color1  #cc241d
-set_from_resource $red         color9  #fb4934
-
-set_from_resource $darkgreen   color2  #98971a
-set_from_resource $green       color10 #b8bb26
-
-set_from_resource $darkyellow  color3  #d79921
-set_from_resource $yellow      color11 #fabd2f
-
-set_from_resource $darkblue    color4  #458588
-set_from_resource $blue        color12 #83a598
-
-set_from_resource $darkmagenta color5  #b16286
-set_from_resource $magenta     color13 #d3869b
-
-set_from_resource $darkcyan    color6  #689d6a
-set_from_resource $cyan        color14 #8ec07c
-
-set_from_resource $lightgrey   color7  #a89984
-set_from_resource $white       color15 #ebdbb2
-
-set $orange #d65d0e
-set $transparent #282828DD
-
-
+{% for item in palette|dictsort %}
+set_from_resource ${{ item[0].ljust(7) }}  {{ item[0].ljust(7) }}  {{ item[1] }}
+{% endfor %}
 
 # Workspace naming
 set $tag1 "1:Code"
@@ -47,12 +21,12 @@ for_window [class="^.*"] border pixel 3
 
 # Gruvbox palette
 # <colorclass>          <border>  <background>  <text>    <indicator>  <child_border>
-client.focused          $orange     $orange      $black   $darkblue    $orange
-client.focused_inactive $black      $black       $white   $darkblue    $black
-client.unfocused        $black      $black       $white   $darkblue    $black
-client.urgent           $darkred    $darkred     $white   $darkblue    $darkred
-client.placeholder      #000000     #000000      #ffffff  $darkblue    #000000
-client.background       $black
+client.focused          $color10  $color10      $color0   $color4      $color10
+client.focused_inactive $color0   $color0       $color15  $color4      $color0
+client.unfocused        $color0   $color0       $color15  $color4      $color0
+client.urgent           $color1   $color1       $color15  $color4      $color1
+client.placeholder      #000000   #000000       #ffffff   $color4      #000000
+client.background       $color0
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -91,17 +65,22 @@ workspace_auto_back_and_forth yes
 # KeyBindings
 #
 
-# Set Main key
+# Set Main key (OS key)
 set $mod Mod4
+# Set alternative key (Left Alt)
+set $alt Mod1
 
 # Polybar
 exec_always --no-startup-id "{{ xdg_config_home }}/polybar/launcher"
 
 # lock screen
-bindsym $mod+F1 exec i3lock -c 282828
+bindsym $mod+F1 exec i3lock -c {{ palette['color0']}}
 
 # start a terminal
 bindsym $mod+Return exec st
+
+# list open windows to switch to
+bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # Use Rofi (instead of dmenu)
 bindsym $mod+d exec --no-startup-id rofi -show run -no-levenshtein-sort -lines 10 -width 50 -opacity "95"
@@ -163,8 +142,8 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # cycle between workspaces
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
+bindsym $alt+Tab workspace next
+bindsym $alt+Shift+Tab workspace prev
 
 # switch to workspace
 bindsym $mod+1 workspace $tag1

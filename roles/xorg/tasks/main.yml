@@ -4,12 +4,22 @@
     state: directory
     mode: 0700
 
-- include: wallpaper.yml
+- name: xinitrc
+  template:
+    src: xinitrc.j2
+    dest: "{{ ansible_user_dir }}/.xinitrc"
 
-- include: xsettings.yml
+- name: Xprofile
+  template:
+    src: xprofile.j2
+    dest: "{{ xdg_config_home }}/xorg/Xprofile"
+
+- include: xresources.yml
 
 - include: compton.yml
 
 - include: i3.yml
 
 - include: polybar.yml
+
+- include: wallpaper.yml

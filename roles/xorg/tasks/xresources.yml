@@ -1,0 +1,21 @@
+- name: "Xresources : main"
+  template:
+    src: xresources.j2
+    dest: "{{ xdg_config_home }}/xorg/Xresources"
+  with_dict: "{{ palette }}"
+
+- name: "Xresources : ST"
+  template:
+    src: xresources_st.j2
+    dest: "{{ xdg_config_home }}/xorg/Xresources.st"
+
+- name: "Xresources : rxvt-unicode"
+  template:
+    src: xresources_urxvt.j2
+    dest: "{{ xdg_config_home }}/xorg/Xresources.urxvt"
+
+- name: "Xresources : Rofi"
+  template:
+    src: xresources_rofi.j2
+    dest: "{{ xdg_config_home }}/xorg/Xresources.rofi"
+  with_dict: "{{ palette }}"

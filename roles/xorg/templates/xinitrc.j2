@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 # Source ~/.config/xorg/Xprofile first
-[ -f "{{ xdg_config_home }}/xorg/Xprofile" ] && \
-  . "{{ xdg_config_home }}/xorg/Xprofile"
+[ -f '{{ xdg_config_home }}/xorg/Xprofile' ] && \
+  . '{{ xdg_config_home }}/xorg/Xprofile'
 
 # Set i3wm as default
 session=${1:-i3}
@@ -30,5 +30,5 @@ case $session in
   xfce|xfce4        ) exec startxfce4;;
   xmonad            ) exec xmonad;;
   # No known session, try to run it as command
-  *) exec $1;;
+  *) exec "$1";;
 esac

@@ -1,10 +1,10 @@
-- name: "Compton: config directory"
+- name: "Compton : config directory"
   file:
     path: "{{ xdg_config_home }}/compton"
     state: directory
     mode: 0700
 
-- name: "Compton: config file"
+- name: "Compton : config file"
   template:
     src: compton.j2
     dest: "{{ xdg_config_home }}/compton/config"

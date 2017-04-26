@@ -2,20 +2,33 @@
 ! File: Xresources
 ! -----------------------------------------------------------------------------
 
-{% for item in palette|dictsort %}
-*{{ item[0] }}: {{ item[1] }}
-{% endfor %}
+! Fonts
+*.font:           AnonymicePowerline Nerd Font:size=11:antialias=true:autohint=true;
+*.boldFont:       AnonymicePowerline Nerd Font:size=11:antialias=true:autohint=true:style:Bold;
+*.italicFont:     AnonymicePowerline Nerd Font:size=11:antialias=true:autohint=true:style:Italic;
+*.boldItalicFont: AnonymicePowerline Nerd Font:size=11:antialias=true:autohint=true:style:ItalicBold;
 
 *depth:                 32
 *utf8:                  1
 *saveLines:             99999
 
-! XFT fonts
-Xft.autohint: 1
-Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintslight
-Xft.hinting: 1
-Xft.antialias: 1
-
 *faceSize:              10
 *bellIsUrgent:          true
+
+! Colors
+! black:    color0 - color8
+! red:      color1 - color9
+! green:    color2 - color10
+! yellow:   color3 - color11
+! blue:     color4 - color12
+! magenta:  color5 - color13
+! cyan:     color6 - color14
+! white:    color7 - color15
+
+{% for item in palette|dictsort %}
+*{{ item[0].ljust(7) }}: {{ item[1] }}
+{% endfor %}
+
+*.background:  {{ palette['color0']}}
+*.foreground:  {{ palette['color7']}}
+*.cursorColor: {{ palette['color7']}}
