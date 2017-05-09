@@ -24,6 +24,7 @@ pacman_packages:
   - firefox
   - fontconfig
   - git
+  - gucharmap
   - i3lock
   - jsoncpp
   - neovim
