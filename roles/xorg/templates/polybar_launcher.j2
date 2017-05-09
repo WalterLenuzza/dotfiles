@@ -7,6 +7,6 @@ killall -q polybar
 while [ $(pgrep -xc polybar) -gt 0 ]; do sleep 0.2; done
 
 # Launch '{{ polybar_name }}' bar
-[ -f "{{ xdg_config_home }}/polybar/config" ] && \
+[ -f '{{ xdg_config_home }}/polybar/config' ] && \
   command -v polybar >/dev/null 2>&- && \
-  polybar -r -c "{{ xdg_config_home }}/polybar/config" "{{ polybar_name }}" &
+  polybar -r -c '{{ xdg_config_home }}/polybar/config' '{{ polybar_name }}' &
