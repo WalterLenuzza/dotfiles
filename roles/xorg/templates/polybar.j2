@@ -1,34 +1,23 @@
+; Polybar
+; https://github.com/jaagr/polybar
+
 [colors]
-background = ${xrdb:background}
-foreground = ${xrdb:foreground}
+background = {{ palette['color0'] }}
+foreground = {{ palette['color15'] }}
 
-black       = ${xrdb:color0  }
-darkgrey    = ${xrdb:color8  }
-darkred     = ${xrdb:color1  }
-red         = ${xrdb:color9  }
-darkgreen   = ${xrdb:color2  }
-green       = ${xrdb:color10 }
-darkyellow  = ${xrdb:color3  }
-yellow      = ${xrdb:color11 }
-darkblue    = ${xrdb:color4  }
-blue        = ${xrdb:color12 }
-darkmagenta = ${xrdb:color5  }
-magenta     = ${xrdb:color13 }
-darkcyan    = ${xrdb:color6  }
-cyan        = ${xrdb:color14 }
-lightgrey   = ${xrdb:color7  }
-white       = ${xrdb:color15 }
-orange      = ${xrdb:color_orange }
-
-transparent = #00282828
-transparent_black = #cc282828
+{% for item in palette|dictsort %}
+{{ item[0].ljust(8) }} = ${xrdb:{{ item[0] }}}
+{% endfor %}
 
 
 [bar/{{ polybar_name }}]
 ; Modules
-modules-left   = powermenu i3
-modules-center = xwindow
-modules-right  = cpu memory date_time
+modules-left   = home i3 xwindow
+;modules-center =
+modules-right  = cpu memory datetime
+
+; The separator will be inserted between the output of each module
+;separator =
 
 ; Put the bar at the top of the screen
 bottom = false
@@ -43,10 +32,6 @@ fixed-center = true
 
 ; Fonts are defined using <font-name>;<vertical-offset>
 ; Font names are specified using a fontconfig pattern.
-;   font-0 = NotoSans-Regular:size=8;2
-;   font-1 = MaterialIcons:size=10
-;   font-2 = Termsynu:size=8;-1
-;   font-3 = FontAwesome:size=10
 ; See the Fonts wiki page for more details
 font-0 = NotoSans-Regular:size=10;2
 font-1 = AnonymicePowerline Nerd Font:size=10;2
@@ -86,10 +71,10 @@ tray-padding = 0
 tray-scale = 1
 
 ; Background argb color (e.g. #f00, #ff992a, #ddff1023)
-background = ${colors.transparent_black}
+background = ${colors.background}
 
 ; Foreground argb color (e.g. #f00, #ff992a, #ddff1023)
-foreground = ${colors.white}
+foreground = ${colors.foreground}
 
 ;border-left-size = 15
 ;border-right-size = 15
@@ -111,25 +96,44 @@ foreground = ${colors.white}
 enable-ipc = false
 
 
-[module/powermenu]
-type = custom/menu
+[module/home]
+type = custom/script
 
-label-open = "  "
-menu-0-0 = "|  L  |"
-menu-0-0-exec = echo
-menu-0-1 = "    "
-menu-0-1-exec = echo
-menu-0-2 = "|    "
-menu-0-2-exec = echo
-label-close = "  "
+; Command to be executed (using "/usr/bin/env sh -c [command]")
+exec = hostname
 
-format = <label-toggle> <menu>
-format-background = ${colors.darkred}
-format-foreground = ${colors.black}
+; Conditional command that, if defined, needs to exit successfully
+; before the main exec command is invoked.
+; Default: ""
+;exec-if = pgrep -x myservice
+
+; Will the script output continous content?
+; Default: false
+;tail = true
+
+; Seconds to sleep between updates
+; Default: 2 (0 if `tail = true`)
+interval = 3600
+
+label-padding = 2
+format = <label>
+label  = %output%
+
+label-background = {{ palette['color2'] }}
+label-foreground = {{ palette['color0'] }}
 
 format-suffix            = 
-format-suffix-foreground = ${colors.darkred}
-format-suffix-background = ${colors.black}
+format-suffix-background = {{ palette['color0'] }}
+format-suffix-foreground = {{ palette['color2'] }}
+
+; "click-(left|middle|right)" will be executed using "/usr/bin/env sh -c $COMMAND"
+;click-left = echo
+;click-middle = echo
+;click-right = echo
+
+; "scroll-(up|down)" will be executed using "/usr/bin/env sh -c $COMMAND"
+;scroll-up = echo
+;scroll-down = echo
 
 
 [module/i3]
@@ -163,105 +167,117 @@ reverse-scroll = false
 format = <label-state> <label-mode>
 
 ; Mode
-label-mode      = %{B#cc98971a F#cc282828}%{B#cc98971a F#cc282828}%{F#cc282828 B#cc98971a}   %mode%   %{B#cc98971a F#cc282828}%{B#cc282828 F#cc98971a}
+label-mode      = %{B{{ palette['color166'] }} F{{ palette['color0'] }}}%{B{{ palette['color166'] }} F{{ palette['color0'] }}}   %mode%   %{B#{{ palette['color0'] }} F{{ palette['color166'] }}}
 
 ; Workspaces
 ; Available tokens:  %name% %icon% %index% %output%
-label-focused   = %{B#ccd65d0e F#cc282828}%{B#ccd65d0e F#cc282828}%{F#cc282828 B#ccd65d0e}   %name%   %{B#ccd65d0e F#cc282828}%{B#cc282828 F#ccd65d0e}
-label-unfocused = %{B#cc282828 F#cc282828}%{B#cc282828 F#cc928374}%{F#ccebdbb2 B#cc282828}   %name%   %{B#cc282828 F#cc928374}%{B#cc282828 F#cc282828}
-label-visible   = %{B#cc282828 F#cc282828}%{B#cc282828 F#cc928374}%{F#ccebdbb2 B#cc282828}   %name%   %{B#cc282828 F#cc928374}%{B#cc282828 F#cc282828}
-label-urgent    = %{B#cccc241d F#cc282828}%{B#cc282828 F#cc928374}%{F#ccebdbb2 B#cc282828}   %name%   %{B#cc282828 F#cc928374}%{B#cc282828 F#cc282828}
+label-focused   = %{B{{ palette['color10'] }} F{{ palette['color0'] }}}%{B{{ palette['color10'] }} F{{ palette['color0'] }}}   %name%   %{B#{{ palette['color0'] }} F{{ palette['color10'] }}}
+label-unfocused = %{B{{ palette['color0'] }} F{{ palette['color0'] }}}%{B{{ palette['color0'] }} F{{ palette['color15'] }}}   %name%   %{B#{{ palette['color0'] }} F{{ palette['color0'] }}}
+label-visible   = %{B{{ palette['color0'] }} F{{ palette['color0'] }}}%{B{{ palette['color0'] }} F{{ palette['color15'] }}}   %name%   %{B#{{ palette['color0'] }} F{{ palette['color0'] }}}
+label-urgent    = %{B{{ palette['color9'] }} F{{ palette['color0'] }}}%{B{{ palette['color9'] }} F{{ palette['color0'] }}}   %name%   %{B#{{ palette['color0'] }} F{{ palette['color9'] }}}
 
 
 [module/xwindow]
 type = internal/xwindow
 
-label-background = ${colors.black}
-label-foreground = ${colors.white}
-label-padding    = 10
+label-background = {{ palette['color8'] }}
+label-foreground = {{ palette['color0'] }}
+label-padding    = 5
 format = <label>
 label  = %title%
 
-format-prefix            = 
-format-prefix-background = ${colors.transparent_black}
-format-prefix-foreground = ${colors.black}
+format-prefix            = 
+format-prefix-background = {{ palette['color8'] }}
+format-prefix-foreground = {{ palette['color0'] }}
 
 format-suffix            = 
-format-suffix-background = ${colors.transparent_black}
-format-suffix-foreground = ${colors.black}
+format-suffix-background = {{ palette['color0'] }}
+format-suffix-foreground = {{ palette['color8'] }}
 
 
-[module/cpu]
-type     = internal/cpu
-interval = 2
-
-label-background = ${colors.darkcyan}
-label-foreground = ${colors.black}
-label-padding   =  5
-format           = <label>
-label            =  %percentage%%
-
-format-prefix            = 
-format-prefix-foreground = ${colors.darkcyan}
-format-prefix-background = ${colors.transparent_black}
-
-format-suffix            = 
-format-suffix-foreground = ${colors.transparent_black}
-format-suffix-background = ${colors.darkcyan}
-
-
-[module/memory]
-type     = internal/memory
-interval = 10
-
-label-background = ${colors.darkcyan}
-label-foreground = ${colors.black}
-label-padding   =  5
-format           = <label>
-label            =  %percentage_used%%
-
-format-prefix            = 
-format-prefix-foreground = ${colors.darkcyan}
-format-prefix-background = ${colors.transparent_black}
-
-format-suffix            = 
-format-suffix-foreground = ${colors.transparent_black}
-format-suffix-background = ${colors.darkcyan}
-
-
-[module/date_time]
-type     = internal/date
-interval = 1
-
-date     = "   %d.%m.%Y"
-date-alt = "   %A, %d. %B"
-time     = "  %H:%M"
-time-alt = "  %H:%M:%S"
-
-label-background = ${colors.darkblue}
-label-foreground = ${colors.white}
-label-padding    = 3
-format-padding   = 0
-format           = <label>
-label            = %date%    %time%
-
-format-prefix            = 
-format-prefix-foreground = ${colors.darkblue}
-format-prefix-background = ${colors.transparent_black}
-
+;[module/cpu]
+;type     = internal/cpu
+;interval = 2
+;
+;label-background = {{ palette['color0'] }}
+;label-foreground = {{ palette['color15'] }}
+;label-padding    =  5
+;
+;bar-load-format = %fill%%indicator%%empty%
+;bar-load-width = 10
+;bar-load-gradient = true
+;bar-load-foreground-0 = {{ palette['color10'] }}
+;bar-load-foreground-1 = {{ palette['color11'] }}
+;bar-load-foreground-2 = {{ palette['color9'] }}
+;; The fill, indicator and empty icon can be configured like any <icon>
+;bar-load-fill = |
+;bar-load-indicator = |
+;bar-load-empty = |
+;format = <label> <bar-load>
+;label            = 
+;
+;format-prefix            = 
+;format-prefix-foreground = {{ palette['color0'] }}
+;format-prefix-background = {{ palette['color0'] }}
+;
 ;format-suffix            = 
-;format-suffix-foreground = ${colors.transparent}
-;format-suffix-background = ${colors.darkblue}
+;format-suffix-foreground = {{ palette['color15'] }}
+;format-suffix-background = {{ palette['color0'] }}
 
+; test
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+label = RAM
 
+bar-used-width = 30
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = |
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #444444
 
-
+;[module/memory]
+;type     = internal/memory
+;interval = 10
+;
+;label-background = {{ palette['color0'] }}
+;label-foreground = {{ palette['color15'] }}
+;label-padding    =  5
+;
+;bar-used-format = %fill%%indicator%%empty%
+;bar-used-width = 10
+;bar-used-gradient = true
+;bar-used-foreground-0 = {{ palette['color10'] }}
+;bar-used-foreground-1 = {{ palette['color11'] }}
+;bar-used-foreground-2 = {{ palette['color9'] }}
+;; The fill, indicator and empty icon can be configured like any <icon>
+;bar-used-fill = |
+;bar-used-indicator = |
+;bar-used-empty = |
+;format = <label> <bar-used>
+;label            = 
+;
+;format-prefix            = 
+;format-prefix-foreground = {{ palette['color0'] }}
+;format-prefix-background = {{ palette['color0'] }}
+;
+;format-suffix            = 
+;format-suffix-foreground = {{ palette['color15'] }}
+;format-suffix-background = {{ palette['color0'] }}
 
 
 
 [module/wlan]
 type      = internal/network
-interface = wlp3s0
+interface = wlp4s0
 interval  = 3.0
 
 label-connected-padding      = 2
@@ -291,7 +307,7 @@ format-disconnected-prefix-foreground = ${self.label-connected-background}
 
 [module/eth]
 type                          = internal/network
-interface                     = enp0s25
+interface                     = enp3s0
 interval                      = 3.0
 
 format-connected              = <label-connected>
@@ -317,136 +333,157 @@ format-disconnected-suffix            = 
 format-disconnected-suffix-foreground = ${module/battery.format-background}
 format-disconnected-suffix-background = ${self.label-connected-background}
 
-[module/volume]
-type                      		= internal/volume
 
-format = <label>
-format-muted-background  		= #B6A5C8
-format-volume-background  		= #B6A5C8
+[module/datetime]
+type     = internal/date
+interval = 1
 
-format-volume 					= <bar-volume>
-format-muted  					= <label-muted>
+date     = "  %d.%m.%Y"
+date-alt = "  %A, %d. %B"
+time     = "  %H:%M"
+time-alt = "  %H:%M:%S"
 
-label-muted   					=   sound muted
-format-muted-padding 			= 0
-format-padding 					= 2
+label-background = {{ palette['color10'] }}
+label-foreground = {{ palette['color0'] }}
+label-padding    = 2
+format           = <label>
+label            = %date%    %time%
 
-bar-volume-width                = 8
-bar-volume-gradient             = false
-bar-volume-indicator            = 
-bar-volume-indicator-font       = 4
-bar-volume-indicator-foreground = #25232A
-bar-volume-fill                 = 
-bar-volume-fill-font            = 4
-bar-volume-fill-foreground     	= #25232A
-bar-volume-empty                = 
-bar-volume-empty-font           = 4
-bar-volume-empty-foreground 	= #25232A
-
-bar-volume-background 			= ${colors.t4}
-label-muted-background 			= ${colors.t4}
-
-bar-volume-empty-background		= #B6A5C8
-bar-volume-fill-background		= #B6A5C8
-bar-volume-indicator-background	= #B6A5C8
-
-format-volume-prefix 			= 
-format-volume-prefix-foreground = #B6A5C8
-format-volume-prefix-background = #DDCADB
-
-format-volume-suffix 			= 
-format-volume-suffix-foreground = #D3C1D6
-format-volume-suffix-background = #B6A5C8
-
-format-muted-prefix 			= 
-format-muted-prefix-foreground 	= #B6A5C8
-format-muted-prefix-background 	= #DDCADB
-
-format-muted-suffix 			= 
-format-muted-suffix-foreground 	= #D3C1D6
-format-muted-suffix-background 	= #B6A5C8
+format-prefix            = 
+format-prefix-foreground = {{ palette['color10'] }}
+format-prefix-background = {{ palette['color0'] }}
 
 
-[module/battery]
-type    = internal/battery
-battery = BAT0
-adapter = AC
-full-at = 98
+; [TODO]
 
-format-charging    = <animation-charging> <label-charging>
-time-format        = %H:%M
+;[module/volume]
+;type                      		= internal/volume
+;
+;format = <label>
+;format-muted-background  		= #B6A5C8
+;format-volume-background  		= #B6A5C8
+;
+;format-volume 					= <bar-volume>
+;format-muted  					= <label-muted>
+;
+;label-muted   					=   sound muted
+;format-muted-padding 			= 0
+;format-padding 					= 2
+;
+;bar-volume-width                = 8
+;bar-volume-gradient             = false
+;bar-volume-indicator            = 
+;bar-volume-indicator-font       = 4
+;bar-volume-indicator-foreground = #25232A
+;bar-volume-fill                 = 
+;bar-volume-fill-font            = 4
+;bar-volume-fill-foreground     	= #25232A
+;bar-volume-empty                = 
+;bar-volume-empty-font           = 4
+;bar-volume-empty-foreground 	= #25232A
+;
+;bar-volume-background 			= ${colors.t4}
+;label-muted-background 			= ${colors.t4}
+;
+;bar-volume-empty-background		= #B6A5C8
+;bar-volume-fill-background		= #B6A5C8
+;bar-volume-indicator-background	= #B6A5C8
+;
+;format-volume-prefix 			= 
+;format-volume-prefix-foreground = #B6A5C8
+;format-volume-prefix-background = #DDCADB
+;
+;format-volume-suffix 			= 
+;format-volume-suffix-foreground = #D3C1D6
+;format-volume-suffix-background = #B6A5C8
+;
+;format-muted-prefix 			= 
+;format-muted-prefix-foreground 	= #B6A5C8
+;format-muted-prefix-background 	= #DDCADB
+;
+;format-muted-suffix 			= 
+;format-muted-suffix-foreground 	= #D3C1D6
+;format-muted-suffix-background 	= #B6A5C8
 
-format-discharging = <ramp-capacity> <label-discharging>
-label-discharging  = %percentage%  (%time%)
+;[module/battery]
+;type    = internal/battery
+;battery = BAT0
+;adapter = AC
+;full-at = 98
+;
+;format-charging    = <animation-charging> <label-charging>
+;time-format        = %H:%M
+;
+;format-discharging = <ramp-capacity> <label-discharging>
+;label-discharging  = %percentage%  (%time%)
+;
+;format-full-prefix = "  "
+;format-padding     = 2
+;
+;format-background = ${colors.t6}
+;#format-foreground = ${colors.magenta}
+;format-foreground = ${colors.foreground}
+;
+;format-full-background        = ${self.format-background}
+;format-charging-background    = ${self.format-background}
+;format-discharging-background = ${self.format-background}
+;
+;format-full-foreground        = ${self.format-foreground}
+;format-charging-foreground    = ${self.format-foreground}
+;format-discharging-foreground = ${self.format-foreground}
+;
+;format-full-padding           = ${self.format-padding}
+;format-charging-padding       = ${self.format-padding}
+;format-discharging-padding    = ${self.format-padding}
+;
+;ramp-capacity-0 = 
+;ramp-capacity-1 = 
+;ramp-capacity-2 = 
+;ramp-capacity-3 = 
+;ramp-capacity-4 = 
+;
+;animation-charging-0 = 
+;animation-charging-1 = 
+;animation-charging-2 = 
+;animation-charging-3 = 
+;animation-charging-4 = 
+;animation-charging-framerate = 750
 
-format-full-prefix = "  "
-format-padding     = 2
-
-format-background = ${colors.t6}
-#format-foreground = ${colors.magenta}
-format-foreground = ${colors.foreground}
-
-format-full-background        = ${self.format-background}
-format-charging-background    = ${self.format-background}
-format-discharging-background = ${self.format-background}
-
-format-full-foreground        = ${self.format-foreground}
-format-charging-foreground    = ${self.format-foreground}
-format-discharging-foreground = ${self.format-foreground}
-
-format-full-padding           = ${self.format-padding}
-format-charging-padding       = ${self.format-padding}
-format-discharging-padding    = ${self.format-padding}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-framerate = 750
-
-[module/temperature]
-type                  = internal/temperature
-thermal-zone          = 0
-warn-temperature      = 80
-
-format             = <ramp><label>
-format-background  = ${colors.t5}
-label-background   = ${colors.t5}
-label-padding = 2
-
-format-prefix                 = 
-format-prefix-background      = ${module/battery.format-background}
-format-prefix-foreground      = ${self.label-background}
-
-format-suffix                 = 
-format-suffix-foreground      = ${self.label-background}
-
-format-warn-prefix            = 
-format-warn-prefix-background = ${module/battery.format-background}
-format-warn-prefix-foreground = ${self.label-warn-background}
-
-format-warn-suffix            = 
-format-warn-suffix-foreground = ${self.label-warn-background}
-
-format-warn           = <label-warn>
-label-warn-background = ${colors.t2}
-
-ramp-background       = ${colors.t5}
-
-label                 = %temperature%
-label-warn            =  %temperature%
-
-ramp-0 = "   "
-ramp-1 = "   "
-ramp-2 = " "
+; [module/temperature]
+; type                  = internal/temperature
+; thermal-zone          = 0
+; warn-temperature      = 80
+;
+; format             = <ramp><label>
+; format-background  = ${colors.t5}
+; label-background   = ${colors.t5}
+; label-padding = 2
+;
+; format-prefix                 = 
+; format-prefix-background      = ${module/battery.format-background}
+; format-prefix-foreground      = ${self.label-background}
+;
+; format-suffix                 = 
+; format-suffix-foreground      = ${self.label-background}
+;
+; format-warn-prefix            = 
+; format-warn-prefix-background = ${module/battery.format-background}
+; format-warn-prefix-foreground = ${self.label-warn-background}
+;
+; format-warn-suffix            = 
+; format-warn-suffix-foreground = ${self.label-warn-background}
+;
+; format-warn           = <label-warn>
+; label-warn-background = ${colors.t2}
+;
+; ramp-background       = ${colors.t5}
+;
+; label                 = %temperature%
+; label-warn            =  %temperature%
+;
+; ramp-0 = "   "
+; ramp-1 = "   "
+; ramp-2 = " "
 
 #[module/weather]
 #type = custom/script
@@ -455,7 +492,7 @@ ramp-2 = " "
 #exec = .config/polybar/weather.sh
 #
 #label-background = ${colors.t7}
-#format-underline = ${colors.cyan}
+#format-underline = ${colors.14}
 #label-padding   =  2
 #
 #format-prefix            = 
@@ -466,8 +503,6 @@ ramp-2 = " "
 #format-suffix-background = ${self.label-background}
 #format-suffix-foreground = #AD9CC3
 
-
-
 #[module/pkg]
 #type = custom/script
 #interval = 120
@@ -477,7 +512,7 @@ ramp-2 = " "
 #exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 
 #label-background = ${colors.t3}
-#format-underline = ${colors.cyan}
+#format-underline = ${colors.14}
 #label-padding   =  2
 #
 #format-prefix            = 
@@ -495,7 +530,7 @@ ramp-2 = " "
 #exec = .config/polybar/cputemp.sh
 #
 #label-background = ${colors.t5}
-#format-underline = ${colors.cyan}
+#format-underline = ${colors.14}
 #label-padding   =  2
 #
 #format-prefix            = 
