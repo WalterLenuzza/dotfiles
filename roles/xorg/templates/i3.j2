@@ -4,7 +4,7 @@
 
 # Define colors by loading them from the Xresource database (+fallback)
 {% for item in palette|dictsort %}
-set_from_resource ${{ item[0].ljust(7) }}  {{ item[0].ljust(7) }}  {{ item[1] }}
+set_from_resource ${{ item[0].ljust(8) }}  {{ item[0].ljust(7) }}  {{ item[1] }}
 {% endfor %}
 
 # Workspace naming

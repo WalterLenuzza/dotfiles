@@ -33,7 +33,7 @@ Xft.antialias: 1
 ! white:    color7 - color15
 
 {% for item in palette|dictsort %}
-*{{ item[0].ljust(7) }}: {{ item[1] }}
+*{{ item[0].ljust(8) }}: {{ item[1] }}
 {% endfor %}
 
 *.background:  {{ palette['color0']}}
