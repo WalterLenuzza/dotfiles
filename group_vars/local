@@ -27,6 +27,7 @@ pacman_packages:
   - gucharmap
   - i3lock
   - jsoncpp
+  - mpv
   - neovim
   - noto-fonts
   - ntp
