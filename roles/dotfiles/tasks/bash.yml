@@ -1,0 +1,40 @@
+- name: "Bash : config directory"
+  file:
+    path: "{{ xdg_config_home }}/bash"
+    state: directory
+    mode: 0700
+
+- name: "Bash : rc"
+  template:
+    src: bashrc.j2
+    dest: "{{ xdg_config_home }}/bash/rc"
+
+- name: "Bash : rc : symlink"
+  file:
+    src: "{{ xdg_config_home }}/bash/rc"
+    dest: "{{ ansible_user_dir }}/.bashrc"
+    state: link
+
+- name: "Bash : profile"
+  template:
+    src: bash_profile.j2
+    dest: "{{ xdg_config_home }}/bash/profile"
+
+- name: "Bash : profile : symlink"
+  file:
+    src: "{{ xdg_config_home }}/bash/profile"
+    dest: "{{ ansible_user_dir }}/.bash_profile"
+    state: link
+
+- name: "Bash : cache directory"
+  file:
+    path: "{{ xdg_cache_home }}/bash"
+    state: directory
+    mode: 0700
+
+- name: "Bash : history : symlink"
+  file:
+    src: "{{ xdg_cache_home }}/bash/history"
+    dest: "{{ ansible_user_dir }}/.bash_history"
+    state: link
+    force: yes

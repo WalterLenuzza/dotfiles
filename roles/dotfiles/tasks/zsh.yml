@@ -1,0 +1,29 @@
+- name: "Zsh : config directory"
+  file:
+    path: "{{ xdg_config_home }}/zsh"
+    state: directory
+    mode: 0700
+
+- name: "Zsh : rc"
+  template:
+    src: zshrc.j2
+    dest: "{{ xdg_config_home }}/zsh/rc"
+
+- name: "Zsh : rc : symlink"
+  file:
+    src: "{{ xdg_config_home }}/zsh/rc"
+    dest: "{{ ansible_user_dir }}/.zshrc"
+    state: link
+
+- name: "Zsh : cache directory"
+  file:
+    path: "{{ xdg_cache_home }}/zsh"
+    state: directory
+    mode: 0700
+
+- name: "Zsh : history : symlink"
+  file:
+    src: "{{ xdg_cache_home }}/bash/history"
+    dest: "{{ ansible_user_dir }}/.bash_history"
+    state: link
+    force: yes

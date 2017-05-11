@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-
-
 # Changing directory, Experimental
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
