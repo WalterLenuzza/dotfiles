@@ -24,6 +24,8 @@ pacman_packages:
   - firefox
   - fontconfig
   - git
+  - gvfs
+  - gvfs-smb
   - gucharmap
   - i3lock
   - jsoncpp
@@ -39,6 +41,10 @@ pacman_packages:
   - rsync
   - rxvt-unicode
   - the_silver_searcher
+  - thunar
+  - thunar-archive-plugin
+  - thunar-media-tags-plugin
+  - thunar-volman
   - tree
   - wget
   - xorg-xrdb
