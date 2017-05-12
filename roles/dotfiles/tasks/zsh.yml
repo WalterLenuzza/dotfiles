@@ -23,7 +23,7 @@
 
 - name: "Zsh : history : symlink"
   file:
-    src: "{{ xdg_cache_home }}/bash/history"
+    src: "{{ xdg_cache_home }}/zsh/history"
     dest: "{{ ansible_user_dir }}/.bash_history"
     state: link
     force: yes

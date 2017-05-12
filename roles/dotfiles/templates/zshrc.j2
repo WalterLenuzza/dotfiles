@@ -6,7 +6,7 @@ if [[ "$-" == *i* ]]; then
 
   # Source temporary common shell configuration
   [ -f '{{ xdg_config_home }}/shell/scratchpad' ] && \
-    . '{{ xdg_config_home }}/shell/scrathpad'
+    . '{{ xdg_config_home }}/shell/scratchpad'
 fi
 
 autoload -Uz compinit promptinit
@@ -17,3 +17,8 @@ promptinit
 #HISTSIZE=1000
 #SAVEHIST=1000
 #bindkey -e
+
+# Source external script for PS1 configuration
+[ -f '{{ xdg_config_home }}/shell/prompt' ] && \
+  . '{{ xdg_config_home }}/shell/prompt'
+
