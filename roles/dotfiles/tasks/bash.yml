@@ -26,6 +26,28 @@
     dest: "{{ ansible_user_dir }}/.bash_profile"
     state: link
 
+- name: "Bash : inputrc"
+  template:
+    src: bash_inputrc.j2
+    dest: "{{ xdg_config_home }}/bash/inputrc"
+
+- name: "Bash : inputrc : symlink"
+  file:
+    src: "{{ xdg_config_home }}/bash/inputrc"
+    dest: "{{ ansible_user_dir }}/.inputrc"
+    state: link
+
+- name: "Bash : logout"
+  template:
+    src: bash_logout.j2
+    dest: "{{ xdg_config_home }}/bash/logout"
+
+- name: "Bash : logout : symlink"
+  file:
+    src: "{{ xdg_config_home }}/bash/logout"
+    dest: "{{ ansible_user_dir }}/.bash_logout"
+    state: link
+
 - name: "Bash : cache directory"
   file:
     path: "{{ xdg_cache_home }}/bash"

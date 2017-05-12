@@ -1,2 +1,9 @@
-# If interactive, source ~/.bashrc (if it exists and is readable)
-[ "$-" == *i* ]] && [ -r '~/.bashrc' ] && source '~/.bashrc'
+#
+# ~/.bash_profile ({{ xdg_config_home }}/bash/profile)
+#
+
+# If interactive, source {{ xdg_config_home }}/bash/rc
+[[ "$-" == *i* ]] && \
+  [ -r '{{ xdg_config_home }}/bash/rc' ] && \
+  . '{{ xdg_config_home }}/bash/rc'
+

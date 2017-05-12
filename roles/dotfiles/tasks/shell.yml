@@ -8,3 +8,8 @@
   template:
     src: shell.j2
     dest: "{{ xdg_config_home }}/shell/rc"
+
+- name: "Shell : prompt"
+  template:
+    src: prompt.j2
+    dest: "{{ xdg_config_home }}/shell/prompt"

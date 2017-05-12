@@ -1,3 +1,19 @@
+# Only if interactive
+if [[ "$-" == *i* ]]; then
+  # Source common shell configuration
+  [ -f '{{ xdg_config_home }}/shell/rc' ] && \
+    . '{{ xdg_config_home }}/shell/rc'
+
+  # Source temporary common shell configuration
+  [ -f '{{ xdg_config_home }}/shell/scratchpad' ] && \
+    . '{{ xdg_config_home }}/shell/scrathpad'
+fi
+
 autoload -Uz compinit promptinit
 compinit
 promptinit
+
+#HISTFILE=~/.histfile
+#HISTSIZE=1000
+#SAVEHIST=1000
+#bindkey -e
