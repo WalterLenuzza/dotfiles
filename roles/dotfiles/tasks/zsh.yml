@@ -21,9 +21,3 @@
     state: directory
     mode: 0700
 
-- name: "Zsh : history : symlink"
-  file:
-    src: "{{ xdg_cache_home }}/zsh/history"
-    dest: "{{ ansible_user_dir }}/.bash_history"
-    state: link
-    force: yes

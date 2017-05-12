@@ -1,6 +1,7 @@
 ; Polybar
 ; https://github.com/jaagr/polybar
 
+
 [colors]
 background = {{ palette['color0'] }}
 foreground = {{ palette['color15'] }}
@@ -13,8 +14,7 @@ foreground = {{ palette['color15'] }}
 [bar/{{ polybar_name }}]
 ; Modules
 modules-left   = home i3 xwindow
-;modules-center =
-modules-right  = cpu memory datetime
+modules-right  = cpu memory wlan eth disk temperature datetime
 
 ; The separator will be inserted between the output of each module
 ;separator =
@@ -33,8 +33,8 @@ fixed-center = true
 ; Fonts are defined using <font-name>;<vertical-offset>
 ; Font names are specified using a fontconfig pattern.
 ; See the Fonts wiki page for more details
-font-0 = NotoSans-Regular:size=10;2
-font-1 = AnonymicePowerline Nerd Font:size=10;2
+font-0 = "Noto Sans:size=10;2"
+font-1 = "AnonymicePowerline Nerd Font:size=10;2"
 
 ; Number of spaces to add at the beginning/end of the bar
 ; Individual side values can be defined using:
@@ -55,11 +55,11 @@ module-margin-left = 0
 ; If empty or undefined, tray support will be disabled
 ; NOTE: A center aligned tray will cover center aligned modules
 ; Available positions: left, center, right
-tray-position = right
+tray-position = center
 
 ; If true, the bar will not shift its
 ; contents when the tray changes
-tray-detached = false
+tray-detached = true
 
 ; Tray icon max size
 tray-maxsize = 16
@@ -119,12 +119,12 @@ label-padding = 2
 format = <label>
 label  = %output%
 
-label-background = {{ palette['color2'] }}
+label-background = {{ palette['color1'] }}
 label-foreground = {{ palette['color0'] }}
 
 format-suffix            = 
 format-suffix-background = {{ palette['color0'] }}
-format-suffix-foreground = {{ palette['color2'] }}
+format-suffix-foreground = {{ palette['color1'] }}
 
 ; "click-(left|middle|right)" will be executed using "/usr/bin/env sh -c $COMMAND"
 ;click-left = echo
@@ -180,61 +180,53 @@ label-urgent    = %{B{{ palette['color9'] }} F{{ palette['color0'] }}}%{B{{ p
 [module/xwindow]
 type = internal/xwindow
 
-label-background = {{ palette['color8'] }}
+label-background = {{ palette['color7'] }}
 label-foreground = {{ palette['color0'] }}
 label-padding    = 5
 format = <label>
 label  = %title%
 
 format-prefix            = 
-format-prefix-background = {{ palette['color8'] }}
+format-prefix-background = {{ palette['color7'] }}
 format-prefix-foreground = {{ palette['color0'] }}
 
 format-suffix            = 
 format-suffix-background = {{ palette['color0'] }}
-format-suffix-foreground = {{ palette['color8'] }}
+format-suffix-foreground = {{ palette['color7'] }}
 
 
-;[module/cpu]
-;type     = internal/cpu
-;interval = 2
-;
-;label-background = {{ palette['color0'] }}
-;label-foreground = {{ palette['color15'] }}
-;label-padding    =  5
-;
-;bar-load-format = %fill%%indicator%%empty%
-;bar-load-width = 10
-;bar-load-gradient = true
-;bar-load-foreground-0 = {{ palette['color10'] }}
-;bar-load-foreground-1 = {{ palette['color11'] }}
-;bar-load-foreground-2 = {{ palette['color9'] }}
-;; The fill, indicator and empty icon can be configured like any <icon>
-;bar-load-fill = |
-;bar-load-indicator = |
-;bar-load-empty = |
-;format = <label> <bar-load>
-;label            = 
-;
-;format-prefix            = 
-;format-prefix-foreground = {{ palette['color0'] }}
-;format-prefix-background = {{ palette['color0'] }}
-;
-;format-suffix            = 
-;format-suffix-foreground = {{ palette['color15'] }}
-;format-suffix-background = {{ palette['color0'] }}
+[module/cpu]
+type = internal/cpu
+format = <label> <bar-load>
+label =  Cpu %percentage%%
+format-padding = 2
 
-; test
+bar-load-width = 9
+bar-load-foreground-0 = {{ palette['color12'] }}
+bar-load-foreground-1 = {{ palette['color10'] }}
+bar-load-foreground-2 = {{ palette['color11'] }}
+bar-load-foreground-3 = {{ palette['color9'] }}
+bar-load-indicator = |
+bar-load-indicator-font = 6
+bar-load-indicator-foreground = #ff
+bar-load-fill = ─
+bar-load-fill-font = 6
+bar-load-empty = ─
+bar-load-empty-font = 6
+bar-load-empty-foreground = {{ palette['color7'] }}
+
+
 [module/memory]
 type = internal/memory
 format = <label> <bar-used>
-label = RAM
+label =  Ram %percentage_used%%
+format-padding = 2
 
-bar-used-width = 30
-bar-used-foreground-0 = #aaff77
-bar-used-foreground-1 = #aaff77
-bar-used-foreground-2 = #fba922
-bar-used-foreground-3 = #ff5555
+bar-used-width = 9
+bar-used-foreground-0 = {{ palette['color12'] }}
+bar-used-foreground-1 = {{ palette['color10'] }}
+bar-used-foreground-2 = {{ palette['color11'] }}
+bar-used-foreground-3 = {{ palette['color9'] }}
 bar-used-indicator = |
 bar-used-indicator-font = 6
 bar-used-indicator-foreground = #ff
@@ -242,37 +234,124 @@ bar-used-fill = ─
 bar-used-fill-font = 6
 bar-used-empty = ─
 bar-used-empty-font = 6
-bar-used-empty-foreground = #444444
+bar-used-empty-foreground = {{ palette['color7'] }}
 
-;[module/memory]
-;type     = internal/memory
-;interval = 10
-;
-;label-background = {{ palette['color0'] }}
-;label-foreground = {{ palette['color15'] }}
-;label-padding    =  5
-;
-;bar-used-format = %fill%%indicator%%empty%
-;bar-used-width = 10
-;bar-used-gradient = true
-;bar-used-foreground-0 = {{ palette['color10'] }}
-;bar-used-foreground-1 = {{ palette['color11'] }}
-;bar-used-foreground-2 = {{ palette['color9'] }}
-;; The fill, indicator and empty icon can be configured like any <icon>
-;bar-used-fill = |
-;bar-used-indicator = |
-;bar-used-empty = |
-;format = <label> <bar-used>
-;label            = 
-;
-;format-prefix            = 
-;format-prefix-foreground = {{ palette['color0'] }}
-;format-prefix-background = {{ palette['color0'] }}
-;
-;format-suffix            = 
-;format-suffix-foreground = {{ palette['color15'] }}
-;format-suffix-background = {{ palette['color0'] }}
 
+[module/disk]
+type = internal/fs
+mount-0  = /
+interval = 10
+
+label-mounted   =   %mountpoint%  %percentage_used%% of %total%
+label-unmounted = 
+
+label-mounted-padding   = 2
+label-unmounted-padding = 2
+
+label-mounted-foreground   = {{ palette['color0'] }}
+label-mounted-background   = {{ palette['color7'] }}
+
+label-unmounted-foreground = {{ palette['color0'] }}
+label-unmounted-background = {{ palette['color7'] }}
+
+format-mounted   = <label-mounted>
+format-unmounted = <label-unmounted>
+
+format-mounted-prefix              = 
+format-mounted-prefix-background   = {{ palette['color0'] }}
+format-mounted-prefix-foreground   = {{ palette['color7'] }}
+
+format-unmounted-prefix            = 
+format-unmounted-prefix-background = {{ palette['color0'] }}
+format-unmounted-prefix-foreground = {{ palette['color7'] }}
+
+format-mounted-suffix              = 
+format-mounted-suffix-background   = {{ palette['color7'] }}
+format-mounted-suffix-foreground   = {{ palette['color0'] }}
+
+format-unmounted-suffix            = 
+format-unmounted-suffix-background = {{ palette['color7'] }}
+format-unmounted-suffix-foreground = {{ palette['color0'] }}
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone     = 3
+warn-temperature = 55
+
+label      = %temperature%
+label-warn = %temperature%
+
+format      = <ramp><label>
+format-warn = <ramp><label-warn>
+
+label-padding      = 2
+label-warn-padding = 2
+
+ramp-0 = "  "
+ramp-1 = "  "
+ramp-2 = "  "
+
+label-background = {{ palette['color8'] }}
+label-foreground = {{ palette['color0'] }}
+ramp-background  = {{ palette['color8'] }}
+ramp-foreground  = {{ palette['color0'] }}
+
+label-warn-background = {{ palette['color8'] }}
+label-warn-foreground = {{ palette['color11'] }}
+
+format-prefix              = 
+format-prefix-background   = {{ palette['color0'] }}
+format-prefix-foreground   = {{ palette['color8'] }}
+
+format-warn-prefix            = 
+format-warn-prefix-background = {{ palette['color0'] }}
+format-warn-prefix-foreground = {{ palette['color8'] }}
+
+format-suffix              = 
+format-suffix-background   = {{ palette['color8'] }}
+format-suffix-foreground   = {{ palette['color0'] }}
+
+format-warn-suffix            = 
+format-warn-suffix-background = {{ palette['color8'] }}
+format-warn-suffix-foreground = {{ palette['color0'] }}
+
+
+[module/eth]
+type      = internal/network
+interface = enp3s0
+interval  = 3.0
+
+label-connected    =  %downspeed%     %upspeed%
+label-disconnected = 
+
+label-connected-padding       = 2
+label-disconnected-padding    = 2
+
+label-connected-foreground    = {{ palette['color0'] }}
+label-connected-background    = {{ palette['color8'] }}
+
+label-disconnected-foreground = {{ palette['color0'] }}
+label-disconnected-background = {{ palette['color8'] }}
+
+format-connected              = <label-connected>
+format-disconnected           = <label-disconnected>
+
+format-connected-prefix               = 
+format-connected-prefix-background    = {{ palette['color0'] }}
+format-connected-prefix-foreground    = {{ palette['color8'] }}
+
+format-disconnected-prefix            = 
+format-disconnected-prefix-background = {{ palette['color0'] }}
+format-disconnected-prefix-foreground = {{ palette['color8'] }}
+
+format-connected-suffix               = 
+format-connected-suffix-background    = {{ palette['color8'] }}
+format-connected-suffix-foreground    = {{ palette['color0'] }}
+
+format-disconnected-suffix            = 
+format-disconnected-suffix-background = {{ palette['color8'] }}
+format-disconnected-suffix-foreground = {{ palette['color0'] }}
 
 
 [module/wlan]
@@ -280,66 +359,44 @@ type      = internal/network
 interface = wlp4s0
 interval  = 3.0
 
-label-connected-padding      = 2
-label-disconnected-padding   = 2
+label-connected    =  %downspeed%     %upspeed%
+label-disconnected =  
+
+label-connected-padding       = 2
+label-disconnected-padding    = 2
+
+label-connected-foreground    = {{ palette['color0'] }}
+label-connected-background    = {{ palette['color7'] }}
+
+label-disconnected-foreground = {{ palette['color0'] }}
+label-disconnected-background = {{ palette['color7'] }}
 
 format-connected              = <label-connected>
 format-disconnected           = <label-disconnected>
-
-label-connected-foreground    = ${colors.foreground}
-label-connected-background    = ${colors.t7}
-
-label-disconnected-foreground    = ${colors.bgrey}
-label-disconnected-background    = ${colors.t7}
-
-label-connected    =  %essid%
-label-disconnected = 
-
 
 format-connected-prefix               = 
-format-connected-prefix-background    = ${module/cpu.format-background}
-format-connected-prefix-foreground    = ${self.label-connected-background}
+format-connected-prefix-background    = {{ palette['color0'] }}
+format-connected-prefix-foreground    = {{ palette['color7'] }}
 
 format-disconnected-prefix            = 
-format-disconnected-prefix-background = ${module/cpu.format-background}
-format-disconnected-prefix-foreground = ${self.label-connected-background}
-
-
-[module/eth]
-type                          = internal/network
-interface                     = enp3s0
-interval                      = 3.0
-
-format-connected              = <label-connected>
-format-disconnected           = <label-disconnected>
-
-label-connected-padding      = 2
-label-disconnected-padding      = 2
-
-label-connected               =  connected
-label-disconnected            = 
-
-label-connected-foreground    = ${colors.foreground}
-label-connected-background    = ${colors.t7}
-
-label-disconnected-foreground    = ${colors.bgrey}
-label-disconnected-background    = ${colors.t7}
+format-disconnected-prefix-background = {{ palette['color0'] }}
+format-disconnected-prefix-foreground = {{ palette['color7'] }}
 
 format-connected-suffix               = 
-format-connected-suffix-foreground    = ${module/battery.format-background}
-format-connected-foreground           = ${self.label-connected-background}
+format-connected-suffix-background    = {{ palette['color7'] }}
+format-connected-suffix-foreground    = {{ palette['color0'] }}
 
 format-disconnected-suffix            = 
-format-disconnected-suffix-foreground = ${module/battery.format-background}
-format-disconnected-suffix-background = ${self.label-connected-background}
+format-disconnected-suffix-background = {{ palette['color7'] }}
+format-disconnected-suffix-foreground = {{ palette['color0'] }}
 
 
 [module/datetime]
 type     = internal/date
 interval = 1
 
-date     = "  %d.%m.%Y"
-date-alt = "  %A, %d. %B"
+date     = "  %Y.%m.%d"
+date-alt = "  %A, %d %B"
 time     = "  %H:%M"
 time-alt = "  %H:%M:%S"
 
@@ -354,56 +411,61 @@ format-prefix-foreground = {{ palette['color10'] }}
 format-prefix-background = {{ palette['color0'] }}
 
 
-; [TODO]
+; TODO
 
-;[module/volume]
-;type                      		= internal/volume
+
+[module/volume]
+type                      		= internal/volume
+
+format = <label>
+format-muted-background  		= #B6A5C8
+format-volume-background  		= #B6A5C8
+
+format-volume 					= <bar-volume>
+format-muted  					= <label-muted>
+
+label-muted   					=   sound muted
+format-muted-padding 			= 0
+format-padding 					= 2
+
+bar-volume-width                = 8
+bar-volume-gradient             = false
+bar-volume-indicator            = 
+bar-volume-indicator-font       = 4
+bar-volume-indicator-foreground = #25232A
+bar-volume-fill                 = 
+bar-volume-fill-font            = 4
+bar-volume-fill-foreground     	= #25232A
+bar-volume-empty                = 
+bar-volume-empty-font           = 4
+bar-volume-empty-foreground 	= #25232A
+
+bar-volume-background 			= ${colors.t4}
+label-muted-background 			= ${colors.t4}
+
+bar-volume-empty-background		= #B6A5C8
+bar-volume-fill-background		= #B6A5C8
+bar-volume-indicator-background	= #B6A5C8
+;format-prefix            = 
+;format-prefix-foreground = {{ palette['color10'] }}
+;format-prefix-background = {{ palette['color0'] }}
+
+format-volume-prefix 			= 
+format-volume-prefix-foreground = #B6A5C8
+format-volume-prefix-background = #DDCADB
+
+format-volume-suffix 			= 
+format-volume-suffix-foreground = #D3C1D6
+format-volume-suffix-background = #B6A5C8
 ;
-;format = <label>
-;format-muted-background  		= #B6A5C8
-;format-volume-background  		= #B6A5C8
-;
-;format-volume 					= <bar-volume>
-;format-muted  					= <label-muted>
-;
-;label-muted   					=   sound muted
-;format-muted-padding 			= 0
-;format-padding 					= 2
-;
-;bar-volume-width                = 8
-;bar-volume-gradient             = false
-;bar-volume-indicator            = 
-;bar-volume-indicator-font       = 4
-;bar-volume-indicator-foreground = #25232A
-;bar-volume-fill                 = 
-;bar-volume-fill-font            = 4
-;bar-volume-fill-foreground     	= #25232A
-;bar-volume-empty                = 
-;bar-volume-empty-font           = 4
-;bar-volume-empty-foreground 	= #25232A
-;
-;bar-volume-background 			= ${colors.t4}
-;label-muted-background 			= ${colors.t4}
-;
-;bar-volume-empty-background		= #B6A5C8
-;bar-volume-fill-background		= #B6A5C8
-;bar-volume-indicator-background	= #B6A5C8
-;
-;format-volume-prefix 			= 
-;format-volume-prefix-foreground = #B6A5C8
-;format-volume-prefix-background = #DDCADB
-;
-;format-volume-suffix 			= 
-;format-volume-suffix-foreground = #D3C1D6
-;format-volume-suffix-background = #B6A5C8
-;
-;format-muted-prefix 			= 
-;format-muted-prefix-foreground 	= #B6A5C8
-;format-muted-prefix-background 	= #DDCADB
-;
-;format-muted-suffix 			= 
-;format-muted-suffix-foreground 	= #D3C1D6
-;format-muted-suffix-background 	= #B6A5C8
+format-muted-prefix 			= 
+format-muted-prefix-foreground 	= #B6A5C8
+format-muted-prefix-background 	= #DDCADB
+
+format-muted-suffix 			= 
+format-muted-suffix-foreground 	= #D3C1D6
+format-muted-suffix-background 	= #B6A5C8
+
 
 ;[module/battery]
 ;type    = internal/battery
@@ -449,136 +511,46 @@ format-prefix-background = {{ palette['color0'] }}
 ;animation-charging-4 = 
 ;animation-charging-framerate = 750
 
-; [module/temperature]
-; type                  = internal/temperature
-; thermal-zone          = 0
-; warn-temperature      = 80
-;
-; format             = <ramp><label>
-; format-background  = ${colors.t5}
-; label-background   = ${colors.t5}
-; label-padding = 2
-;
-; format-prefix                 = 
-; format-prefix-background      = ${module/battery.format-background}
-; format-prefix-foreground      = ${self.label-background}
-;
-; format-suffix                 = 
-; format-suffix-foreground      = ${self.label-background}
-;
-; format-warn-prefix            = 
-; format-warn-prefix-background = ${module/battery.format-background}
-; format-warn-prefix-foreground = ${self.label-warn-background}
-;
-; format-warn-suffix            = 
-; format-warn-suffix-foreground = ${self.label-warn-background}
-;
-; format-warn           = <label-warn>
-; label-warn-background = ${colors.t2}
-;
-; ramp-background       = ${colors.t5}
-;
-; label                 = %temperature%
-; label-warn            =  %temperature%
-;
-; ramp-0 = "   "
-; ramp-1 = "   "
-; ramp-2 = " "
 
-#[module/weather]
-#type = custom/script
-#interval = 300
-#format = <label>
-#exec = .config/polybar/weather.sh
-#
-#label-background = ${colors.t7}
-#format-underline = ${colors.14}
-#label-padding   =  2
-#
-#format-prefix            = 
-#format-prefix-background = #B6A5C8
-#format-prefix-foreground = ${self.label-background}
-#
-#format-suffix            = 
-#format-suffix-background = ${self.label-background}
-#format-suffix-foreground = #AD9CC3
+;[module/mpd]
+;type                  = internal/mpd
+;
+;label-song            =   %artist% - %title%
+;label-song-maxlen     = 40
+;label-song-ellipsis   = true
+;
+;format-online         = <label-song><toggle>
+;# <icon-prev>    <icon-seekb>  <toggle>  <icon-seekf>    <icon-next>     <icon-random>  <icon-repeat>
+;
+;label-song-foreground = ${colors.foreground}
+;label-song-background = ${colors.t5}
+;icon-pause-background = ${self.label-song-background}
+;icon-play-background  = ${self.label-song-background}
+;icon-pause-foreground = ${self.label-song-foreground}
+;icon-play-foreground  = ${self.label-song-foreground}
+;
+;label-song-padding = 2
+;icon-pause-padding-right = 2
+;icon-play-padding-right = 2
+;
+;icon-prev  = 
+;icon-seekb = 
+;icon-stop  = 
+;icon-pause = 
+;icon-play  = 
+;icon-next  = 
+;icon-seekf = 
+;
+;icon-random = 
+;icon-repeat = 
+;toggle-off-foreground = ${colors.grey}
+;toggle-on-foreground  = ${colors.blue}
+;
+;
+;format-online-prefix            = 
+;format-online-prefix-foreground = ${module/xwindow.format-background}
+;format-online-prefix-background = ${self.label-song-background}
+;
+;format-online-suffix            = 
+;format-online-suffix-foreground = ${self.label-song-background}
 
-#[module/pkg]
-#type = custom/script
-#interval = 120
-#format = <label>
-#label = "%output:0:30%"
-#exec = .config/polybar/pkg.sh
-#exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
-
-#label-background = ${colors.t3}
-#format-underline = ${colors.14}
-#label-padding   =  2
-#
-#format-prefix            = 
-#format-prefix-background = #25232A
-#format-prefix-foreground = ${self.label-background}
-#
-#format-suffix            = 
-#format-suffix-background = ${self.label-background}
-#format-suffix-foreground = #DDCADB
-
-#[module/temps]
-#type = custom/script
-#interval = 1
-#format = <label>
-#exec = .config/polybar/cputemp.sh
-#
-#label-background = ${colors.t5}
-#format-underline = ${colors.14}
-#label-padding   =  2
-#
-#format-prefix            = 
-#format-prefix-background = #D3C1D6
-#format-prefix-foreground = ${self.label-background}
-#
-#format-suffix            = 
-#format-suffix-background = ${self.label-background}
-#format-suffix-foreground = #B6A5C8
-
-#[module/mpd]
-#type                  = internal/mpd
-#
-#label-song            =   %artist% - %title%
-#label-song-maxlen     = 40
-#label-song-ellipsis   = true
-#
-#format-online         = <label-song><toggle>
-## <icon-prev>    <icon-seekb>  <toggle>  <icon-seekf>    <icon-next>     <icon-random>  <icon-repeat>
-#
-#label-song-foreground = ${colors.foreground}
-#label-song-background = ${colors.t5}
-#icon-pause-background = ${self.label-song-background}
-#icon-play-background  = ${self.label-song-background}
-#icon-pause-foreground = ${self.label-song-foreground}
-#icon-play-foreground  = ${self.label-song-foreground}
-#
-#label-song-padding = 2
-#icon-pause-padding-right = 2
-#icon-play-padding-right = 2
-#
-#icon-prev  = 
-#icon-seekb = 
-#icon-stop  = 
-#icon-pause = 
-#icon-play  = 
-#icon-next  = 
-#icon-seekf = 
-#
-#icon-random = 
-#icon-repeat = 
-#toggle-off-foreground = ${colors.grey}
-#toggle-on-foreground  = ${colors.blue}
-#
-#
-#format-online-prefix            = 
-#format-online-prefix-foreground = ${module/xwindow.format-background}
-#format-online-prefix-background = ${self.label-song-background}
-#
-#format-online-suffix            = 
-#format-online-suffix-foreground = ${self.label-song-background}
