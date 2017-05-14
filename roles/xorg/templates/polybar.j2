@@ -113,7 +113,7 @@ exec = hostname
 
 ; Seconds to sleep between updates
 ; Default: 2 (0 if `tail = true`)
-interval = 3600
+interval = 600
 
 label-padding = 2
 format = <label>
@@ -182,9 +182,9 @@ type = internal/xwindow
 
 label-background = {{ palette['color7'] }}
 label-foreground = {{ palette['color0'] }}
-label-padding    = 5
+label-padding    = 2
 format = <label>
-label  = %title%
+label  =   %title%
 
 format-prefix            = 
 format-prefix-background = {{ palette['color7'] }}
@@ -198,7 +198,7 @@ format-suffix-foreground = {{ palette['color7'] }}
 [module/cpu]
 type = internal/cpu
 format = <label> <bar-load>
-label =  Cpu %percentage%%
+label =   %percentage%%
 format-padding = 2
 
 bar-load-width = 9
@@ -219,7 +219,7 @@ bar-load-empty-foreground = {{ palette['color7'] }}
 [module/memory]
 type = internal/memory
 format = <label> <bar-used>
-label =  Ram %percentage_used%%
+label =   %percentage_used%%
 format-padding = 2
 
 bar-used-width = 9
@@ -359,7 +359,7 @@ type      = internal/network
 interface = wlp4s0
 interval  = 3.0
 
-label-connected    =  %downspeed%     %upspeed%
+label-connected    =   %downspeed%     %upspeed%
 label-disconnected =  
 
 label-connected-padding       = 2
@@ -400,14 +400,14 @@ date-alt = "  %A, %d %B"
 time     = "  %H:%M"
 time-alt = "  %H:%M:%S"
 
-label-background = {{ palette['color10'] }}
+label-background = {{ palette['color12'] }}
 label-foreground = {{ palette['color0'] }}
 label-padding    = 2
 format           = <label>
 label            = %date%    %time%
 
 format-prefix            = 
-format-prefix-foreground = {{ palette['color10'] }}
+format-prefix-foreground = {{ palette['color12'] }}
 format-prefix-background = {{ palette['color0'] }}
 
 
