@@ -1,6 +1,6 @@
-- name: "MacOS : Anonymice Powerline Nerd Font"
+- name: "MacOS : Monospace font"
   get_url:
-    url: "{{ anonymous_ttf_url }}"
-    dest: "{{ ansible_user_dir }}/Library/Fonts/AnonymousPro.ttf"
-    checksum: "{{ anonymous_ttf_sha }}"
+    url: "{{ monospace_font_url }}"
+    dest: "{{ prefix }}/Library/Fonts/monospace.ttf"
+    checksum: "{{ monospace_font_sha }}"
   register: install_font_macos

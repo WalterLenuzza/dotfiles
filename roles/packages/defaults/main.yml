@@ -1,0 +1,129 @@
+package_update: yes
+package_upgrade: yes
+
+# ArchLinux
+aur_helper: cower
+
+aur_packages:
+  - i3-gaps-git
+  - neofetch
+  - pacaur
+  - polybar
+  - xst-git
+
+pacman_packages:
+  - ansible
+  - compton
+  - curl
+  - feh
+  - firefox
+  - fontconfig
+  - git
+  - gvfs
+  - gvfs-smb
+  - gucharmap
+  - i3lock
+  - jsoncpp
+  - mpv
+  - neovim
+  - noto-fonts
+  - ntp
+  - pamixer
+  - pavucontrol
+  - perl-anyevent-i3
+  - pulseaudio
+  - pulseaudio-alsa
+  - python
+  - python-pip
+  - rsync
+  - rxvt-unicode
+  - the_silver_searcher
+  - thunar
+  - thunar-archive-plugin
+  - thunar-media-tags-plugin
+  - thunar-volman
+  - tree
+  - wget
+  - xorg-xrdb
+  - xorg-xrandr
+  - xproto
+  - zsh
+
+# MacOS
+brew_taps:
+  - caskroom/cask
+  - caskroom/fonts
+  - homebrew/completions
+
+brew_packages:
+  - ack
+  - archey
+  - awscli
+  - bash
+  - bats
+  - fortune
+  - git
+  - go
+  - gpg-agent
+  - htop
+  - hub
+  - kubernetes-cli
+  - jq
+  - lynx
+  - midnight-commander
+  - ncdu
+  - nmap
+  - openssl
+  - packer
+  - pstree
+  - pyenv
+  - pyenv-virtualenv
+  - pyenv-virtualenvwrapper
+  - reattach-to-user-namespace
+  - rbenv
+  - shellcheck
+  - ssh-copy-id
+  - task
+  - terminal-notifier
+  - terraform
+  - tig
+  - tmux
+  - tree
+  - vault
+  - vim
+  - watch
+  - wget
+
+cask_packages:
+  - adium
+  - atom
+  - calibre
+  - chromium
+  - cyberduck
+  - dash
+  - disk-inventory-x
+  - docker
+  - evernote
+  - filebot
+  - firefox
+  - flux
+  - github-desktop
+  - google-drive
+  - gpgtools
+  - iterm2
+  - macdown
+  - macpass
+  - mplayerx
+  - plex-home-theater
+  - slack
+  - spectacle
+  - spotify
+  - textmate
+  - the-unarchiver
+  - torbrowser
+  - transmission
+  - vagrant
+  - virtualbox
+
+# Python PIP
+pip_system_packages: []

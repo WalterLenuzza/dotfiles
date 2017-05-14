@@ -7,7 +7,7 @@
 - name: xinitrc
   template:
     src: xinitrc.j2
-    dest: "{{ ansible_user_dir }}/.xinitrc"
+    dest: "{{ prefix }}/.xinitrc"
 
 - name: Xprofile
   template:

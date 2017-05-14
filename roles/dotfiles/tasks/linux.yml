@@ -9,11 +9,11 @@
     state: directory
     mode: 0700
 
-- name: "Linux : Anonymice Powerline Nerd Font"
+- name: "Linux : Monospace font"
   get_url:
-    url: "{{ anonymous_ttf_url }}"
-    dest: "{{ xdg_data_home }}/fonts/AnonymousPro.ttf"
-    checksum: "{{ anonymous_ttf_sha }}"
+    url: "{{ monospace_font_url }}"
+    dest: "{{ xdg_data_home }}/fonts/monospace.ttf"
+    checksum: "{{ monospace_font_sha }}"
   register: install_font_linux
 
 - name: "Linux : update font cache"
