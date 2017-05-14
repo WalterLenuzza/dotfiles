@@ -1,0 +1,15 @@
+- name: "Git : config directory"
+  file:
+    path: "{{ xdg_config_home }}/git"
+    state: directory
+    mode: 0700
+
+- name: "Git : global config"
+  template:
+    src: gitconfig.j2
+    dest: "{{ xdg_config_home }}/git/config"
+
+- name: "Git : global ignore"
+  template:
+    src: gitignore.j2
+    dest: "{{ xdg_config_home }}/git/ignore"
