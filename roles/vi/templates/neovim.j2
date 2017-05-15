@@ -2,7 +2,6 @@
 execute pathogen#infect('bundle/{}', '{{ xdg_data_home }}/nvim/bundle/{}')
 
 
-
 filetype plugin indent on
 
 
@@ -12,6 +11,7 @@ set termguicolors
 " Enable Gruvbox Dark palette
 colorscheme gruvbox
 set background=dark
+"colorscheme {{ vi_theme }}
 
 " Airline
 " Automatically display all buffers when there's only one tab open
@@ -20,20 +20,20 @@ let g:airline#extensions#tabline#enabled = 1
 " Enable Powerline symbols
 let g:airline_powerline_fonts = 1
 
-" Set Airline's theme (Gruvbox)
-let g:airline_theme='gruvbox'
+" Set Airline's theme
+let g:vi_theme = '{{ vi_theme }}'
 
 " Promptline
-" Set Promptline's theme (Gruvbox)
-let g:promptline_theme = 'airline'
+" Match Airline's theme
+let g:promptline_theme = '{{ vi_theme }}'
 
 " sections (a, b, c, x, y, z, warn) are optional
 let g:promptline_preset = {
-  \'a' : [ '\t' ],
   \'b' : [ promptline#slices#cwd() ],
   \'c' : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
   \'x' : [ promptline#slices#jobs() ],
   \'warn' : [ promptline#slices#last_exit_code() ]}
+
 
 " NerdTree
 autocmd StdinReadPre * let s:std_in=1
