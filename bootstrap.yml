@@ -1,5 +1,5 @@
 ---
 # file: bootstrap.yml
 - include: system.yml
-- include: user.yml
+- include: preferences.yml
 
