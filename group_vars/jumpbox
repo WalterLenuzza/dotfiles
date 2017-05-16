@@ -1,0 +1,11 @@
+# Ansible setup
+ansible_connection: local
+
+# Paths
+prefix:          "{{ ansible_user_dir }}"
+xdg_config_home: "{{ prefix }}/.config"
+xdg_cache_home:  "{{ prefix }}/.cache"
+xdg_data_home:   "{{ prefix }}/.local/share"
+
+# Locale
+locale: en_GB.utf8

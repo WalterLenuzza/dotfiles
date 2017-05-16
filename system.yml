@@ -1,6 +1,6 @@
 ---
-- name: "Configure local workstation"
-  hosts: all
+- name: Configure system
+  hosts: workstation
   gather_facts: yes
   roles:
   - packages

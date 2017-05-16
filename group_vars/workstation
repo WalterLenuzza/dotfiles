@@ -1,14 +1,40 @@
+# Ansible setup
+ansible_connection: local
+ansible_python_interpreter: /usr/bin/python2
+
 # Paths
 prefix:          "{{ ansible_user_dir }}"
 xdg_config_home: "{{ prefix }}/.config"
 xdg_cache_home:  "{{ prefix }}/.cache"
 xdg_data_home:   "{{ prefix }}/.local/share"
 
+# Locale
 locale: en_GB.utf8
 
+# Desktop wallpaper
 wallpaper_url: "https://interfacelift.com/wallpaper/7yz4ma1/04007_autumnsunlightthroughthetrees_2560x1080.jpg"
 
 # Font
 monospace_font_name: AnonymicePowerline Nerd Font
 monospace_font_url: "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/AnonymousPro/complete/Anonymice%20Powerline%20Nerd%20Font%20Complete%20Mono.ttf?raw=true"
 monospace_font_sha: "sha256:6600d6e6a52a277ced42beb07fd30159847ec89462ff8cf9c221df0775412400"
+
+# Palette
+palette:
+  color0:  "#282828"
+  color1:  "#cc241d"
+  color2:  "#98971a"
+  color3:  "#d79921"
+  color4:  "#458588"
+  color5:  "#b16286"
+  color6:  "#689d6a"
+  color7:  "#a89984"
+  color8:  "#928374"
+  color9:  "#fb4934"
+  color10: "#b8bb26"
+  color11: "#fabd2f"
+  color12: "#83a598"
+  color13: "#d3869b"
+  color14: "#8ec07c"
+  color15: "#ebdbb2"
+  color166: "#d65d0e"

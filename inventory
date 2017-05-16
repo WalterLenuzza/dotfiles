@@ -1,5 +1,5 @@
-[local]
+[workstation]
 localhost
 
-[local:vars]
-ansible_connection=local
+[jumpbox]
+jumpbox.remote.net
