@@ -4,6 +4,12 @@
     state: directory
     mode: 0700
 
+- name: "Bash : cache directory"
+  file:
+    path: "{{ xdg_cache_home }}/bash"
+    state: directory
+    mode: 0700
+
 - name: "Bash : rc"
   template:
     src: bashrc.j2
@@ -47,12 +53,6 @@
     src: "{{ xdg_config_home }}/bash/logout"
     dest: "{{ prefix }}/.bash_logout"
     state: link
-
-- name: "Bash : cache directory"
-  file:
-    path: "{{ xdg_cache_home }}/bash"
-    state: directory
-    mode: 0700
 
 - name: "Bash : history : symlink"
   file:

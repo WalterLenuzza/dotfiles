@@ -4,6 +4,12 @@
     state: directory
     mode: 0700
 
+- name: "Zsh : cache directory"
+  file:
+    path: "{{ xdg_cache_home }}/zsh"
+    state: directory
+    mode: 0700
+
 - name: "Zsh : rc"
   template:
     src: zshrc.j2
@@ -14,10 +20,3 @@
     src: "{{ xdg_config_home }}/zsh/rc"
     dest: "{{ prefix }}/.zshrc"
     state: link
-
-- name: "Zsh : cache directory"
-  file:
-    path: "{{ xdg_cache_home }}/zsh"
-    state: directory
-    mode: 0700
-

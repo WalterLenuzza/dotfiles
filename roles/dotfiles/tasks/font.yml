@@ -1,8 +1,3 @@
-- name: "Linux : set locale"
-  template:
-    src: locale.j2
-    dest: "{{ xdg_config_home }}/locale.conf"
-
 - name: "Linux : fonts directory"
   file:
     path: "{{ xdg_data_home }}/fonts"
@@ -14,8 +9,17 @@
     url: "{{ monospace_font_url }}"
     dest: "{{ xdg_data_home }}/fonts/monospace.ttf"
     checksum: "{{ monospace_font_sha }}"
+  when: ansible_form_factor == "Desktop"
   register: install_font_linux
 
 - name: "Linux : update font cache"
   command: "fc-cache -f -v"
   when: install_font_linux.changed
+
+- name: "MacOS : Monospace font"
+  get_url:
+    url: "{{ monospace_font_url }}"
+    dest: "{{ prefix }}/Library/Fonts/monospace.ttf"
+    checksum: "{{ monospace_font_sha }}"
+  when: ansible_os_family == "Darwin"
+  register: install_font_macos

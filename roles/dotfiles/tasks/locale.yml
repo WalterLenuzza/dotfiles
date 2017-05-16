@@ -1,0 +1,5 @@
+- name: "Linux : set locale"
+  template:
+    src: locale.j2
+    dest: "{{ xdg_config_home }}/locale.conf"
+  when: ansible_system == "Linux"
