@@ -6,8 +6,6 @@
 
 - include: zsh.yml
 
-- include: font.yml
-
 - include: git.yml
 
 - include: locale.yml

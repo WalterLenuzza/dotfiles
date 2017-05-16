@@ -16,6 +16,8 @@
 
 - include: xresources.yml
 
+- include: font.yml
+
 - include: compton.yml
 
 - include: i3.yml

@@ -15,11 +15,3 @@
 - name: "Linux : update font cache"
   command: "fc-cache -f -v"
   when: install_font_linux.changed
-
-- name: "MacOS : Monospace font"
-  get_url:
-    url: "{{ monospace_font_url }}"
-    dest: "{{ prefix }}/Library/Fonts/monospace.ttf"
-    checksum: "{{ monospace_font_sha }}"
-  when: ansible_os_family == "Darwin"
-  register: install_font_macos
