@@ -10,14 +10,21 @@ set_from_resource ${{ item[0].ljust(8) }}  {{ item[0].ljust(7) }}  {{ item[1] }}
 # Workspace naming
 set $tag1 "1:Code"
 set $tag2 "2:Browser"
+set $tag3 "3:File Manager"
 
 # Workspace assignments
 assign [class="^Atom$"] $tag1
 assign [class="^Chromium-browser$"] $tag2
 assign [class="^Firefox$"] $tag2
+assign [class="^Thunar$"] $tag3
 
 # Window borders style
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
+
+# Autostart applications
+exec st
+exec firefox
+exec thunar
 
 # Gruvbox palette
 # <colorclass>          <border>  <background>  <text>    <indicator>  <child_border>
