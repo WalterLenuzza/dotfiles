@@ -1,0 +1,11 @@
+- name: "Dunst : config directory"
+  file:
+    path: "{{ xdg_config_home }}/dunst"
+    state: directory
+    mode: 0700
+
+- name: "Dunst : config file"
+  template:
+    src: dunst.j2
+    dest: "{{ xdg_config_home }}/dunst/dunstrc"
+  with_dict: "{{ palette }}"

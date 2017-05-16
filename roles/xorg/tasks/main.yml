@@ -24,4 +24,6 @@
 
 - include: polybar.yml
 
+- include: dunst.yml
+
 - include: wallpaper.yml
