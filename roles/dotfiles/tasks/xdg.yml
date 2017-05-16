@@ -1,17 +1,22 @@
-- name: XDG config directory
+- name: "XDG : config directory"
   file:
     path: "{{ xdg_config_home }}"
     state: directory
     mode: 0700
 
-- name: XDG cache directory
+- name: "XDG : cache directory"
   file:
     path: "{{ xdg_cache_home }}"
     state: directory
     mode: 0700
 
-- name: XDG data directory
+- name: "XDG : data directory"
   file:
     path: "{{ xdg_data_home }}"
     state: directory
     mode: 0700
+
+- name: "XDG : user directories configuration"
+  template:
+    src: xdg.j2
+    dest: "{{ xdg_config_home }}/user-dirs.dirs"
