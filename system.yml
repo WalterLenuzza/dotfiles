@@ -4,6 +4,8 @@
   gather_facts: yes
   roles:
   - packages
+  - services
+  - users
   vars_prompt:
   - name: "ansible_sudo_pass"
     prompt: "[sudo] password"
