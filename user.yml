@@ -4,5 +4,6 @@
   gather_facts: yes
   roles:
   - dotfiles
-  - vi
-  - { role: xorg, when: ansible_form_factor == 'Desktop' }
+  - editor
+  - { role: macos, when: ansible_os_family == 'Darwin' }
+  - { role: xorg, when:  ansible_os_family == 'Linux' and ansible_form_factor == 'Desktop' }
