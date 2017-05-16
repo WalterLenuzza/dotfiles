@@ -6,4 +6,4 @@
   - dotfiles
   - editor
   - { role: macos, when: ansible_os_family == 'Darwin' }
-  - { role: xorg, when:  ansible_os_family == 'Linux' and ansible_form_factor == 'Desktop' }
+  - { role: xorg, when:  ansible_system == 'Linux' and ansible_form_factor == 'Desktop' }
