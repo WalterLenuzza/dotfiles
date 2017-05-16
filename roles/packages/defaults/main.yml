@@ -15,6 +15,9 @@ pacman_packages:
   - ansible
   - compton
   - curl
+  - docker
+  - docker-compose
+  - docker-machine
   - feh
   - firefox
   - fontconfig
@@ -24,6 +27,7 @@ pacman_packages:
   - gucharmap
   - i3lock
   - jsoncpp
+  - libvirt
   - mpv
   - neovim
   - noto-fonts
