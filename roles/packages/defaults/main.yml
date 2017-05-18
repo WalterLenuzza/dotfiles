@@ -5,6 +5,7 @@ package_upgrade: yes
 aur_helper: cower
 
 aur_packages:
+  - docker-machine-kvm
   - i3-gaps-git
   - neofetch
   - pacaur
