@@ -29,10 +29,6 @@
 command -v compton >/dev/null 2>&- && \
   compton --config '{{ xdg_config_home }}/compton/config' -bc
 
-# Run notification daemon (Dunst)
-command -v dunst >/dev/null 2>&- && \
-  dunst -config '{{ xdg_config_home }}/dunst/dunstrc'
-
 # Set wallpaper (Feh)
 command -v feh >/dev/null 2>&- && \
   feh --bg-fill '{{ xdg_data_home }}/xorg/wallpaper'

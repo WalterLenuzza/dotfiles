@@ -8,9 +8,15 @@ set_from_resource ${{ item[0].ljust(8) }}  {{ item[0].ljust(7) }}  {{ item[1] }}
 {% endfor %}
 
 # Workspace naming
-set $tag1   "1:Code"
-set $tag2   "2:Browser"
-set $tag3   "3:File Manager"
+set $tag1  "1:Code"
+set $tag2  "2:Browser"
+set $tag3  "3:File Manager"
+set $tag4  "4"
+set $tag5  "5"
+set $tag6  "6"
+set $tag7  "7"
+set $tag8  "8"
+set $tag9  "9"
 set $tag10 "10:Music"
 
 # Workspace assignments
@@ -18,16 +24,35 @@ assign [class="^Atom$"] $tag1
 assign [class="^Chromium-browser$"] $tag2
 assign [class="^Firefox$"] $tag2
 assign [class="^Thunar$"] $tag3
-assign [class="^Spotify$"] $tag10
+
+# https://community.spotify.com/t5/Desktop-Linux-Windows-Web-Player/WM-CLASS-window-property-on-Linux/td-p/1247042
+for_window [class="^Spotify$"] move to workspace $tag10
 
 # Window borders style
 for_window [class="^.*"] border pixel 1
 
+#
 # Autostart applications
-exec st
-exec firefox
-exec thunar
-exec spotify
+#
+
+# Notification daemon
+exec --no-startup-id dunst -config '{{ xdg_config_home }}/dunst/dunstrc'
+
+# Bar
+exec_always --no-startup-id "{{ xdg_config_home }}/polybar/launcher"
+
+# Terminal
+exec --no-startup-id st
+
+# Browser
+exec --no-startup-id firefox
+
+# File Manager
+exec --no-startup-id thunar
+
+# Music player
+exec --no-startup-id spotify
+
 
 # Gruvbox palette
 # <colorclass>          <border>  <background>  <text>    <indicator>  <child_border>
@@ -80,8 +105,6 @@ set $mod Mod4
 # Set alternative key (Left Alt)
 set $alt Mod1
 
-# Polybar
-exec_always --no-startup-id "{{ xdg_config_home }}/polybar/launcher"
 
 # lock screen
 bindsym $mod+F1 exec i3lock -c {{ palette['color0']}}
@@ -158,26 +181,26 @@ bindsym $alt+Shift+Tab workspace prev
 # switch to workspace
 bindsym $mod+1 workspace $tag1
 bindsym $mod+2 workspace $tag2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+3 workspace $tag3
+bindsym $mod+4 workspace $tag4
+bindsym $mod+5 workspace $tag5
+bindsym $mod+6 workspace $tag6
+bindsym $mod+7 workspace $tag7
+bindsym $mod+8 workspace $tag8
+bindsym $mod+9 workspace $tag9
+bindsym $mod+0 workspace $tag10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $tag1
 bindsym $mod+Shift+2 move container to workspace $tag2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+3 move container to workspace $tag3
+bindsym $mod+Shift+4 move container to workspace $tag4
+bindsym $mod+Shift+5 move container to workspace $tag5
+bindsym $mod+Shift+6 move container to workspace $tag6
+bindsym $mod+Shift+7 move container to workspace $tag7
+bindsym $mod+Shift+8 move container to workspace $tag8
+bindsym $mod+Shift+9 move container to workspace $tag9
+bindsym $mod+Shift+0 move container to workspace $tag10
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
