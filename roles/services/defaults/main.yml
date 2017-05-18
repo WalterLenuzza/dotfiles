@@ -1,3 +1,4 @@
 enabled_services:
   - docker
+  - firewalld
   - libvirtd
