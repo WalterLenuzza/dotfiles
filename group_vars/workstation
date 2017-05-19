@@ -1,6 +1,6 @@
 # Ansible setup
 ansible_connection: local
-ansible_python_interpreter: /usr/bin/python2
+ansible_python_interpreter: python2
 
 # Paths
 prefix:          "{{ ansible_user_dir }}"
