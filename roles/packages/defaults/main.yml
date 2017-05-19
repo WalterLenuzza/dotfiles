@@ -41,6 +41,7 @@ pacman_packages:
   - pulseaudio-alsa
   - python
   - python-pip
+  - qemu
   - rsync
   - rxvt-unicode
   - the_silver_searcher

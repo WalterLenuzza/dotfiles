@@ -1,9 +1,0 @@
-- name: "Append groups to user"
-  user:
-    name: "{{ ansible_user_id}}"
-    groups: "{{ item }}"
-    append: yes
-    state: present
-    update_password: on_create
-  with_items: "{{ user_groups }}"
-  become: true

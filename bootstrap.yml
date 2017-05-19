@@ -1,5 +1,12 @@
----
-# file: bootstrap.yml
-- include: system.yml
-- include: preferences.yml
+- name: Configure system
+  hosts: workstation
+  gather_facts: yes
+  roles:
+  - packages
+  - system
+  vars_prompt:
+  - name: "ansible_sudo_pass"
+    prompt: "[sudo] password"
+    private: yes
 
+- include: preferences.yml

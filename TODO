@@ -1,0 +1,14 @@
+TODO:
+
+- GTK2/3 theme
+- icons
+- better fontconfig
+- dunst: icon locations
+- polybar: powermenu?
+- polybar: check if all useful modules are being used
+- i3: lockscreen + autolock
+- fix NTP
+- neovim: generate colorscheme
+- remove vim.sensible make vimrc explicit
+- vi/vim/neovim: config editors (with support for jumpbox)
+- port OSX defaults

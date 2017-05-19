@@ -1,0 +1,3 @@
+# Configure system and user preferences
+- include: system.yml
+- include: preferences.yml

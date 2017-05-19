@@ -1,0 +1,26 @@
+- name: "Linux : enable nested KVM virtualization"
+  template:
+    src: kvm.j2
+    dest: /etc/modprobe.d/kvm.conf
+  become: true
+  when: ansible_system == 'Linux'
+
+- name: "Linux : enable and start services"
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  with_items: "{{ enabled_services }}"
+  become: true
+  when: ansible_system == 'Linux' and ansible_form_factor == 'Desktop'
+
+- name: "Linux : append groups to user"
+  user:
+    name: "{{ ansible_user_id}}"
+    groups: "{{ item }}"
+    append: yes
+    state: present
+    update_password: on_create
+  with_items: "{{ user_groups }}"
+  become: true
+  when: ansible_system == 'Linux' and ansible_form_factor == 'Desktop'

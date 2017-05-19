@@ -2,3 +2,10 @@ enabled_services:
   - docker
   - firewalld
   - libvirtd
+
+user_groups:
+  - docker
+  - kvm
+  - libvirt
+  - wheel
+

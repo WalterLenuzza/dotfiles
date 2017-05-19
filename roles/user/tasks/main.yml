@@ -1,7 +1,0 @@
-- name: Manage user groups
-  user:
-    name: "{{ ansible_user_id}}"
-    groups: docker,libvirt
-    append: yes
-    state: present
-    update_password: on_create
