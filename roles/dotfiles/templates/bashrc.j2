@@ -22,7 +22,7 @@ export XDG_CONFIG_HOME='{{ xdg_config_home }}'
 export  XDG_CACHE_HOME='{{ xdg_cache_home }}'
 export   XDG_DATA_HOME='{{ xdg_data_home }}'
 
-# Prefer UK English and use UTF-8
+# Set locale
 export LANG='{{ locale }}'
 export LC_ALL='{{ locale }}'
 
@@ -91,7 +91,7 @@ alias    rm='rm -v'
 
 alias grep='grep --color=auto'
 alias mate='mate --no-wait'
-alias mc='mc -a'
+alias   mc='mc -a'
 alias tmux='tmux -2'
 alias tree='tree -aC -I .git --dirsfirst'
 
@@ -102,11 +102,11 @@ alias clean_DS_Store='find . -name *.DS_Store -type f -print -delete'
 #
 
 ## Golang
-export GOPATH='~/Devel/golang'
-export PATH="$PATH:~/Devel/golang/bin"
+export GOPATH="XDG_DEVEL_DIR/golang"
+export PATH="$PATH:$GOPATH/bin"
 
 ## Python (pyenv)
-export PYENV_ROOT='~/Devel/python'
+export PYENV_ROOT="XDG_DEVEL_DIR/python"
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV='true'
 # TEMP: Prompt changing will be removed from future release
 # export PYENV_VIRTUALENV_DISABLE_PROMPT=1
@@ -114,7 +114,7 @@ export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV='true'
 [ $(command -v pyenv-virtualenv-init) ] && eval "$(pyenv virtualenv-init -)"
 
 # Ruby (RBenv)
-export RBENV_ROOT='~/Devel/ruby'
+export RBENV_ROOT="XDG_DEVEL_DIR/ruby"
 [ $(command -v rbenv) ] && eval "$(rbenv init -)"
 
 #
