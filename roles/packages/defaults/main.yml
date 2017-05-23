@@ -30,6 +30,7 @@ pacman_packages:
   - i3lock
   - jsoncpp
   - libvirt
+  - lshw
   - mpv
   - neovim
   - noto-fonts
@@ -42,6 +43,7 @@ pacman_packages:
   - python
   - python-pip
   - qemu
+  - read-edid
   - rsync
   - rxvt-unicode
   - the_silver_searcher
