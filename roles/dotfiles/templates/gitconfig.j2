@@ -1,6 +1,9 @@
 [include]
   path = "{{ xdg_config_home }}/git/local"
 
+[credential]
+  helper = store --file "{{ xdg_config_home }}/git/credentials"
+
 [core]
   excludesfile = "{{ xdg_config_home }}/git/ignore"
   autocrlf     = input

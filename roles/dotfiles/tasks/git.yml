@@ -13,3 +13,4 @@
   template:
     src: gitignore.j2
     dest: "{{ xdg_config_home }}/git/ignore"
+
