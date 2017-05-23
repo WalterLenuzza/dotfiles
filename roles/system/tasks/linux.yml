@@ -1,3 +1,10 @@
+- name: "ArchLinux : set system locale"
+  template:
+    src: locale.j2
+    dest: /etc/locale.conf
+  become: true
+  when: ansible_os_family == "Archlinux"
+
 - name: "Linux : enable nested KVM virtualization"
   template:
     src: kvm.j2

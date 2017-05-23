@@ -8,4 +8,5 @@ xdg_cache_home:  "{{ prefix }}/.cache"
 xdg_data_home:   "{{ prefix }}/.local/share"
 
 # Locale
-locale: en_GB.utf8
+locale: en_GB.UTF-8
+

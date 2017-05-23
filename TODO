@@ -12,3 +12,4 @@ TODO:
 - remove vim.sensible make vimrc explicit
 - vi/vim/neovim: config editors (with support for jumpbox)
 - port OSX defaults
+- git fix credentials
