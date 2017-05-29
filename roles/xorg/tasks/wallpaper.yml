@@ -2,9 +2,10 @@
   get_url:
     url: "{{ wallpaper_url }}"
     dest: "{{ xdg_data_home }}/xorg/wallpaper"
-    mode: 0700
+    checksum: "{{ wallpaper_sha }}"
+    mode: 0644
   register: download_wallpaper
 
 - name: "Feh : set wallpaper"
-  command: feh --bg-fill "{{ xdg_data_home }}/xorg/wallpaper"
+  command: feh --bg-max "{{ xdg_data_home }}/xorg/wallpaper"
   when: download_wallpaper.changed

@@ -12,7 +12,8 @@ xdg_data_home:   "{{ prefix }}/.local/share"
 locale: en_GB.UTF-8
 
 # Desktop wallpaper
-wallpaper_url: "https://interfacelift.com/wallpaper/7yz4ma1/04007_autumnsunlightthroughthetrees_2560x1080.jpg"
+wallpaper_url: "https://cdn.shopify.com/s/files/1/0165/4168/files/preview.png"
+wallpaper_sha: "sha256:e99853b88a240965718c4b71200fa76d6ac4e9ac890a4c3fc0ef3c6702093e7e"
 
 # Font
 monospace_font_name: AnonymicePowerline Nerd Font
