@@ -4,6 +4,12 @@
     state: directory
     mode: 0700
 
+- name: "Neovim : filetype plugins directory"
+  file:
+    path: "{{ xdg_config_home }}/nvim/ftplugin"
+    state: directory
+    mode: 0700
+
 - name: "Neovim : autoload directory"
   file:
     path: "{{ xdg_data_home }}/nvim/site/autoload"
@@ -27,6 +33,16 @@
     src: neovim.j2
     dest: "{{ xdg_config_home }}/nvim/init.vim"
 
+- name: "Neovim : filetype: python"
+  copy:
+    src: python.vim
+    dest: "{{ xdg_config_home }}/nvim/ftplugin/python.vim"
+
+- name: "Neovim : filetype: YAML"
+  copy:
+    src: yaml.vim
+    dest: "{{ xdg_config_home }}/nvim/ftplugin/yaml.vim"
+
 - name: "Neovim : colorscheme directory"
   file:
     path: "{{ xdg_data_home }}/nvim/bundle/colors"
@@ -43,7 +59,7 @@
     src: airline.j2
     dest: "{{ xdg_data_home }}/nvim/bundle/vim-airline/autoload/airline/themes/{{ vi_theme }}.vim"
 
-- name: "Neovim : promptline theme"
-  template:
-    src: promptline.j2
-    dest: "{{ xdg_data_home }}/nvim/bundle/promptline.vim/autoload/promptline/themes/{{ vi_theme }}.vim"
+    #- name: "Neovim : promptline theme"
+    #template:
+    #src: promptline.j2
+    #dest: "{{ xdg_data_home }}/nvim/bundle/promptline.vim/autoload/promptline/themes/{{ vi_theme }}.vim"
