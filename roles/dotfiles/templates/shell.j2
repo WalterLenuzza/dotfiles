@@ -26,12 +26,21 @@ export TERM='xterm-256color'
 export EDITOR='nvim'
 
 # Pager
-export PAGER='less'  # Quit if only 1 screen, show colors, don't clear
+export PAGER='less'
+# Quit if only 1 screen, show colors, don't clear
 export LESS='-FMnqrX'
 
+
 # Colorize ls
-export CLICOLOR=1
-export CLICOLOR_FORCE=1  # Always show colors (with less and grep), Experimental
+case "$(uname)" in
+  Darwin)
+    export CLICOLOR=1
+    # export CLICOLOR_FORCE=1
+    ;;
+  Linux)
+    alias ls='ls --color=auto'
+    ;;
+esac
 
 
 #
@@ -50,7 +59,9 @@ alias mkdir='mkdir -p'
 alias    mv='mv -vi'
 alias    rm='rm -v'
 
+# Colorize grep
 alias grep='grep --color=auto'
+
 alias mate='mate --no-wait'
 alias   mc='mc -a'
 alias tmux='tmux -2'
