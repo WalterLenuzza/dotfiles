@@ -30,12 +30,12 @@ pacman_packages:
   - gucharmap
   - i3lock
   - jsoncpp
+  - ldns
   - libvirt
   - lshw
   - mpv
   - neovim
   - noto-fonts
-  - ntp
   - pamixer
   - pavucontrol
   - perl-anyevent-i3

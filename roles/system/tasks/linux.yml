@@ -31,3 +31,11 @@
   with_items: "{{ user_groups }}"
   become: true
   when: ansible_system == 'Linux' and ansible_form_factor == 'Desktop'
+
+- name: "Linux : systemd-resolved : resolv.conf compatibilty"
+  file:
+    src: "/run/systemd/resolve/resolv.conf"
+    dest: "/etc/resolv.conf"
+    state: link
+  become: true
+  when: ansible_system == 'Linux' and ansible_form_factor == 'Desktop'

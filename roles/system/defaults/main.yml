@@ -1,11 +1,15 @@
 enabled_services:
-  - docker
-  - firewalld
-  - libvirtd
+- docker
+- firewalld
+- libvirtd
+- systemd-networkd
+- systemd-resolved
+- systemd-timesyncd
+
 
 user_groups:
-  - docker
-  - kvm
-  - libvirt
-  - wheel
+- docker
+- kvm
+- libvirt
+- wheel
 
