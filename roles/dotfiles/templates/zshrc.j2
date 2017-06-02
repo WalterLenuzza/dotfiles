@@ -35,11 +35,14 @@ POWERLEVEL9K_MODE='nerdfont-complete'
   . '{{ xdg_data_home }}/zsh/powerlevel9k/powerlevel9k.zsh-theme'
 
 # segments
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status background_jobs context dir dir_writable vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context status background_jobs dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(docker_machine pyenv command_execution_time)
 
 # context
 DEFAULT_USER={{ ansible_user_id }}
+
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="cyan"
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="black"
 
 # dir
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
