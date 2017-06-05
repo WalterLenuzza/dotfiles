@@ -65,12 +65,14 @@ set laststatus=2
 " Show as much as possible of the last line
 set display=lastline
 
-
 " Show current mode in command-line
 set showmode
 
 " Show already typed keys when more are expected
 set showcmd
+
+" Disable code folding
+set nofoldenable
 
 
 "
@@ -84,22 +86,7 @@ set termguicolors
 set background=dark
 
 " Colorscheme
-"colorscheme gruvbox   " TEMP: Gruvbox
-
-
-
-
-" Temp
-
-"set incsearch              " Highlight while searching with / or ?.
-"set hlsearch               " Keep matches highlighted.
-"set splitbelow             " Open new windows below the current window.
-"set splitright             " Open new windows right of the current window.
-
-"set cursorline             " Find the current line quickly.
-"set wrapscan               " Searches wrap around end-of-file.
-"set report      =0         " Always report changed lines.
-"set synmaxcol   =200       " Only highlight the first 200 columns.
+colorscheme gruvbox   " TEMP: Gruvbox
 
 
 "
@@ -118,10 +105,6 @@ let g:airline#extensions#whitespace#enabled = 1
 " Enable Powerline symbols
 let g:airline_powerline_fonts = 1
 
-
-
-
-
 "
 " Plugins: Promptline
 "
@@ -135,6 +118,24 @@ let g:airline_powerline_fonts = 1
 "  \'y' : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
 "  \'z' : [ promptline#slices#jobs() ],
 "  \'warn' : [ promptline#slices#last_exit_code() ]}
+
+
+
+
+
+
+""""""""""""""
+" Temp
+
+"set incsearch              " Highlight while searching with / or ?.
+"set hlsearch               " Keep matches highlighted.
+"set splitbelow             " Open new windows below the current window.
+"set splitright             " Open new windows right of the current window.
+
+"set cursorline             " Find the current line quickly.
+"set wrapscan               " Searches wrap around end-of-file.
+"set report      =0         " Always report changed lines.
+"set synmaxcol   =200       " Only highlight the first 200 columns.
 
 
 " NerdTree
@@ -175,16 +176,6 @@ let g:airline_powerline_fonts = 1
 "
 " Vimrc
 "
-
-" Enforce not vi-compatible mode even though
-" when Vim finds a vimrc, 'nocompatible' is set anyway
-set nocompatible
-
-" Load plugins according to detected filetype
-filetype plugin indent on
-
-" Enable syntax highlighting
-syntax on
 
 " Indent according to previous line.
 "set autoindent

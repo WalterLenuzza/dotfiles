@@ -96,8 +96,8 @@ export PS2='  '
 export PS4='$0.$LINENO+ '
 
 # Source external script for PS1 configuration
-[ -f '{{ xdg_config_home }}/shell/prompt' ] && \
-  . '{{ xdg_config_home }}/shell/prompt'
+[ -f '{{ xdg_config_home }}/bash/prompt' ] && \
+  . '{{ xdg_config_home }}/bash/prompt'
 
 # After each command, append to the history file and reread it
 #export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; #history -c; history -r"

@@ -9,7 +9,8 @@
     src: shell.j2
     dest: "{{ xdg_config_home }}/shell/rc"
 
-- name: "Shell : prompt"
-  template:
-    src: prompt.j2
-    dest: "{{ xdg_config_home }}/shell/prompt"
+- name: "Less : cache directory"
+  file:
+    path: "{{ xdg_cache_home }}/less"
+    state: directory
+    mode: 0700

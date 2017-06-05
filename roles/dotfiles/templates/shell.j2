@@ -16,22 +16,41 @@ export  XDG_CACHE_HOME='{{ xdg_cache_home }}'
 export   XDG_DATA_HOME='{{ xdg_data_home }}'
 
 # Set locale
-export LANG='{{ locale }}'
+export   LANG='{{ locale }}'
 export LC_ALL='{{ locale }}'
 
 # 256-color terminal
 export TERM='xterm-256color'
 
-# Editor
-export EDITOR='nvim'
-
 # Pager
 export PAGER='less'
-# Quit if only 1 screen, show colors, don't clear
-export LESS='-FMnqrX'
+export LESS='-FMnqrX' # Quit if only 1 screen, show colors, don't clear
+export LESSHISTFILE='{{ xdg_cache_home }}/less/history'
 
 
-# Colorize ls
+#
+# Editor
+#
+
+# Check if Vim is installed
+command -v vim >/dev/null 2>&- && \
+  alias vi='vim'
+
+# Check if NeoVim is installed
+command -v nvim >/dev/null 2>&- && \
+  alias vi='nvim'
+
+export EDITOR='vi'
+
+
+#
+# Colorize
+#
+
+# grep
+alias grep='grep --color=auto'
+
+# ls
 case "$(uname)" in
   Darwin)
     export CLICOLOR=1
@@ -42,16 +61,39 @@ case "$(uname)" in
     ;;
 esac
 
+# man
+man() {
+    env LESS_TERMCAP_mb=$'\E[01;31m' \
+    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+    LESS_TERMCAP_me=$'\E[0m' \
+    LESS_TERMCAP_se=$'\E[0m' \
+    LESS_TERMCAP_so=$'\E[38;5;246m' \
+    LESS_TERMCAP_ue=$'\E[0m' \
+    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+    man "$@"
+}
+
+# $PATH
+path() {
+  local blue="\033[1;34m"
+  local green="\033[0;32m"
+  local cyan="\033[0;36m"
+  local purple="\033[0;35m"
+  local brown="\033[0;33m"
+  local reset_color="\033[0m"
+  echo $PATH | tr ":" "\n" | \
+    awk "{ sub(\"/usr\",   \"$green/usr$reset_color\"); \
+           sub(\"/bin\",   \"$blue/bin$reset_color\"); \
+           sub(\"/opt\",   \"$cyan/opt$reset_color\"); \
+           sub(\"/sbin\",  \"$purple/sbin$reset_color\"); \
+           sub(\"/local\", \"$brown/local$reset_color\"); \
+           print }"
+}
+
 
 #
 # Aliases
 #
-
-command -v vim >/dev/null 2>&- && \
-  alias vi='vim'
-
-command -v nvim >/dev/null 2>&- && \
-  alias vi='nvim'
 
 alias  v='ls -lhA'
 alias vs='ls -lhASr'  # Sort by size-reversed
@@ -65,15 +107,13 @@ alias mkdir='mkdir -p'
 alias    mv='mv -vi'
 alias    rm='rm -v'
 
-# Colorize grep
-alias grep='grep --color=auto'
-
 alias mate='mate --no-wait'
 alias   mc='mc -a'
 alias tmux='tmux -2'
 alias tree='tree -aC -I .git --dirsfirst'
 
-alias clean_DS_Store='find . -name *.DS_Store -type f -print -delete'
+[ $(uname) = 'Darwin' ] && \
+  alias clean_DS_Store='find . -name *.DS_Store -type f -print -delete'
 
 
 #
@@ -90,8 +130,8 @@ c() (
 )
 
 # Print a color test table
-# credit: https://github.com/mikker/dotfiles/blob/master/bin/colortest.sh
-table_color_test() {
+# https://github.com/mikker/dotfiles/blob/master/bin/colortest.sh
+colors_table() {
   local T='gYw'   # The test text
 
   echo -e "\n                 40m     41m     42m     43m\
@@ -122,10 +162,8 @@ docker_lint() {
 }
 
 # Usage: extract <file>
-# Description: extracts archived files / mounts disk images
 # Note: .dmg/hdiutil is Mac OS X-specific.
-#
-# credit: http://nparikh.org/notes/zshrc.txt
+# http://nparikh.org/notes/zshrc.txt
 extract () {
   if [ -f $1 ]; then
     case $1 in
@@ -162,38 +200,10 @@ log() {
   logger -s $priority $tag $message
 }
 
-# Colorize 'man'
-man() {
-    env LESS_TERMCAP_mb=$'\E[01;31m' \
-    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-    LESS_TERMCAP_me=$'\E[0m' \
-    LESS_TERMCAP_se=$'\E[0m' \
-    LESS_TERMCAP_so=$'\E[38;5;246m' \
-    LESS_TERMCAP_ue=$'\E[0m' \
-    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-    man "$@"
-}
-
-# Colorized $PATH
-path() {
-  local blue="\033[1;34m"
-  local green="\033[0;32m"
-  local cyan="\033[0;36m"
-  local purple="\033[0;35m"
-  local brown="\033[0;33m"
-  local reset_color="\033[0m"
-  echo $PATH | tr ":" "\n" | \
-    awk "{ sub(\"/usr\",   \"$green/usr$reset_color\"); \
-           sub(\"/bin\",   \"$blue/bin$reset_color\"); \
-           sub(\"/opt\",   \"$cyan/opt$reset_color\"); \
-           sub(\"/sbin\",  \"$purple/sbin$reset_color\"); \
-           sub(\"/local\", \"$brown/local$reset_color\"); \
-           print }"
-}
-
 # Replace 'ps fax' on MacOSX
+
 ps() {
-  if [ $(uname) == 'Darwin' ]; then
+  if [ $(uname) = 'Darwin' ]; then
     pstree -U | grep -vE '(/System/Library/|/usr/)';
   else
     command ps $@;
