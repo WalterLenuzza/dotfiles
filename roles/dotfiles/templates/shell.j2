@@ -47,6 +47,12 @@ esac
 # Aliases
 #
 
+command -v vim >/dev/null 2>&- && \
+  alias vi='vim'
+
+command -v nvim >/dev/null 2>&- && \
+  alias vi='nvim'
+
 alias  v='ls -lhA'
 alias vs='ls -lhASr'  # Sort by size-reversed
 alias vt='ls -lhAtr'  # Sort by mtime-reversed
@@ -204,7 +210,7 @@ randpassgen() {
   local prefix='https://www.random.org/strings'
   local suffix='digits=on&upperalpha=on&loweralpha=on&unique=off&format=plain&rnd=new'
   local url="$prefix/?num=$number&len=$lenght&$suffix"
-  [ $(command -v curl) ] && curl --silent $url
+  command -v curl >/dev/null 2>&- && curl --silent $url
 }
 
 # Set title of terminal window/tab
@@ -219,5 +225,5 @@ title() {
 weather() {
   local city=$1
   : ${city:='London'}
-  [ $(command -v curl) ] && curl --silent http://wttr.in/$city
+  command -v curl >/dev/null 2>&- && curl --silent http://wttr.in/$city
 }
