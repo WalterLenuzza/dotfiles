@@ -7,28 +7,35 @@
 ! -----------------------------------------------------------------------------
 
 ! Terminal Name
-st.termname:     st-256color
+st.termname:     xterm-256color
 
 ! if you do not set shell, precedence is:
 ! -e arg, utmp option, SHELL env var, /etc/passwd shell
-st.shell:        /bin/bash
+!st.shell:        /bin/bash
 
-! opacity==255 means what terminal will be not transparent, 0 - fully transparent
+! Opacity:
+!   0 - fully transparent
+! 255 - not transparent
 st.opacity:      242
+
+! Font
+st.font:           {{ monospace_font_name }}:size=11:antialias=true:autohint=true;
+
+! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
+st.cursorshape:  1
 
 ! Settings
 st.borderpx:     0
-! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
-st.cursorshape:  1
 st.cursorthickness:  2
-st.cursorblinkstyle: 1
+st.cursorblinkstyle: 0
 st.cursorblinkontype: 1
+st.blinktimeout: 500
 st.bold_font:    0
 st.xfps:         120
 st.actionfps:    30
 st.chscale:      1.0
 st.cwscale:      1.0
-st.blinktimeout: 800
 st.bellvolume:   100
+
 ! this is a char that is exposed like so: `printf '\033[z'`
 !st.prompt_char:  $
