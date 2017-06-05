@@ -20,6 +20,9 @@ monospace_font_name: 'AnonymicePowerline Nerd Font'
 monospace_font_url: "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/AnonymousPro/complete/Anonymice%20Powerline%20Nerd%20Font%20Complete%20Mono.ttf?raw=true"
 monospace_font_sha: "sha256:6600d6e6a52a277ced42beb07fd30159847ec89462ff8cf9c221df0775412400"
 
+# Opacity
+opacity: 95
+
 # Palette
 palette:
   color0:  "#282828"

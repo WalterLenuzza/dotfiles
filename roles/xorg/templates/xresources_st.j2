@@ -16,7 +16,7 @@ st.termname:     xterm-256color
 ! Opacity:
 !   0 - fully transparent
 ! 255 - not transparent
-st.opacity:      242
+st.opacity: {{ 255 * opacity // 100 }}
 
 ! Font
 st.font: "{{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}"
@@ -25,17 +25,17 @@ st.font: "{{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:au
 st.cursorshape:  1
 
 ! Settings
-st.borderpx:     0
-st.cursorthickness:  2
-st.cursorblinkstyle: 0
+st.borderpx:          1
+st.cursorthickness:   2
+st.cursorblinkstyle:  0
 st.cursorblinkontype: 1
-st.blinktimeout: 500
-st.bold_font:    0
-st.xfps:         120
-st.actionfps:    30
-st.chscale:      1.0
-st.cwscale:      1.0
-st.bellvolume:   100
+st.blinktimeout:      500
+st.bold_font:         0
+st.xfps:              120
+st.actionfps:         30
+st.chscale:           1.0
+st.cwscale:           1.0
+st.bellvolume:        100
 
 ! this is a char that is exposed like so: `printf '\033[z'`
 !st.prompt_char:  $
