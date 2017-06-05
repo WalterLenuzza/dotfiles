@@ -3,14 +3,14 @@
 ! -----------------------------------------------------------------------------
 
 ! Fonts
-*.font:           {{ monospace_font_name }}:size=11:antialias=true:autohint=true;
-*.boldFont:       {{ monospace_font_name }}:size=11:antialias=true:autohint=true:style:Bold;
-*.italicFont:     {{ monospace_font_name }}:size=11:antialias=true:autohint=true:style:Italic;
-*.boldItalicFont: {{ monospace_font_name }}:size=11:antialias=true:autohint=true:style:ItalicBold;
+*.font:           "{{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}"
+*.boldFont:       "{{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}:style:Bold"
+*.italicFont:     "{{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}:style:Italic"
+*.boldItalicFont: "{{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}:style:ItalicBold"
 
 ! XFT fonts
-Xft.antialias: true
-Xft.autohint: false
+Xft.antialias: {{ antialias }}
+Xft.autohint: {{ autohint }}
 Xft.dpi: {{ dpi }}
 Xft.hinting: true
 Xft.hintstyle: hintslight

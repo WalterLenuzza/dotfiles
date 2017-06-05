@@ -3,12 +3,12 @@
 ! -----------------------------------------------------------------------------
 
 ! Terminal Name
-URxvt*.termName: rxvt-unicode-256color
+URxvt*.termName: xterm-256color
 
-URxvt.font:           xft:{{ monospace_font_name }}:size=11
-URxvt.boldFont:       xft:{{ monospace_font_name }}:size=11,style:Bold
-URxvt.italicFont:     xft:{{ monospace_font_name }}:size=11,style:Italic
-URxvt.boldItalicFont: xft:{{ monospace_font_name }}:size=11,style:ItalicBold
+URxvt.font:           "xft:{{ monospace_font_name }}:size={{ size }}"
+URxvt.boldFont:       "xft:{{ monospace_font_name }}:size={{ size }},style:Bold"
+URxvt.italicFont:     "xft:{{ monospace_font_name }}:size={{ size }},style:Italic"
+URxvt.boldItalicFont: "xft:{{ monospace_font_name }}:size={{ size }},style:ItalicBold"
 
 ! Disable scrollbar
 URxvt*scrollBar: false
@@ -31,7 +31,7 @@ URxvt.secondaryWheel:   1
 URxvt*clipboard.copycmd:    xclip -i -selection clipboard
 URxvt*clipboard.pastecmd:   xclip -o -selection clipboard
 
-!! disable default bindings for Control-Shift
+! disable default bindings for Control-Shift
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 

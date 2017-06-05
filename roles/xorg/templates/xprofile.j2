@@ -3,7 +3,7 @@
 # Merge Xresources
 [ -f '{{ xdg_config_home }}/xorg/Xresources' ] && \
   command -v xrdb >/dev/null 2>&- && \
-  xrdb -merge '{{ xdg_config_home }}/xorg/Xresources'
+  xrdb '{{ xdg_config_home }}/xorg/Xresources'
 
 # Merge st's Xresources (primary terminal)
 [ -f '{{ xdg_config_home }}/xorg/Xresources.st' ] && \

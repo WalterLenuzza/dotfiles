@@ -16,7 +16,7 @@ wallpaper_url: "https://cdn.shopify.com/s/files/1/0165/4168/files/preview.png"
 wallpaper_sha: "sha256:e99853b88a240965718c4b71200fa76d6ac4e9ac890a4c3fc0ef3c6702093e7e"
 
 # Font
-monospace_font_name: AnonymicePowerline Nerd Font
+monospace_font_name: 'AnonymicePowerline Nerd Font'
 monospace_font_url: "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/AnonymousPro/complete/Anonymice%20Powerline%20Nerd%20Font%20Complete%20Mono.ttf?raw=true"
 monospace_font_sha: "sha256:6600d6e6a52a277ced42beb07fd30159847ec89462ff8cf9c221df0775412400"
 

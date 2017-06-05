@@ -1,3 +1,8 @@
+# Fonts
+antialias: true
+autohint: false
 dpi: 96
+size: 11
 
+# Polybar
 polybar_name: desktop

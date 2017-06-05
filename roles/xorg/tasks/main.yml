@@ -13,6 +13,7 @@
   template:
     src: xprofile.j2
     dest: "{{ xdg_config_home }}/xorg/Xprofile"
+    mode: 0755
 
 - include: xresources.yml
 
