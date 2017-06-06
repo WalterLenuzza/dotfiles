@@ -69,8 +69,24 @@ zle -N down-line-or-beginning-search
 # Various
 #
 
-# Nobody need flow control anymore. Troublesome feature.
+# Nobody needs flow control anymore
 setopt noflowcontrol
+
+
+#
+# Message of the Day
+#
+
+# Print pretty system logo/info (archey)
+[ $(command -v neofetch) ] && neofetch
+
+# Fortune
+[ $(command -v fortune) ] && fortune computers science && echo
+
+# Show today's anniversaries
+[ $(command -v calendar) ] && [ -r /usr/share/calendar/calendar.world ] && {
+  calendar -A 0 -f /usr/share/calendar/calendar.world; }
+
 
 #
 # Prompts
