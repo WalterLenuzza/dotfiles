@@ -31,19 +31,19 @@ shopt -s cdspell;
 #
 
 # File
-export HISTFILE='{{ xdg_cache_home }}/bash/history'
+HISTFILE='{{ xdg_cache_home }}/bash/history'
 
 # Size
-export HISTSIZE=32768
+HISTSIZE=32768
 
 # Avoid duplicates
-export HISTCONTROL=ignoredups:erasedups
+HISTCONTROL=ignoredups:erasedups
 
 # Ignore
-export HISTIGNORE='&:ls:cd ~:cd ..:pwd:clear:[bf]g:exit:h:history'
+HISTIGNORE='&:ls:cd ~:cd ..:pwd:clear:[bf]g:exit:h:history'
 
 # Timestamps for later analysis. www.debian-administration.org/users/rossen/weblog/1
-export HISTTIMEFORMAT='%F %T '
+HISTTIMEFORMAT='%F %T '
 
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
@@ -90,10 +90,10 @@ shopt -s histappend
 #
 
 # PS2 – Continuation interactive prompt
-export PS2='  '
+PS2='  '
 
 # PS4 - Prefix tracing output (set -x)
-export PS4='$0.$LINENO+ '
+PS4='$0.$LINENO+ '
 
 # Source external script for PS1 configuration
 [ -f '{{ xdg_config_home }}/bash/prompt' ] && \

@@ -25,6 +25,7 @@
   user:
     name: "{{ ansible_user_id}}"
     groups: "{{ item }}"
+    shell: "{{ shell }}"
     append: yes
     state: present
     update_password: on_create

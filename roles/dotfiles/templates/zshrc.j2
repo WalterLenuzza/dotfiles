@@ -44,11 +44,11 @@ setopt COMPLETE_ALIASES
 #
 
 # File
-export HISTFILE='{{ xdg_cache_home }}/zsh/history'
+HISTFILE='{{ xdg_cache_home }}/zsh/history'
 
 # Size
-export HISTSIZE=1024
-export SAVEHIST=32768
+HISTSIZE=1024
+SAVEHIST=32768
 
 # Ignore duplicate in history
 setopt hist_ignore_dups
@@ -77,10 +77,10 @@ setopt noflowcontrol
 #
 
 # PS2 – Continuation interactive prompt
-export PS2='  '
+PS2='  '
 
 # PS4 - Prefix tracing output (set -x)
-export PS4='$0.$LINENO+ '
+PS4='$0.$LINENO+ '
 
 # Source external script for PS1 configuration
 [ -f '{{ xdg_config_home }}/zsh/prompt' ] && \

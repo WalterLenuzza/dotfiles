@@ -3,10 +3,10 @@
 ! -----------------------------------------------------------------------------
 
 ! Fonts
-*.font:           "{{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}"
-*.boldFont:       "{{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}:style:Bold"
-*.italicFont:     "{{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}:style:Italic"
-*.boldItalicFont: "{{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}:style:ItalicBold"
+*.font:           {{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}
+*.boldFont:       {{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}:style:Bold
+*.italicFont:     {{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}:style:Italic
+*.boldItalicFont: {{ monospace_font_name }}:size={{ size }}:antialias={{ antialias }}:autohint={{ autohint }}:style:ItalicBold
 
 ! XFT fonts
 Xft.antialias: {{ antialias }}
