@@ -29,7 +29,7 @@ assign [class="^Thunar$"] $tag3
 for_window [class="^Spotify$"] move to workspace $tag10
 
 # Window borders style
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 #
 # Autostart applications
@@ -113,10 +113,10 @@ bindsym $mod+F1 exec i3lock -c {{ palette['color0']}}
 bindsym $mod+Return exec st
 
 # list open windows to switch to
-bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $mod+w exec --no-startup-id rofi -show window
 
 # Use Rofi (instead of dmenu)
-bindsym $mod+d exec --no-startup-id rofi -show run -no-levenshtein-sort -lines 10 -width 50 -opacity "{{ opacity }}"
+bindsym $mod+d exec --no-startup-id rofi -show run -no-levenshtein-sort -lines 10 -width 50
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

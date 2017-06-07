@@ -108,8 +108,8 @@ shadow-ignore-shaped = false;
 #################################
 
 menu-opacity = 1;
-inactive-opacity = 1;
-active-opacity = 1;
+#inactive-opacity = 1;
+#active-opacity = 1;
 frame-opacity = 1;
 inactive-opacity-override = false;
 alpha-step = 0.06;
@@ -237,4 +237,10 @@ wintypes:
 #
 #################################
 
-opacity-rule = [ "{{ opacity }}:class_g = 'URxvt'" ];
+#active-opacity = 1;
+#inactive-opacity = .6;
+#inactive-dim = .2;
+
+opacity-rule = [ "{{ opacity }}:class_g = 'st-256color'",
+                 "{{ opacity }}:class_g = 'URxvt'" ];
+
