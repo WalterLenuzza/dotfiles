@@ -30,6 +30,31 @@ LESSHISTFILE='{{ xdg_cache_home }}/less/history'
 
 
 #
+# Aliases
+#
+
+alias  v='ls -lhA'
+alias vs='ls -lhASr'  # Sort by size-reversed
+alias vt='ls -lhAtr'  # Sort by mtime-reversed
+alias vx='ls -lhAe@'  # Show ACLs and xattrs
+
+alias     d='du -csh | sort -nk'
+alias    df='df -h'
+alias    ln='ln -v'
+alias mkdir='mkdir -p'
+alias    mv='mv -vi'
+alias    rm='rm -v'
+
+alias mate='mate --no-wait'
+alias   mc='mc -a'
+alias tmux='tmux -2'
+alias tree='tree -aC -I .git --dirsfirst'
+
+[ $(uname) = 'Darwin' ] && \
+  alias clean_DS_Store='find . -name *.DS_Store -type f -print -delete'
+
+
+#
 # Editor
 #
 
@@ -43,7 +68,6 @@ command -v nvim >/dev/null 2>&- && \
   alias vim='nvim'
 
 EDITOR='vi'
-
 
 #
 # Colorize
@@ -90,32 +114,6 @@ path() {
            sub(\"/local\", \"$brown/local$reset_color\"); \
            print }"
 }
-
-
-#
-# Aliases
-#
-
-alias  v='ls -lhA'
-alias vs='ls -lhASr'  # Sort by size-reversed
-alias vt='ls -lhAtr'  # Sort by mtime-reversed
-alias vx='ls -lhAe@'  # Show ACLs and xattrs
-
-alias     d='du -csh | sort -nk'
-alias    df='df -h'
-alias    ln='ln -v'
-alias mkdir='mkdir -p'
-alias    mv='mv -vi'
-alias    rm='rm -v'
-
-alias mate='mate --no-wait'
-alias   mc='mc -a'
-alias tmux='tmux -2'
-alias tree='tree -aC -I .git --dirsfirst'
-
-[ $(uname) = 'Darwin' ] && \
-  alias clean_DS_Store='find . -name *.DS_Store -type f -print -delete'
-
 
 #
 # Functions
@@ -238,3 +236,25 @@ weather() {
   : ${city:='London'}
   command -v curl >/dev/null 2>&- && curl --silent http://wttr.in/$city
 }
+
+
+#
+# Code
+#
+
+### Golang
+#export GOPATH="XDG_DEVEL_DIR/golang"
+#export PATH="$PATH:$GOPATH/bin"
+#
+### Python (pyenv)
+#export PYENV_ROOT="XDG_DEVEL_DIR/python"
+#export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV='true'
+## TEMP: Prompt changing will be removed from future release
+## export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+#[ $(command -v pyenv) ] && eval "$(pyenv init -)"
+#[ $(command -v pyenv-virtualenv-init) ] && eval "$(pyenv virtualenv-init -)"
+#
+
+# Ruby (RBenv)
+export RBENV_ROOT="XDG_DEVEL_DIR/ruby"
+[ $(command -v rbenv) ] && eval "$(rbenv init -)"
