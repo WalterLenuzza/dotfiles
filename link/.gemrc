@@ -1,3 +1,0 @@
-# Prevent gem install or gem update from downloading RDoc and RI
-install: --no-document
-update: --no-document
