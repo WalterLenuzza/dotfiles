@@ -6,6 +6,19 @@ case $- in
       *) return;;
 esac
 
+# Environment variables
+
+# XDG
+export XDG_CONFIG_HOME=~/.config
+export XDG_CACHE_HOME=~/.cache
+export XDG_DATA_HOME=~/.local/share
+
+# Xorg
+#export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+#export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
+#export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+#export RXVT_SOCKET="$XDG_RUNTIME_DIR"/urxvtd
+
 #
 # Aliases
 #

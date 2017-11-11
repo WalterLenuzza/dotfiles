@@ -1,0 +1,250 @@
+# # i3-gaps config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# Fork: https://github.com/Airblader/i3
+
+# Settings
+
+# As explained in-depth in http://i3wm.org/docs/multi-monitor.html,
+# some X11 video drivers (especially the nVidia binary driver) only provide support
+# for Xinerama instead of RandR. In such a situation, i3 must be told to use the
+# inferior Xinerama API explicitly and therefore don’t provide support for
+# reconfiguring your screens on the fly (they are read only once on startup and that’s it).
+force_xinerama no
+
+# Colors
+
+# Define colors by loading them from the Xresource database
+set_from_resource $color0 color0  #282828
+set_from_resource $color1 color1  #cc241d
+set_from_resource $color2 color2  #98971a
+set_from_resource $color3 color3  #d79921
+set_from_resource $color4 color4  #458588
+set_from_resource $color5 color5  #b16286
+set_from_resource $color6 color6  #689d6a
+set_from_resource $color7 color7  #a89984
+set_from_resource $color8 color8  #928374
+set_from_resource $color9 color9  #fb4934
+set_from_resource $color10 color10 #b8bb26
+set_from_resource $color11 color11 #fabd2f
+set_from_resource $color12 color12 #83a598
+set_from_resource $color13 color13 #d3869b
+set_from_resource $color14 color14 #8ec07c
+set_from_resource $color15 color15 #ebdbb2
+
+
+# <colorclass>          <border>  <background>  <text>    <indicator>  <child_border>
+client.focused          $color10  $color10      $color0   $color4      $color10
+client.focused_inactive $color0   $color0       $color15  $color4      $color0
+client.unfocused        $color0   $color0       $color15  $color4      $color0
+client.urgent           $color1   $color1       $color15  $color4      $color1
+client.placeholder      #000000   #000000       #ffffff   $color4      #000000
+client.background $color0
+
+# Font for window titles
+font pango:Anonymous Pro 11
+
+# Workspace naming
+set $tag1  "1:Code"
+set $tag2  "2:Browser"
+set $tag3  "3:File Manager"
+set $tag4  "4"
+set $tag5  "5"
+set $tag6  "6"
+set $tag7  "7"
+set $tag8  "8"
+set $tag9  "9"
+set $tag10 "10:Music"
+
+# Window borders style
+for_window [class="^.*"] border pixel 2
+
+# Disable mouse focus
+focus_follows_mouse no
+
+# Allow "undo" workspace switch
+workspace_auto_back_and_forth yes
+
+# Keybindings
+
+# Main modifier key
+set $mod Mod4
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+bindsym Mod1+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth
+
+# Launchers
+# start a terminal
+bindsym $mod+Return exec --no-startup-id termite
+
+# start rofi (a program launcher)
+bindsym $mod+space exec --no-startup-id rofi -show drun -display-drun "" -fuzzy
+bindsym $mod+Tab exec --no-startup-id rofi -show window -display-window ""
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+#bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+#bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace $tag1
+bindsym $mod+2 workspace $tag2
+bindsym $mod+3 workspace $tag3
+bindsym $mod+4 workspace $tag4
+bindsym $mod+5 workspace $tag5
+bindsym $mod+6 workspace $tag6
+bindsym $mod+7 workspace $tag7
+bindsym $mod+8 workspace $tag8
+bindsym $mod+9 workspace $tag9
+bindsym $mod+0 workspace $tag10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $tag1
+bindsym $mod+Shift+2 move container to workspace $tag2
+bindsym $mod+Shift+3 move container to workspace $tag3
+bindsym $mod+Shift+4 move container to workspace $tag4
+bindsym $mod+Shift+5 move container to workspace $tag5
+bindsym $mod+Shift+6 move container to workspace $tag6
+bindsym $mod+Shift+7 move container to workspace $tag7
+bindsym $mod+Shift+8 move container to workspace $tag8
+bindsym $mod+Shift+9 move container to workspace $tag9
+bindsym $mod+Shift+0 move container to workspace $tag10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# i3-gaps
+gaps inner 10
+gaps outer 0
+
+# Smart Gaps
+# Disable all gaps (outer and inner) on the workspace whenever only one container
+# is on the current workspace.
+smart_gaps on
+
+# You can hide container borders adjacent to the screen edges using hide_edge_borders.
+# This is useful if you are using scrollbars, or do not want to waste even two pixels
+# in displayspace. The "smart" setting hides borders on workspaces with only one
+# window visible, but keeps them on workspaces with multiple windows visible.
+# Default is none.
+hide_edge_borders smart
+
+# Gaps mode
+bindsym $mod+g mode "$mode_gaps"
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+
+mode "$mode_gaps" {
+  bindsym o      mode "$mode_gaps_outer"
+  bindsym i      mode "$mode_gaps_inner"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+  bindsym plus  gaps inner current plus 5
+  bindsym minus gaps inner current minus 5
+  bindsym 0     gaps inner current set 0
+
+  bindsym Shift+plus  gaps inner all plus 5
+  bindsym Shift+minus gaps inner all minus 5
+  bindsym Shift+0     gaps inner all set 0
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+  bindsym plus  gaps outer current plus 5
+  bindsym minus gaps outer current minus 5
+  bindsym 0     gaps outer current set 0
+
+  bindsym Shift+plus  gaps outer all plus 5
+  bindsym Shift+minus gaps outer all minus 5
+  bindsym Shift+0     gaps outer all set 0
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}

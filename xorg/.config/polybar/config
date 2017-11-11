@@ -1,0 +1,340 @@
+[global/wm]
+margin-top    = 0
+margin-bottom = 0
+
+[settings]
+screenchange-reload = true
+
+[colors]
+foreground  = ${xrdb:foreground}
+background  = ${xrdb:background}
+transparent = #00000000
+
+black 	= ${xrdb:color0}
+red     = ${xrdb:color1}
+green   = ${xrdb:color2}
+yellow  = ${xrdb:color3}
+blue    = ${xrdb:color4}
+magenta = ${xrdb:color5}
+cyan    = ${xrdb:color6}
+white   = ${xrdb:color7}
+
+bblack   = ${xrdb:color8}
+bred     = ${xrdb:color9}
+bgreen   = ${xrdb:color10}
+byellow  = ${xrdb:color11}
+bblue    = ${xrdb:color12}
+bmagenta = ${xrdb:color13}
+bcyan    = ${xrdb:color14}
+bwhite   = ${xrdb:color15}
+
+[bar/main]
+width        = 100%
+height       = 15
+fixed-center = true
+separator    =
+
+background = ${colors.transparent}
+foreground = ${colors.foreground}
+
+border-top-size    = 0
+border-bottom-size = 0
+border-left-size   = 0
+border-right-size  = 0
+border-color = ${colors.transparent}
+
+font-0 = Anonymous Pro:size=11;2
+font-1 = PowerlineSymbols:size=9;2
+font-2 = FontAwesome:size=11;2
+font-3 = Wuncon Siji:size=11;2
+
+modules-left   = i3_start_indicator i3 title i3_end_indicator
+modules-center =
+modules-right  = temp_start_indicator temperature temp_stop_indicator battery cpu memory wlan eth volume date time
+
+tray-position    = right
+tray-detached    = false
+tray-maxsize     = 14
+tray-transparent = false
+tray-background  = ${colors.bgreen}
+tray-offset-x    = 0
+tray-offset-y    = 0
+tray-padding     = 1
+tray-scale       = 1.0
+
+[module/i3_start_indicator]
+type = custom/text
+
+content            = " %{T3}%{T-} "
+content-foreground = ${colors.background}
+content-background = ${colors.bgreen}
+
+[module/i3]
+type 		= internal/i3
+format 		= <label-state><label-mode>
+index-sort      = true
+wrapping-scroll = true
+strip-wsnumbers = true
+pin-workspaces  = true
+
+label-focused              = %{B#ff282828 F#ffb8bb26}%{F-B-} %name% %{B#ffb8bb26 F#ff282828}%{F-B-}
+label-focused-foreground   = ${colors.background}
+label-focused-background   = ${colors.bgreen}
+label-unfocused            = %{B#ff000000 F#ffb8bb26}%{F-B-} %name% %{B#ffb8bb26 F#ff000000}%{F-B-}
+label-unfocused-foreground = ${colors.background}
+label-unfocused-background = ${colors.bgreen}
+label-visible 		   = %{B#ffb8bb26 F#ffb8bb26}%{F-B-} %name% %{B#ffb8bb26 F#ffb8bb26}%{F-B-}
+label-visible-foreground   = ${colors.background}
+label-visible-background   = ${colors.bgreen}
+label-urgent 		   = %{B#ffb4937 F#ffb8bb26}%{F-B-} %name% %{B#ffb8bb26 F#ffcc241d}%{F-B-}
+label-urgent-foreground    = ${colors.background}
+label-urgent-background    = ${colors.red}
+
+label-mode            = %{B#ffcc241d F#ffb8bb26}%{F-B-} %mode% %{B#ffb8bb26 F#ffcc241d}%{F-B-}
+label-mode-foreground = ${colors.background}
+label-mode-background = ${colors.bred}
+
+[module/i3_end_indicator]
+type = custom/text
+
+content            = 
+content-foreground = ${colors.bgreen}
+
+[module/title]
+type = internal/xwindow
+
+label = " %title% "
+label-maxlen = 100
+
+format-foreground = ${colors.white}
+format-background = ${colors.black}
+
+format-prefix            = 
+format-prefix-foreground = ${colors.bgreen}
+format-suffix            = 
+format-suffix-foreground = ${colors.black}
+format-suffix-background = ${colors.bgreen}
+
+[module/temp_start_indicator]
+type = custom/text
+
+content            = 
+content-foreground = ${colors.black}
+
+[module/temperature]
+type             = internal/temperature
+thermal-zone     = 0
+warn-temperature = 60
+
+# Normal temparature
+format                   = <label>
+label                    = "%temperature:3% "
+format-prefix            = 
+format-prefix-foreground = ${colors.black}
+format-prefix-background = ${colors.black}
+label-foreground         = ${colors.foreground}
+label-background         = ${colors.black}
+format-suffix            = 
+format-suffix-foreground = ${colors.bblack}
+format-suffix-background = ${colors.black}
+
+# Warning temperature
+format-warn                   = <label-warn>
+label-warn                    = "%temperature:3% "
+format-warn-prefix            = 
+format-warn-prefix-foreground = ${colors.red}
+format-warn-prefix-background = ${colors.red}
+label-warn-foreground         = ${colors.background}
+label-warn-background         = ${colors.red}
+format-warn-suffix            = 
+format-warn-suffix-foreground = ${colors.bblack}
+format-warn-suffix-background = ${colors.red}
+
+[module/temp_stop_indicator]
+type = custom/text
+
+content            = 
+content-foreground = ${colors.black}
+content-background = ${colors.bblack}
+
+[module/cpu]
+type     = internal/cpu
+interval = 1
+
+label            = %{T3}%{T-} %percentage:3%%
+label-foreground = ${colors.foreground}
+label-background = ${colors.black}
+label-padding    = 1
+
+format-background        = ${colors.black}
+format-suffix            = 
+format-suffix-foreground = ${colors.bblack}
+format-suffix-background = ${colors.black}
+
+[module/memory]
+type     = internal/memory
+interval = 10
+
+label            = %{T3}%{T-} %percentage_used:3%%
+label-foreground = ${colors.foreground}
+label-background = ${colors.black}
+label-padding    = 1
+
+format-prefix            = 
+format-prefix-foreground = ${colors.black}
+format-prefix-background = ${colors.bblack}
+
+format-suffix            = 
+format-suffix-foreground = ${colors.bblack}
+format-suffix-background = ${colors.black}
+
+[module/wlan]
+type      = internal/network
+interface = wlp4s0
+interval  = 1.0
+
+format-disconnected =
+format-connected = <label-connected>
+
+label-connected            = %{T3}%{T-} %downspeed:8%    %{T3}%{T-} %upspeed:8%
+label-connected-foreground = ${colors.foreground}
+label-connected-background = ${colors.black}
+label-connected-padding    = 1
+
+format-connected-prefix            = 
+format-connected-prefix-foreground = ${colors.black}
+format-connected-prefix-background = ${colors.bblack}
+
+format-connected-suffix            = 
+format-connected-suffix-foreground = ${colors.bblack}
+format-connected-suffix-background = ${colors.black}
+
+[module/eth]
+type = internal/network
+interface = enp3s0
+interval = 1.0
+
+format-disconnected =
+format-connected = <label-connected>
+
+label-connected            = %{T3}%{T-} %downspeed:8%    %{T3}%{T-} %upspeed:8%
+label-connected-foreground = ${colors.foreground}
+label-connected-background = ${colors.black}
+label-connected-padding    = 1
+
+format-connected-prefix            = 
+format-connected-prefix-foreground = ${colors.black}
+format-connected-prefix-background = ${colors.bblack}
+
+format-connected-suffix            = 
+format-connected-suffix-foreground = ${colors.bblack}
+format-connected-suffix-background = ${colors.black}
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = %d-%m-%Y
+date-alt = %d-%m-%Y
+
+label            = %{T3}%{T-} %date%
+label-padding    = 1
+label-foreground = ${colors.foreground}
+label-background = ${colors.black}
+
+format-prefix            = 
+format-prefix-foreground = ${colors.black}
+format-prefix-background = ${colors.bblack}
+
+format-suffix            = 
+format-suffix-foreground = ${colors.bgreen}
+format-suffix-background = ${colors.black}
+
+[module/time]
+type = internal/date
+interval = 1
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+label            = %{T3}%{T-} %time%
+label-padding    = 1
+label-foreground = ${colors.background}
+label-background = ${colors.bgreen}
+
+[module/volume]
+type     = internal/volume
+interval = 0.1
+
+label-volume            = %{T3}%{T-} %percentage:3%%
+label-volume-foreground = ${colors.foreground}
+label-volume-background = ${colors.bblack}
+label-volume-padding    = 1
+
+format-volume-background        = ${colors.black}
+format-volume-prefix            = 
+format-volume-prefix-foreground = ${colors.bblack}
+format-volume-prefix-background = ${colors.black}
+format-volume-suffix            = 
+format-volume-suffix-foreground = ${colors.black}
+format-volume-suffix-background = ${colors.bblack}
+
+label-muted            = %{T3}%{T-} %percentage:3%%
+label-muted-foreground = ${colors.background}
+label-muted-background = ${colors.red}
+label-muted-padding    = 1
+
+format-muted-background        = ${colors.black}
+format-muted-prefix            = 
+format-muted-prefix-foreground = ${colors.red}
+format-muted-prefix-background = ${colors.black}
+format-muted-suffix            = 
+format-muted-suffix-foreground = ${colors.black}
+format-muted-suffix-background = ${colors.red}
+
+[module/battery]
+type    = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 100
+
+format-charging          = <animation-charging><label-charging>
+format-discharging       = <ramp-capacity><label-discharging>
+
+label-charging                 = "%percentage:3%% "
+label-charging-foreground      = ${colors.background}
+label-charging-background      = ${colors.bgreen}
+label-discharging              = "%percentage:3%% "
+label-discharging-foreground   = ${colors.background}
+label-discharging-background   = ${colors.bgreen}
+label-full                     = "%percentage:3%% "
+label-full-foreground          = ${colors.background}
+label-full-background          = ${colors.bgreen}
+
+ramp-capacity-0          = " %{T3}%{T-} "
+ramp-capacity-1          = " %{T3}%{T-} "
+ramp-capacity-2          = " %{T3}%{T-} "
+ramp-capacity-3          = " %{T3}%{T-} "
+ramp-capacity-4          = " %{T3}%{T-} "
+ramp-capacity-5          = " %{T3}%{T-} "
+ramp-capacity-6          = " %{T3}%{T-} "
+ramp-capacity-7          = " %{T3}%{T-} "
+ramp-capacity-8          = " %{T3}%{T-} "
+ramp-capacity-9          = " %{T3}%{T-} "
+ramp-capacity-foreground = ${colors.background}
+ramp-capacity-background = ${colors.bgreen}
+
+animation-charging-0          = " %{T3}%{T-} "
+animation-charging-1          = " %{T3}%{T-} "
+animation-charging-2          = " %{T3}%{T-} "
+animation-charging-3          = " %{T3}%{T-} "
+animation-charging-4          = " %{T3}%{T-} "
+animation-charging-5          = " %{T3}%{T-} "
+animation-charging-6          = " %{T3}%{T-} "
+animation-charging-7          = " %{T3}%{T-} "
+animation-charging-8          = " %{T3}%{T-} "
+animation-charging-9          = " %{T3}%{T-} "
+animation-charging-foreground = ${colors.background}
+animation-charging-background = ${colors.bgreen}
+animation-charging-framerate  = 750
+

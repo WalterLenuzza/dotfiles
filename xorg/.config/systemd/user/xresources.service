@@ -1,0 +1,8 @@
+[Unit]
+Description=Load Xresources
+PartOf=xsession.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/xrdb %h/.config/xorg/Xresources
+Restart=no

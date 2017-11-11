@@ -1,0 +1,11 @@
+[Unit]
+Description=Configure Xorg screens with RandR extension
+PartOf=xsession.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/xrandr
+Restart=no
+
+[Install]
+Alias=screens.service

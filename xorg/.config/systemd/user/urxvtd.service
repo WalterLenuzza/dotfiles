@@ -1,0 +1,8 @@
+[Unit]
+Description=Terminal daemon
+PartOf=xsession.target
+After=xresources.service
+
+[Service]
+ExecStart=/usr/sbin/urxvtd -q -o
+Restart=on-failure

@@ -1,0 +1,9 @@
+[Unit]
+Description=User systemd services for Xorg graphical session
+After=graphical-session.target
+BindsTo=graphical-session.target
+Wants=compositor.service
+Wants=screens.service
+Wants=statusbar.service
+Wants=xresources.service
+Wants=wallpapaper.service

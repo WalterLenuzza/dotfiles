@@ -1,0 +1,10 @@
+[Unit]
+Description=X compositor
+PartOf=xsession.target
+
+[Service]
+ExecStart=/usr/bin/compton --config %h/.config/compton/config
+Restart=on-failure
+
+[Install]
+Alias=compositor.service

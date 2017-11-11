@@ -1,0 +1,10 @@
+[Unit]
+Description=Set wallpapaper
+PartOf=xsession.target
+
+[Service]
+ExecStart=/usr/sbin/feh --no-fehbg -randomize --bg-fill %h/Pictures/Wallpapers/
+Restart=no
+
+[Install]
+Alias=wallpapaper.service

@@ -1,0 +1,11 @@
+[Unit]
+Description=A fast and easy-to-use tool status bar
+PartOf=xsession.target
+After=xresources.service
+
+[Service]
+ExecStart=/usr/bin/polybar -c %h/.config/polybar/config main
+Restart=on-failure
+
+[Install]
+Alias=statusbar.service
