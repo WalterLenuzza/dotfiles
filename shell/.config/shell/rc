@@ -1,4 +1,6 @@
-# ~/.config/shell/rc: executed by bash(1)/zsh(1) shells.
+# No shebang: this file is meant to be sourced
+
+# ~/.config/shell/rc: executed by bash(1)/zsh(1) shells
 
 # If not running interactively, don't do anything
 case $- in
@@ -45,4 +47,3 @@ alias    rm='rm -v'
 
 alias   mc='mc -a'
 alias tmux='tmux -2'
-

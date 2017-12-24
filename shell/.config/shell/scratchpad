@@ -1,3 +1,5 @@
+# No shebang: this file is meant to be sourced
+
 # ~/.config/shell/scratchpad: executed by bash(1)/zsh(1) shells.
 
 # If not running interactively, don't do anything
