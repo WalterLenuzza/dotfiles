@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
-# ~/.config/bash/rc: executed by bash(1) shells.
+# ~/.config/bash/rc: executed by bash(1) shells
 
 # If not running interactively, don't do anything
 case $- in
@@ -18,7 +19,7 @@ shopt -s cdspell;
 HISTFILE=~/.cache/bash/history
 
 # History: size
-HISTSIZE=8192
+HISTSIZE=4096
 
 # History: avoid duplicates
 HISTCONTROL=ignoredups:erasedups
@@ -33,7 +34,8 @@ HISTTIMEFORMAT='%F %T '
 shopt -s histappend
 
 # PS1: source external script
-[ -f ~/.config/bash/prompt ] && source ~/.config/bash/prompt
+[ -r ~/.config/bash/prompt ] && \
+  source ~/.config/bash/prompt
 
 # PS2: continuation interactive prompt
 PS2='  '
