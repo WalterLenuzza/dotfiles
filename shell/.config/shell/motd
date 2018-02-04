@@ -9,12 +9,16 @@ case $- in
 esac
 
 # Print pretty system logo/info (neofetch)
-[ $(command -v neofetch) ] && neofetch
+[ "$(command -v neofetch)" ] && \
+  neofetch
 
 # Fortune
-[ $(command -v fortune) ] && fortune computers science && echo
+[ "$(command -v fortune)" ] && \
+  fortune computers science && \
+  echo
 
 # Show today's anniversaries
-[ $(command -v calendar) ] && [ -r /usr/share/calendar/calendar.world ] && {
-  calendar -A 0 -f /usr/share/calendar/calendar.world; }
+[ "$(command -v calendar)" ] && [ -r /usr/share/calendar/calendar.world ] && {
+  calendar -A 0 -f /usr/share/calendar/calendar.world;
+}
 
