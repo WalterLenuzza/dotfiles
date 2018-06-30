@@ -77,7 +77,7 @@ bindsym $mod+Shift+Tab move container to workspace back_and_forth
 
 # Launchers
 # start a terminal
-bindsym $mod+Return exec --no-startup-id termite
+bindsym $mod+Return exec --no-startup-id sakura
 
 # start rofi (a program launcher)
 bindsym $mod+space exec --no-startup-id rofi -show drun -display-drun "" -fuzzy
