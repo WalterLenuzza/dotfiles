@@ -1,4 +1,6 @@
+alacritty
 atool
+aws-cli
 bind-tools
 brightnessctl
 browsh-bin
@@ -15,6 +17,7 @@ dos2unix
 dunst
 ebtables
 exa
+exfat-utils
 feh
 firefox
 fortune-mod
@@ -71,7 +74,9 @@ tflint
 the_silver_searcher
 tmux
 tree
+udisks2
 unzip
+vault
 virt-manager
 visual-studio-code-bin
 w3m
@@ -79,8 +84,10 @@ waybar-git
 wget
 whois
 wlroots-git
+xclip
 xorg
 xorg-xeyes
 xorg-xinit
 xss-lock
 yay-bin
+yq

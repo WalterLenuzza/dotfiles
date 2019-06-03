@@ -42,6 +42,20 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
+" Line numbers
+" Automatic toggling between line number modes
+" https://jeffkreeftmeijer.com/vim-number
+:set number relativenumber
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
+" Clipboard
+" https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720
+set clipboard=unnamed
+
 " set fillchars+=stl:\ ,stlnc:\
 
 "set wildchar=<Tab> wildmenu wildmode=full

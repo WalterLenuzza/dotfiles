@@ -417,7 +417,7 @@ format-prefix = "  "
 format-prefix-foreground = ${colors.background}
 
 format = <label>%
-label = %percentage:3%
+label = %percentage%
 
 ################################################################################
 
@@ -460,11 +460,11 @@ spacing = 4
 
 format-mounted-prefix = "  "
 
-format-mounted = <label-mounted>
+format-mounted = <label-mounted>%
 format-mounted-background = ${colors.foreground}
 format-mounted-foreground = ${colors.background}
 
-label-mounted = %percentage_used:3%%
+label-mounted = %percentage_used%
 
 ; Available tokens:
 ;   %mountpoint%
@@ -496,9 +496,9 @@ format-underline = #62FF00
 ;https://github.com/jaagr/polybar/wiki/Module:-memory
 type = internal/memory
 interval = 10
-label = %percentage_used:3%%
+label = %percentage_used%
 
-format = <label>
+format = <label>%
 format-prefix = "   "
 ;format-prefix-foreground = ${colors.foreground}
 ;format-foreground = ${colors.foreground}
@@ -809,7 +809,7 @@ type = internal/xwindow
 ;   %title%
 ; Default: %title%
 label = %title%
-label-maxlen = 150
+label-maxlen = 65
 
 format-prefix = "   "
 format-foreground = ${colors.foreground}

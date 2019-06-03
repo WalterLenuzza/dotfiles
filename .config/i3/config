@@ -30,6 +30,8 @@ assign [class="Slack"] $ws2
 assign [class="Firefox"] $ws3
 # Assign Chrome to workspace 4
 assign [class="Google-chrome"] $ws4
+# Assign Visual Studio Code to workspace 5
+assign [class="Code"] $ws5
 
 ### Specific windows
 # set normal border for all Slack windows
@@ -257,6 +259,7 @@ exec --no-startup-id nm-applet
 # PulseAudio
 exec --no-startup-id pasystray
 ## Launchers:apps
+exec $term
 exec firefox
 exec google-chrome-stable
 exec slack

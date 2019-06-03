@@ -97,6 +97,8 @@ alias rm='rm -v'
 alias mc='mc -a'
 alias tmux='tmux -2'
 
+alias terraform='tfenv exec'
+
 alias clean_DS_Store='find . -name *.DS_Store -type f -print -delete'
 alias dotfiles='git --git-dir="$XDG_DATA_HOME"/dotfiles --work-tree="$HOME"'
 
@@ -121,6 +123,12 @@ fi
   EDITOR='nvim'
   VISUAL='nvim'
 }
+
+### Devel ###
+export GO111MODULE=on
+export CGO_ENABLED=0
+export GOOS=linux
+export GOARCH=amd64
 
 ### Functions ###
 # Change directory and list its contents straight away
@@ -187,6 +195,10 @@ disable_unicode() {
 docker_cleanup() {
   docker rm -v "$(docker ps --filter status=exited -q 2>/dev/null)" 2>/dev/null
   docker rmi "$(docker images --filter dangling=true -q 2>/dev/null)" 2>/dev/null
+}
+docker_cleanup_all() {
+  docker rm -v "$(docker ps -a 2>/dev/null)" 2>/dev/null
+  docker rmi "$(docker images -a -q 2>/dev/null)" 2>/dev/null
 }
 
 # Usage: extract <file>
