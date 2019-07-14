@@ -69,7 +69,7 @@ bindsym button3 floating toggle
 bindsym $alt+button3 floating toggle
 
 ### Set variables
-set $menu dmenu_run -b
+set $menu bemenu-run -b -i -p 'Run:' --fn 'Anonymice Nerd Font 10' --nb '#282828' --nf '#98971a' --tb '#98971a' --tf '#1d2021' --fb '#1d2021' --ff '#a89984' --sb '#98971a' --sf '#1d2021' --hb '#98971a' --hf '#1d2021'
 set $term alacritty
 set $browser MOZ_ENABLE_WAYLAND=1 firefox
 
@@ -105,10 +105,6 @@ bindsym $mod+b exec $browser
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec $menu
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # kill focused window
 bindsym $mod+Shift+q kill

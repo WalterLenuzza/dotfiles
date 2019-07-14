@@ -92,3 +92,6 @@ xorg-xinit
 xss-lock
 yay-bin
 yq
+swaylock
+swayidle
+bemenu
