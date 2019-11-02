@@ -5,8 +5,7 @@
 
 
 # Enables or disables Xwayland support, which allows X11 applications to be used
-# xwayland enable
-xwayland disable
+xwayland enable
 
 ### General
 # Font for window titles. Will also be used by the bar unless a different font
@@ -71,7 +70,7 @@ bindsym $alt+button3 floating toggle
 ### Set variables
 set $menu bemenu-run -b -i -p 'Run:' --fn 'Anonymice Nerd Font 10' --nb '#282828' --nf '#98971a' --tb '#98971a' --tf '#1d2021' --fb '#1d2021' --ff '#a89984' --sb '#98971a' --sf '#1d2021' --hb '#98971a' --hf '#1d2021'
 set $term alacritty
-set $browser MOZ_ENABLE_WAYLAND=1 firefox
+set $browser GDK_BACKEND=wayland MOZ_ENABLE_WAYLAND=1 firefox
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -94,8 +93,8 @@ set $ws10 "10:"
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
+# exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 # start a terminal
 bindsym $mod+Return exec $term
