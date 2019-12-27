@@ -3,13 +3,6 @@
 # Environment variables: source XDG user directories
 # https://wiki.archlinux.org/index.php/XDG_user_directories
 
-# shellcheck disable=SC2034
-XDG_CACHE_HOME="$HOME"/.cache
-# shellcheck disable=SC2034
-XDG_CONFIG_HOME="$HOME"/.config
-# shellcheck disable=SC2034
-XDG_DATA_HOME="$HOME"/.local/share
-
 # shellcheck source=/dev/null
 . "$XDG_CONFIG_HOME/user-dirs.dirs"
 
@@ -97,8 +90,6 @@ alias rm='rm -v'
 alias mc='mc -a'
 alias tmux='tmux -2'
 
-alias terraform='tfenv exec'
-
 alias clean_DS_Store='find . -name *.DS_Store -type f -print -delete'
 alias dotfiles='git --git-dir="$XDG_DATA_HOME"/dotfiles --work-tree="$HOME"'
 
@@ -115,20 +106,16 @@ fi
 # Aliases: Visual Editor
 [ "$(command -v vim)" ] && { \
   alias vi='vim'
+  alias vim='vim'
   EDITOR='vim'
   VISUAL='vim'
 }
 [ "$(command -v nvim)" ] && { \
   alias vi='nvim'
+  alias vim='nvim'
   EDITOR='nvim'
   VISUAL='nvim'
 }
-
-### Devel ###
-export GO111MODULE=on
-export CGO_ENABLED=0
-export GOOS=linux
-export GOARCH=amd64
 
 ### Functions ###
 # Change directory and list its contents straight away

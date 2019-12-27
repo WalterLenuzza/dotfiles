@@ -5,12 +5,12 @@
 
 
 # Enables or disables Xwayland support, which allows X11 applications to be used
-xwayland enable
+xwayland disable
 
 ### General
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Anonymice Nerd Font 10
+font pango:SauceCodePro Nerd Font 10
 
 # Default border style for new windows on workspaces with only one window visible
 default_border pixel 2
@@ -68,9 +68,10 @@ bindsym button3 floating toggle
 bindsym $alt+button3 floating toggle
 
 ### Set variables
-set $menu bemenu-run -b -i -p 'Run:' --fn 'Anonymice Nerd Font 10' --nb '#282828' --nf '#98971a' --tb '#98971a' --tf '#1d2021' --fb '#1d2021' --ff '#a89984' --sb '#98971a' --sf '#1d2021' --hb '#98971a' --hf '#1d2021'
+set $menu bemenu-run -b -i -p 'Run:' --fn 'SauceCodePro Nerd Font 10' --nb '#282828' --nf '#98971a' --tb '#98971a' --tf '#1d2021' --fb '#1d2021' --ff '#a89984' --sb '#98971a' --sf '#1d2021' --hb '#98971a' --hf '#1d2021'
 set $term alacritty
-set $browser GDK_BACKEND=wayland MOZ_ENABLE_WAYLAND=1 firefox
+#set $browser GDK_BACKEND=wayland MOZ_ENABLE_WAYLAND=1 firefox
+set $browser XDG_SESSION_TYPE=wayland qutebrowser
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -79,10 +80,10 @@ set $browser GDK_BACKEND=wayland MOZ_ENABLE_WAYLAND=1 firefox
 #                     
 
 set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
 set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8:"
@@ -198,6 +199,12 @@ bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
+# Screen locker
+bindsym $mod+l exec swaylock
+
+# Mako notifications
+bindsym $mod+grave exec makoctl dismiss -a
+
 # Theme
 # set primary gruvbox colorscheme colors
 set $bg #282828
@@ -221,17 +228,16 @@ client.background       #ffffff
 
 # Status Bar
 bar {
-    #font pango:Anonymice Nerd Font 10
+    status_command while date +'%Y/%m/%d %T'; do sleep 1; done
     position top
     wrap_scroll yes
     workspace_buttons yes
     strip_workspace_name no
     strip_workspace_numbers yes
-    #status_command /usr/bin/i3status-rs ~/.config/sway/i3status-rs.toml
     colors {
         separator #666666
         background $bg
-        statusline $gray
+        statusline $yellow
         focused_workspace $green $green $darkgray
         active_workspace $darkgray $darkgray $yellow
         inactive_workspace $darkgray $darkgray $yellow
@@ -240,6 +246,9 @@ bar {
 }
 
 # Launchers
+# SystemD integration
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+
 # set wallpaper
 #exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 # screen locker

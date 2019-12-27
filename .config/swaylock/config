@@ -1,0 +1,19 @@
+# Swaylock config file
+#
+# Please see https://github.com/swaywm/sway/wiki
+# Read `man swaylock` for a complete reference.
+
+ignore-empty-password
+show-failed-attempts
+show-keyboard-layout
+indicator-caps-lock
+
+# Dimensions
+indicator-radius=200
+indicator-thickness=50
+
+# Colors
+# Turn the screen into the given color
+color=#282828
+inside-color=#282828
+

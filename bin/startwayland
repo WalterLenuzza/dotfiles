@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Start Sway WM with SystemD --user unit
+systemctl --user start sway
