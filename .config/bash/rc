@@ -3,6 +3,9 @@
 
 # ~/.config/bash/rc: executed by bash(1) shells
 
+# Set TERM
+TERM='xterm-color'
+
 [[ $DISPLAY ]] && shopt -s checkwinsize
 
 # Case-insensitive globbing (used in pathname expansion)
@@ -12,7 +15,7 @@ shopt -s nocaseglob
 shopt -s cdspell
 
 # History: file
-HISTFILE="$HOME"/.cache/bash/history
+HISTFILE="$XDG_DATA_HOME"/bash/history
 
 # History: size
 HISTSIZE=4096

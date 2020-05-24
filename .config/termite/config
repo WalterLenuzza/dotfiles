@@ -1,6 +1,10 @@
 [options]
 # Fonts
+<<<<<<< HEAD
 font = Anonymous Pro 11
+=======
+font = Anonymice Nerd Font 9
+>>>>>>> 20bdfb324395ff6cf1c8eb7a83570553df2a4d2e
 
 scroll_on_output = false
 scroll_on_keystroke = true
@@ -16,7 +20,11 @@ search_wrap = true
 #geometry = 640x480
 
 # "system", "on" or "off"
+<<<<<<< HEAD
 cursor_blink = system
+=======
+cursor_blink = on
+>>>>>>> 20bdfb324395ff6cf1c8eb7a83570553df2a4d2e
 
 # "block", "underline" or "ibeam"
 cursor_shape = block
@@ -36,9 +44,15 @@ filter_unmatched_urls = true
 [colors]
 #cursor = #dcdccc
 #cursor_foreground = #dcdccc
+<<<<<<< HEAD
 foreground = #a89984
 foreground_bold = #ffffff
 background = #282828
+=======
+background = #282828
+foreground = #a89984
+foreground_bold = #ffffff
+>>>>>>> 20bdfb324395ff6cf1c8eb7a83570553df2a4d2e
 
 # 20% background transparency (requires a compositor)
 #background = rgba(63, 63, 63, 0.8)
