@@ -83,8 +83,6 @@ if [ "$(command -v ncdu)" ]; then
 else
   alias d='du -csh | sort -nk'
 fi
-# du -sch .[!.]* * |sort -h
-# ncdu
 
 # Aliases: misc
 alias df='df -h'
@@ -94,11 +92,15 @@ alias mv='mv -vi'
 alias p='ps fax'
 alias rm='rm -v'
 
+alias diff='icdiff'
 alias mc='mc -a'
 alias tmux='tmux -2'
+alias top='htop'
 
-alias terraform='tfenv exec'
+alias rg='ag'
+alias ack='ag'
 
+alias docker_nas='export DOCKER_HOST=tcp://192.168.1.254:2376 DOCKER_TLS_VERIFY=1'
 alias clean_DS_Store='find . -name *.DS_Store -type f -print -delete'
 alias dotfiles='git --git-dir="$XDG_DATA_HOME"/dotfiles --work-tree="$HOME"'
 
@@ -123,12 +125,6 @@ fi
   EDITOR='nvim'
   VISUAL='nvim'
 }
-
-### Devel ###
-export GO111MODULE=on
-export CGO_ENABLED=0
-export GOOS=linux
-export GOARCH=amd64
 
 ### Functions ###
 # Change directory and list its contents straight away

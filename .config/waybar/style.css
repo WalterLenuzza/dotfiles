@@ -1,66 +1,68 @@
 * {
-    border: none;
-    border-radius: 0;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-family: "Noto Sans";
+  font-size: 12px;
+  font-weight: 800;
+  min-height: 0;
+  background: #282828;
+  color: #a89984;
+  padding: 0;
+  margin: 0;
 }
 
-window#waybar {
-    background: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: white;
+#workspaces,
+#mode,
+#custom-separator,
+#window,
+#battery,
+#temperature,
+#backlight,
+#pulseaudio,
+#network,
+#memory,
+#disk,
+#memory,
+#cpu,
+#clock,
+#tray,
+#workspaces,
+#clock
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#disk,
+#tray {
+  background: #282828;
+  margin-right: 3;
+  margin-left: 3;
 }
 
+
+#workspaces {
+}
 #workspaces button {
-    padding: 0 5px;
-    background: transparent;
-    color: white;
-    border-bottom: 3px solid transparent;
+  margin-right: 0;
 }
-
-#workspaces button.focused {
-    background: #64727D;
-    border-bottom: 3px solid white;
+#workspaces button.focused label {
+  color: #98971a;
 }
-
-#mode, #clock, #battery {
-    padding: 0 10px;
-    margin: 0 5px;
-}
-
 #mode {
-    background: #64727D;
-    border-bottom: 3px solid white;
+  color: #d79921;
 }
-
-#clock {
-    background-color: #64727D;
+#window {
+  padding: 0 5px;
+  background: #a89984;
+  color: #282828;
 }
+#custom-left-arrow-dark {}
 
-#battery {
-    background-color: #ffffff;
-    color: black;
+#custom-right-arrow-dark {
+  background: #a89984;
+  color: #282828;
 }
-
-#battery.charging {
-    color: white;
-    background-color: #26A65B;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: black;
-    }
-}
-
-#battery.warning:not(.charging) {
-    background: #f53c3c;
-    color: white;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+#custom-right-arrow-light {
+  background: #292929;
+  color: #a89984;
 }

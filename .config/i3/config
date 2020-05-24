@@ -27,7 +27,7 @@ workspace_auto_back_and_forth yes
 # Assign Slack to workspace 2
 assign [class="Slack"] $ws2
 # Assign Firefox to workspace 3
-assign [class="Firefox"] $ws3
+assign [class="firefox"] $ws3
 # Assign Chrome to workspace 4
 assign [class="Google-chrome"] $ws4
 # Assign Visual Studio Code to workspace 5
@@ -64,7 +64,8 @@ bindsym $alt+button3 floating toggle
 
 ### Set variables
 set $menu dmenu_run -b
-set $term i3-sensible-terminal
+#set $term i3-sensible-terminal
+set $term termite
 set $browser firefox
 
 # Define names for default workspaces for which we configure key bindings later on.
@@ -151,7 +152,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # jump to urgent window
-bindsym $mod+x [urgent=latest] focus
+#bindsym $mod+x [urgent=latest] focus
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -188,10 +189,27 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% # increase sound volume
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% # decrease sound volume
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle # mute microphone
 
 # Screen brightness keys
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+## Manual management of external displays
+# Set the shortcuts and what they do
+set $mode_display Ext Screen (v) DP-2 ON, (h) HDMI ON, (x) DP-2 OFF, (y) HDMI OFF
+mode "$mode_display" {
+    bindsym v exec --no-startup-id xrandr --output DP-2 --auto --right-of eDP-1, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI-1 --auto --right-of eDP-1, mode "default"
+    bindsym x exec --no-startup-id xrandr --output DP-2 --auto --off, mode "default"
+    bindsym y exec --no-startup-id xrandr --output HDMI-1 --auto --off, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+x mode "$mode_display"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -258,6 +276,8 @@ exec --no-startup-id dunst -conf $XDG_CONFIG_HOME/dunst/dunstrc
 exec --no-startup-id nm-applet
 # PulseAudio
 exec --no-startup-id pasystray
+# UDiskie
+exec --no-startup-id udiskie --automount --notify --tray
 ## Launchers:apps
 exec $term
 exec firefox
@@ -269,8 +289,8 @@ exec slack
 smart_gaps on
 
 # Global gap size
-gaps inner 5
-gaps outer 5
+gaps inner 2
+gaps outer 2
 
 bindsym $mod+Shift+g mode "$mode_gaps"
 set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft

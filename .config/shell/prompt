@@ -231,6 +231,10 @@ function __promptline {
   fi
 }
 
+function __settitle {
+  echo -ne "\\033]0;$(__promptline_cwd)\\007"
+}
+
 if [[ -n ${ZSH_VERSION-} ]]; then
   if [[ ! ${precmd_functions[(r)__promptline]} == __promptline ]]; then
     precmd_functions+=(__promptline)
@@ -239,6 +243,6 @@ elif [[ -n ${FISH_VERSION-} ]]; then
   __promptline "$1"
 else
   if [[ ! "$PROMPT_COMMAND" == *__promptline* ]]; then
-    PROMPT_COMMAND='__promptline;'$'\n'"$PROMPT_COMMAND"
+    PROMPT_COMMAND='__promptline;__settitle;'$'\n'"$PROMPT_COMMAND"
   fi
 fi

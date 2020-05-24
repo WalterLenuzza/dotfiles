@@ -1,78 +1,162 @@
 {
-    "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar at the bottom of your screen
-    //"height": 20, // Waybar height
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "battery#bat2", "clock", "tray"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+  //
+  // General
+  //
+  "layer": "top",
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  //  "sway/window"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "battery",
+    "custom/separator",
+    "temperature",
+    "custom/separator",
+    "backlight",
+    "custom/separator",
+    "pulseaudio",
+    "custom/separator",
+    "network",
+    "custom/separator",
+    "memory",
+    "custom/separator",
+    "disk",
+    "custom/separator",
+    "memory",
+    "custom/separator",
+    "cpu",
+    "custom/separator",
+    "clock",
+    "tray"
+  ],
+  //
+  // Separators
+  //
+  "custom/separator": {
+    "format": "",
+    "tooltip": false
+  },
+  //
+  // Modules
+  //
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": [
+        "🌕",
+        "🌔",
+        "🌓",
+        "🌒",
+        "🌑"
+    ],
+    "on-scroll-up": "brightnessctl set +10%",
+    "on-scroll-down": "brightnessctl set 10%-",
+    "smooth-scrolling-threshold": 2
+  },
+  "battery": {
+    "interval": 10,
+    "format": "{icon} {capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "clock": {
+    "format": "{:%a %H:%M}",
+    "format-alt": "{:%A, %d %B %Y %H:%M}",
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 5,
+    "format": " {usage}%"
+  },
+  "disk": {
+    "interval": 120,
+    "format": " {percentage_used}%",
+    "path": "/",
+    "format-alt": " Disk usage {used} / {total}",
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 30,
+    "format": " {percentage}%",
+    "format-alt": " Ram usage {used:0.1f}G / {total:0.1f}G",
+    "tooltip": false
+  },
+  "network": {
+    "interval": "1",
+    "format": "{ifname}",
+    "format-wifi": "  {bandwidthDownBits}  {bandwidthUpBits}",
+    "format-ethernet": "  {bandwidthDownBits}  {bandwidthUpBits}",
+    "format-disconnected": " ",
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": "{essid}  : {frequency}Mhz @ {signaldBm}dBm ({signalStrength}% strength)\n{ifname}: {ipaddr}/{netmask}",
+    "tooltip-format-ethernet": " {ifname}",
+    "tooltip-format-disconnected": "Disconnected"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " 0%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        ""
+      ]
     },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": "{usage}% "
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
-    },
-    "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-disconnected": "Disconnected ⚠"
-    },
-    "pulseaudio": {
-        //"scroll-step": 1,
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
-        },
-        "on-click": "pavucontrol"
+    "scroll-step": 1,
+    "on-click": "pavucontrol"
+  },
+  "temperature": {
+    "format": "{icon} {temperatureC}°",
+    "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ]
+  },
+  "tray": {
+    //"icon-size": 21,
+    //"spacing": 10
+  },
+  "sway/mode": {
+    "format": " {} ",
+    "tooltip": false
+  },
+  "sway/window": {
+    "tooltip": false,
+    "max-length": 100
+  },
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      //"urgent": "",
+      //"focused": "",
+      "default": ""
+      //
+      // extra icons to choose from
+      // http://fontawesome.io/cheatsheet
+      //                     
     }
+  }
 }

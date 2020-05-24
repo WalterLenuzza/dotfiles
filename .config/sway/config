@@ -4,14 +4,18 @@
 # Read `man 5 sway` for a complete reference.
 
 
-# Enables or disables Xwayland support, which allows X11 applications to be used
-# xwayland enable
-xwayland disable
-
 ### General
+
+# Enables or disables Xwayland support, which allows X11 applications to be used
+# :rage: Slack requires it
+xwayland enable
+
+# Outputs
+output eDP-1 scale 2
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Anonymice Nerd Font 10
+font pango:Anonymice Nerd Font 9
 
 # Default border style for new windows on workspaces with only one window visible
 default_border pixel 2
@@ -29,82 +33,98 @@ popup_during_fullscreen smart
 # Automatic back-and-forth when switching to the current workspace
 workspace_auto_back_and_forth yes
 
-### Assignments (xprop)
-# Assign Slack to workspace 2
-assign [class="Slack"] $ws2
-# Assign Firefox to workspace 3
-assign [class="Firefox"] $ws3
-# Assign Chrome to workspace 4
-assign [class="Google-chrome"] $ws4
-# Assign Visual Studio Code to workspace 5
-assign [class="Code"] $ws5
+## Gaps
+# Set gaps only if there is more than one container on the workspace
+smart_gaps on
 
-### Specific windows
-# set normal border for all Slack windows
-#for_window [class="Slack"] border normal
-# set normal border for all Firefox windows
-#for_window [class="Firefox"] border normal
-# set normal border for all Firefox windows
-#for_window [class="Google-chrome"] border normal
-# set normal border for all pavucontrol windows
-for_window [class="Pavucontrol"] border normal
-# enable floating mode for Volume Control
-for_window [class="Pavucontrol"] floating enable
-# print all window titles bold
-for_window [class=".*"] title_format "<b>%title</b>"
+# Global gap size
+gaps inner 5
+gaps outer 5
 
-### Set base keybindings
-set $mod Mod4
-set $alt Mod1
+# Wallpaper
+output "*" bg ~/Pictures/sway-wallpaper fill
 
-### Mouse bindings
-# Use Mouse+$alt to drag floating windows to their wanted position
-floating_modifier $alt
 
-# The middle button and a modifer over any part of the window kills the window
-bindsym --whole-window $alt+button2 kill
-
-# The right button toggles floating
-bindsym button3 floating toggle
-bindsym $alt+button3 floating toggle
-
-### Set variables
-set $menu bemenu-run -b -i -p 'Run:' --fn 'Anonymice Nerd Font 10' --nb '#282828' --nf '#98971a' --tb '#98971a' --tf '#1d2021' --fb '#1d2021' --ff '#a89984' --sb '#98971a' --sf '#1d2021' --hb '#98971a' --hf '#1d2021'
-set $term alacritty
-set $browser MOZ_ENABLE_WAYLAND=1 firefox
+### Variables
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-# extra icons to choose from
-# http://fontawesome.io/cheatsheet
-#                     
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
+# Gruvbox colorscheme colors
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
+
+## Applications
+
+# Launcher menu
+set $menu BEMENU_BACKEND='wayland' bemenu-run -i -b \
+  -p 'Execute   ' --fn 'Anonymice Nerd Font 9' \
+  --nb '#282828' --nf '#98971a' \
+  --tb '#98971a' --tf '#1d2021' \
+  --fb '#282828' --ff '#a89984' \
+  --sb '#98971a' --sf '#1d2021' \
+  --hb '#98971a' --hf '#1d2021'
+
+# Terminal
+set $term termite -c ~/.config/termite/config.sway
+
+# Browser
+set $browser MOZ_ENABLE_WAYLAND=1 firefox
+
+### Keyboard bindings
+
+## Base keybindings
+set $mod Mod4
+set $alt Mod1
+
+## Hardware keys
+# Pulse Audio volume keys
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +10% # increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -10% # decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle # mute microphone
+
+# Screen brightness keys
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# restart sway inplace (preserves your layout/session, can be used to upgrade sway)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
+# exit Sway (logs you out of your X session)
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'Do you really want to exit Sway?' -B 'Yes, exit sway' 'swaymsg exit'"
 
-# start a terminal
-bindsym $mod+Return exec $term
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
 
-# start browser
-bindsym $mod+b exec $browser
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec $menu
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -138,20 +158,6 @@ bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -189,29 +195,19 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# hardware keys
-# Pulse Audio volume keys
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% # increase sound volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% # decrease sound volume
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+### Mouse bindings
 
-# Screen brightness keys
-bindsym XF86MonBrightnessUp exec brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+# Use Mouse+$alt to drag floating windows to their wanted position
+floating_modifier $alt
+
+# The middle button and a modifer over any part of the window kills the window
+bindsym --whole-window $alt+button2 kill
+
+# The right button toggles floating
+bindsym button3 floating toggle
+bindsym $alt+button3 floating toggle
 
 # Theme
-# set primary gruvbox colorscheme colors
-set $bg #282828
-set $red #cc241d
-set $green #98971a
-set $yellow #d79921
-set $blue #458588
-set $purple #b16286
-set $aqua #689d68
-set $gray #a89984
-set $darkgray #1d2021
-
-# Colors
 # class                 border|backgr|text|indicator|child_border
 client.focused          $green $green $darkgray $purple $green
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
@@ -220,51 +216,118 @@ client.urgent           $red $red $gray $red $red
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
-# Status Bar
+
+### Status Bar
 bar {
-    #font pango:Anonymice Nerd Font 10
-    position top
-    wrap_scroll yes
-    workspace_buttons yes
-    strip_workspace_name no
-    strip_workspace_numbers yes
-    #status_command /usr/bin/i3status-rs ~/.config/sway/i3status-rs.toml
-    colors {
-        separator #666666
-        background $bg
-        statusline $gray
-        focused_workspace $green $green $darkgray
-        active_workspace $darkgray $darkgray $yellow
-        inactive_workspace $darkgray $darkgray $yellow
-        urgent_workspace $red $red $gray
-    }
+    swaybar_command waybar
 }
 
-# Launchers
+### Sway Idle
+exec swayidle -w \
+  timeout 300 'swaylock -f -c 282828' \
+  timeout 600 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -f -c 282828'
+
+# Dont idle on windows that are full screen
+for_window [class="^.*"] inhibit_idle fullscreen
+for_window [app_id="^.*"] inhibit_idle full
+
+### Applications
+
+## WM_CLASS assignments (try xprop)
+
+# Assign Slack to workspace 2
+assign [class="Slack"] $ws2
+
+# Assign Firefox to workspace 3
+assign [class="firefox"] $ws3
+
+# Assign Chrome to workspace 4
+assign [class="Google-chrome"] $ws4
+
+# Assign Visual Studio Code to workspace 5
+assign [class="Code"] $ws5
+
+## Specific windows
+
+# set normal border for all Slack windows
+#for_window [class="Slack"] border normal
+# set normal border for all Firefox windows
+#for_window [class="Firefox"] border normal
+# set normal border for all Firefox windows
+#for_window [class="Google-chrome"] border normal
+# set normal border for all pavucontrol windows
+for_window [class="Pavucontrol"] border normal
+# enable floating mode for Volume Control
+for_window [class="Pavucontrol"] floating enable
+
+# print all window titles bold
+for_window [class=".*"] title_format "<b>%title</b>"
+
+## Keybindings launchers
+
+# start a terminal
+bindsym $mod+Return exec $term
+
+# start browser
+bindsym $mod+b exec $browser
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec $menu
+
+## Launch at startupLaunchers
 # set wallpaper
 #exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
+
 # screen locker
 #exec --no-startup-id xss-lock -- i3lock -n -i ~/Pictures/wallpaper.png &
+
 # notifications
-exec --no-startup-id mako
+exec mako
+
 # NetworkManager
-#exec --no-startup-id nm-applet
+exec nm-applet
+
 # PulseAudio
-#exec --no-startup-id pasystray
+exec pasystray
+
+# UDiskie
+exec udiskie --automount --notify --tray
+
 ## Launchers:apps
 exec $term
-exec $browser
+#exec firefox
 #exec google-chrome-stable
 #exec slack
 
-### Gaps
-# Set gaps only if there is more than one container on the workspace
-smart_gaps on
 
-# Global gap size
-gaps inner 5
-gaps outer 5
+### Modes
 
-# Include "modes" file
-include ~/.config/sway/modes
+bindsym $mod+r mode "resize"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+  # These bindings trigger as soon as you enter the resize mode
+
+  # Pressing left will shrink the window’s width.
+  # Pressing right will grow the window’s width.
+  # Pressing up will shrink the window’s height.
+  # Pressing down will grow the window’s height.
+  bindsym j resize shrink width 10 px or 10 ppt
+  bindsym k resize grow height 10 px or 10 ppt
+  bindsym l resize shrink height 10 px or 10 ppt
+  bindsym semicolon resize grow width 10 px or 10 ppt
+
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+
+  # back to normal: Enter or Escape or $mod+r
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
+}
 

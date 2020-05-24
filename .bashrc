@@ -23,6 +23,10 @@ if [ -r "$HOME"/.config/shell/prompt ]; then
   . "$HOME"/.config/shell/prompt
 fi
 
+if [ "$(command -v direnv)" ]; then
+  eval "$(direnv hook bash)"
+fi
+
 if [ "$(command -v motd)" ]; then
   motd
 fi

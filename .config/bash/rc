@@ -4,7 +4,8 @@
 # ~/.config/bash/rc: executed by bash(1) shells
 
 # Set TERM
-TERM='xterm-color'
+TERM='xterm-256color'
+COLORTERM='truecolor'
 
 [[ $DISPLAY ]] && shopt -s checkwinsize
 
