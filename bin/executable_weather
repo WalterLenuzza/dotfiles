@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Weather (defaults to London, Europe)
+# $1: city
+: "${$1:='London'}"
+[ "$(command -v curl)" ] && curl --silent http://wttr.in/"$1"
+
