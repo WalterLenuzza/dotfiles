@@ -1,7 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Shell
-export SHELL="$(command -v zsh)"
+if [ -z "$SHELL" ]; then
+  export SHELL="$(command -v zsh)"
+fi
 
 # Path
 # set PATH so it includes user's private bin directory

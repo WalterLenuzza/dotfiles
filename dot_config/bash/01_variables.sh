@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 # Shell
-export SHELL="$(command -v bash)"
+if [ -z "$SHELL" ]; then
+  export SHELL="$(command -v bash)"
+fi
 
 # Path
 # set PATH so it includes user's private bin directory

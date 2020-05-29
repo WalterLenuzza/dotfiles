@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # ZSH completion
 
@@ -28,9 +28,3 @@ zstyle ':completion::complete:*' gain-privileges 1
 # autocompletion of command line switches for aliases
 setopt COMPLETE_ALIASES
 
-# prompt
-autoload -Uz promptinit
-promptinit
-
-# default prompt
-prompt fire

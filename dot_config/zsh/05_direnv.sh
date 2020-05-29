@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Load direnv (if installed)
 if [ "$(command -v direnv)" ]; then
