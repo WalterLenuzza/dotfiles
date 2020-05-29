@@ -42,10 +42,10 @@ man() {
 
 # Message of the Day
 motd() {
-  # Print pretty system logo/info (neofetch)
-  if [ "$(command -v neofetch)" ]; then
-    neofetch
-  fi
+#  # Print pretty system logo/info (neofetch)
+#  if [ "$(command -v neofetch)" ]; then
+#    neofetch
+#  fi
 
   # Fortune
   if [ "$(command -v fortune)" ]; then

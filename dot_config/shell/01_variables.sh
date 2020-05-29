@@ -49,9 +49,6 @@ export XDG_VIDEOS_DIR="$HOME/Videos"
 
 ## Fixes for packages without builtin XDG support
 
-# ACK
-export ACKRC="$XDG_CONFIG_HOME/ack/ackrc"
-
 # less
 test -d "$XDG_CACHE_HOME"/less || mkdir -p "$XDG_CACHE_HOME"/less
 export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
@@ -72,11 +69,7 @@ export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 
-# Xorg
-export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
-export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
-
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+# Xorg GTK
 export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export RXVT_SOCKET="$XDG_RUNTIME_DIR"/urxvtd

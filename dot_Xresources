@@ -1,0 +1,8 @@
+! Set HiDPI scaling (2.0)
+Xft.dpi: 192
+
+! XFT
+Xft.hinting: 1
+Xft.hintstyle: hintslight
+Xft.antialias: 1
+Xft.rgba: rgb
