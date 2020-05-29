@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# ZDOTDIR/.zshrc: executed by zsh(1)
+# Used for setting user's interactive shell configuration and executing commands,
+# will be read when starting as an interactive shell (spawned by a GUI terminal)
+

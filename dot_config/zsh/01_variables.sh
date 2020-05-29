@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 # Shell
-export SHELL="$(command -v bash)"
+export SHELL="$(command -v zsh)"
 
 # Path
 # set PATH so it includes user's private bin directory
 test -d "$HOME"/bin || mkdir -p "$HOME"/bin
-export PATH="$HOME"/bin:"$PATH"
+typeset -U PATH path
+path=("$HOME/bin" "$path[@]")
+export PATH
 
 # XDG Base directories
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory
@@ -23,15 +25,8 @@ if [ -z "$XDG_DATA_HOME" ]; then
   export XDG_DATA_HOME="$HOME"/.local/share
 fi
 
-# Readline
-export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
-
 # If running under a GUI terminal emulator $DISPLAY is set
 if [ -n "$DISPLAY" ]; then
-  # Checks the window size after each command and, if necessary,
-  # updates the values of LINES and COLUMNS
-  shopt -s checkwinsize
-
   # Set TERM variables
   TERM='xterm-256color'
   # shellcheck disable=SC2034

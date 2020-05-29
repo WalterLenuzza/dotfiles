@@ -16,12 +16,12 @@ fi
 
 # Source BASH numbered config files
 for file in "$XDG_CONFIG_HOME"/bash/[0-9][0-9]_*.sh; do
-  . "$file"
+  [ -r "$file" ] && . "$file"
 done
 
 # Source shared numbered config files
 for file in "$XDG_CONFIG_HOME"/shell/[0-9][0-9]_*.sh; do
-  . "$file"
+  [ -r "$file" ] && . "$file"
 done
 
 # Execute Message of the Day script

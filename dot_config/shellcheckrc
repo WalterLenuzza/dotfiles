@@ -18,7 +18,7 @@ enable=quote-safe-variables
 # Prefer double quote, ex. "$TMP"
 #enable=require-variable-braces
 
-# Can't follow non-constant source. Use a directive to specify location.
+# Can't follow non-constant source. Use a directive to specify location
 disable=SC1090
 
 # Not following: EXTERNAL_FILE was not specified as input (see shellcheck -x)

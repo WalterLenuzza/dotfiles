@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+# ~/.zshenv: executed by zsh(1)
+# Used for setting user's environment variables
+# it should not contain commands that produce output or assume the shell is attached to a tty.
+# This file will always be sourced.
+
+# If $XDG_CONFIG_HOME is not set, don't do anything else
+# shellcheck disable=SC2154
+if [ -z "$XDG_CONFIG_HOME" ]; then
+  return
+fi
+
+# Source ZSH numbered config files
+for file in "$XDG_CONFIG_HOME"/zsh/[0-9][0-9]_*.sh; do
+  [ -r "$file" ] && . "$file"
+done
+
+# Source shared numbered config files
+for file in "$XDG_CONFIG_HOME"/shell/[0-9][0-9]_*.sh; do
+  [ -r "$file" ] && . "$file"
+done
+
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+
