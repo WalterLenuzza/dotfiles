@@ -12,8 +12,8 @@ typeset -U PATH path
 path=("$HOME/bin" "$path[@]")
 export PATH
 
-# If running under a GUI terminal emulator $DISPLAY is set
-if [ -n "$DISPLAY" ]; then
+# If running under a GUI terminal emulator $DISPLAY | $WAYLAND_DISPLAY is set
+if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
   # Set TERM variables
   TERM='xterm-256color'
   # shellcheck disable=SC2034

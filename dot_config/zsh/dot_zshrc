@@ -14,8 +14,8 @@ for file in "$XDG_CONFIG_HOME"/shell/[0-9][0-9]_*.sh; do
   [ -r "$file" ] && . "$file"
 done
 
-# If running under a GUI terminal emulator $DISPLAY is set
-if [ -n "$DISPLAY" ]; then
+# If running under a GUI terminal emulator $DISPLAY | $WAYLAND_DISPLAY is set
+if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
   # Source enhanced prompt for GUI terminal emulators
   if [ -r "$XDG_CONFIG_HOME"/zsh/guiprompt.zsh ]; then
     . "$XDG_CONFIG_HOME"/zsh/guiprompt.zsh
