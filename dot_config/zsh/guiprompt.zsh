@@ -1,9 +1,6 @@
 #!/usr/bin/env zsh
 
-# ZSH prompt
-
-autoload -Uz promptinit
-promptinit
+# ZSH spaceship prompt
 
 # If 'spaceship' theme is not installed
 prompt -l | grep -q spaceship
