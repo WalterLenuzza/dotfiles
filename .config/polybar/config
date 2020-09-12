@@ -79,7 +79,7 @@ gray = #a89984
 ;https://github.com/jaagr/polybar/wiki/Configuration
 
 dpi = 192
-monitor = eDP-1
+;monitor = eDP-1
 monitor-strict = false
 override-redirect = false
 bottom = false

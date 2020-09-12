@@ -3,19 +3,19 @@
 # Please see https://github.com/swaywm/sway/wiki
 # Read `man 5 sway` for a complete reference.
 
-
 ### General
 
 # Enables or disables Xwayland support, which allows X11 applications to be used
-# :rage: Slack requires it
-xwayland enable
+# :rage: Electron requires it
+xwayland disable
 
 # Outputs
 output eDP-1 scale 2
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Anonymice Nerd Font 9
+#font pango:Anonymice Nerd Font 9
+font pango:Noto Sans 9
 
 # Default border style for new windows on workspaces with only one window visible
 default_border pixel 2
@@ -38,12 +38,10 @@ workspace_auto_back_and_forth yes
 smart_gaps on
 
 # Global gap size
-gaps inner 5
-gaps outer 5
+gaps inner 4
 
 # Wallpaper
 output "*" bg ~/Pictures/sway-wallpaper fill
-
 
 ### Variables
 
@@ -83,10 +81,10 @@ set $menu BEMENU_BACKEND='wayland' bemenu-run -i -b \
   --hb '#98971a' --hf '#1d2021'
 
 # Terminal
-set $term termite -c ~/.config/termite/config.sway
+set $term alacritty
 
 # Browser
-set $browser MOZ_ENABLE_WAYLAND=1 firefox
+set $browser firefox
 
 ### Keyboard bindings
 
@@ -216,18 +214,10 @@ client.urgent           $red $red $gray $red $red
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
-
 ### Status Bar
 bar {
     swaybar_command waybar
 }
-
-### Sway Idle
-exec swayidle -w \
-  timeout 300 'swaylock -f -c 282828' \
-  timeout 600 'swaymsg "output * dpms off"' \
-  resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock -f -c 282828'
 
 # Dont idle on windows that are full screen
 for_window [class="^.*"] inhibit_idle fullscreen
@@ -237,17 +227,17 @@ for_window [app_id="^.*"] inhibit_idle full
 
 ## WM_CLASS assignments (try xprop)
 
-# Assign Slack to workspace 2
-assign [class="Slack"] $ws2
+# Assign Visual Studio Code to workspace 2
+assign [class="Code"] $ws2
 
-# Assign Firefox to workspace 3
-assign [class="firefox"] $ws3
+# Assign Slack to workspace 3
+assign [class="Slack"] $ws3
 
-# Assign Chrome to workspace 4
-assign [class="Google-chrome"] $ws4
+# Assign Firefox to workspace 4
+assign [class="firefox"] $ws4
 
-# Assign Visual Studio Code to workspace 5
-assign [class="Code"] $ws5
+# Assign Chrome to workspace 5
+assign [class="Google-chrome"] $ws5
 
 ## Specific windows
 
@@ -263,7 +253,7 @@ for_window [class="Pavucontrol"] border normal
 for_window [class="Pavucontrol"] floating enable
 
 # print all window titles bold
-for_window [class=".*"] title_format "<b>%title</b>"
+#for_window [class=".*"] title_format "<b>%title</b>"
 
 ## Keybindings launchers
 
@@ -276,12 +266,14 @@ bindsym $mod+b exec $browser
 # start dmenu (a program launcher)
 bindsym $mod+d exec $menu
 
-## Launch at startupLaunchers
-# set wallpaper
-#exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
+## Launch at startup
 
-# screen locker
-#exec --no-startup-id xss-lock -- i3lock -n -i ~/Pictures/wallpaper.png &
+### screen locker
+exec swayidle -w \
+  timeout 300 'swaylock -f -c 282828' \
+  timeout 600 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -f -c 282828'
 
 # notifications
 exec mako
@@ -300,7 +292,6 @@ exec $term
 #exec firefox
 #exec google-chrome-stable
 #exec slack
-
 
 ### Modes
 
@@ -330,4 +321,3 @@ mode "resize" {
   bindsym Escape mode "default"
   bindsym $mod+r mode "default"
 }
-

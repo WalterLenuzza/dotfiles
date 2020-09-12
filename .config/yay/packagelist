@@ -1,3 +1,4 @@
+spaceship-prompt-git
 f2fs-tools
 mkisolinux
 alacritty
@@ -96,3 +97,7 @@ yq
 swaylock
 swayidle
 bemenu
+xdg-user-dirs
+fd
+zsh
+dmidecode

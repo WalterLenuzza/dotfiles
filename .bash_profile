@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 
-# ~/.bash_profile: executed by bash(1) for login shells, spawned by a TTY or by a SSH daemon
+# ~/.bash_profile: executed by bash(1) for login shells (spawned by a TTY or by a SSH daemon)
 
-# If not running interactively, don't do anything
+# If not running interactively, don't do anything else
 case $- in
-    *i*) ;;
-      *) return;;
+  *i*) ;;
+    *) return;;
 esac
 
-if [ -r "$HOME"/.config/shell/rc ]; then
-  # shellcheck source=/dev/null
-  . "$HOME"/.config/shell/rc
-fi
+# XDG base directories
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-'~/.cache'}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-'~/.config'}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-'~/.local/share'}"
 
-if [ -r "$HOME"/.config/shell/profile ]; then
-  # shellcheck source=/dev/null
-  . "$HOME"/.config/shell/profile
-fi
+# Source BASH numbered config files
+for file in "$XDG_CONFIG_HOME"/bash/[0-9][0-9]_*.sh; do
+  [ -r "$file" ] && . "$file"
+done
 
-if [ -r "$HOME"/.config/bash/rc ]; then
-  # shellcheck source=/dev/null
-  . "$HOME"/.config/bash/rc
-fi
+# Source shared numbered config files
+for file in "$XDG_CONFIG_HOME"/shell/[0-9][0-9]_*.sh; do
+  [ -r "$file" ] && . "$file"
+done
 
-if [ -r "$HOME"/.config/bash/profile ]; then
-  # shellcheck source=/dev/null
-  . "$HOME"/.config/bash/profile
+# Execute Message of the Day script
+if [ "$(command -v motd)" ]; then
+  motd
 fi

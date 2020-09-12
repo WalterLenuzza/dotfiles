@@ -44,3 +44,7 @@ path = ~/.config/git/user
   undopush = push -f origin HEAD^:master
   unstage = reset HEAD --
 
+[pull]
+	ff = only
+[http]
+	sslVerify = false

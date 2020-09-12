@@ -1,36 +1,24 @@
 #!/usr/bin/env zsh
 
-# $ZDOTDIR/.zshrc: executed by zsh(1) for non-login shells
+# ZDOTDIR/.zshrc: executed by zsh(1)
+# Used for setting user's interactive shell configuration and executing commands,
+# will be read when starting as an interactive shell (spawned by a GUI terminal)
 
-# If not running interactively, or for login shells, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+# Source BASH numbered config files
+for file in "$XDG_CONFIG_HOME"/zsh/[0-9][0-9]_*.zsh; do
+  [ -r "$file" ] && . "$file"
+done
 
-[ -r "$HOME"/.config/shell/rc ] && source "$HOME"/.config/shell/rc
+# Source shared numbered config files
+for file in "$XDG_CONFIG_HOME"/shell/[0-9][0-9]_*.sh; do
+  [ -r "$file" ] && . "$file"
+done
 
-# Set TERM
-TERM='xterm-color'
+# If running under a GUI terminal emulator $DISPLAY | $WAYLAND_DISPLAY is set
+if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+  # Source enhanced prompt for GUI terminal emulators
+  if [ -r "$XDG_CONFIG_HOME"/zsh/guiprompt.zsh ]; then
+    . "$XDG_CONFIG_HOME"/zsh/guiprompt.zsh
+  fi
+fi
 
-HISTFILE="$XDG_DATA_HOME"/zsh/history
-HISTSIZE=4096
-SAVEHIST=4096
-
-setopt appendhistory autocd
-unsetopt extendedglob
-
-bindkey -e
-
-autoload -Uz compinit
-compinit -d "$HOME"/.cache/zsh/zcompdump
-
-# For non-login shells
-case $- in
-    *l*) return;;
-      *) [ -r "$HOME"/.config/shell/prompt ] && source "$HOME"/.config/shell/prompt
-	 if [ "$(command -v motd)" ]; then
-           motd
-         fi
-         ;;
-esac

@@ -64,7 +64,6 @@ bindsym $alt+button3 floating toggle
 
 ### Set variables
 set $menu dmenu_run -b
-#set $term i3-sensible-terminal
 set $term termite
 set $browser firefox
 
@@ -80,6 +79,18 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+# Assign workspaces to outputs
+workspace $ws1 output eDP-1
+workspace $ws2 output eDP-1
+workspace $ws3 output eDP-1
+workspace $ws4 output eDP-1
+workspace $ws5 output eDP-1
+workspace $ws6 output eDP-1
+workspace $ws7 output eDP-1
+workspace $ws8 output eDP-1 HDM1-1
+workspace $ws9 output eDP-1 HDM1-1
+workspace $ws10 output eDP-1 HDM1-1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -266,6 +277,10 @@ bar {
 }
 
 # Launchers
+# configure displays
+exec --no-startup-id xrandr --output eDP-1 --auto --primary
+exec --no-startup-id xrandr --output HDMI-1 --auto --scale 2x2 --right-of eDP-1
+
 # set wallpaper
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 # screen locker
