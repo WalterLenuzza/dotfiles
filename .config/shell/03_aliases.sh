@@ -92,3 +92,6 @@ fi
 [ "$(command -v icdiff)" ] && {
   alias diff='icdiff'
 }
+
+# Kubernetes
+alias k='kubectl'

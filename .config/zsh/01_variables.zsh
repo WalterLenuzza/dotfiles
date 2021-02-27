@@ -12,6 +12,13 @@ typeset -U PATH path
 path=("$HOME/bin" "$path[@]")
 export PATH
 
+typeset -U PATH path
+path=("$HOME/bin" "$path[@]")
+export PATH
+
+# Add Kubectl Krew
+test -d "$HOME/.krew/bin" && export PATH="$PATH:$HOME/.krew/bin"
+
 # If running under a GUI terminal emulator $DISPLAY | $WAYLAND_DISPLAY is set
 if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
   # Set TERM variables

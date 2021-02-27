@@ -1,50 +1,55 @@
 [include]
 path = ~/.config/git/user
 
+[alias]
+d = diff HEAD --patch-with-stat --summary
+follow = log -p --follow --
+l = log --stat --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+ll = log -p --stat --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+last = log --decorate=full --stat -1 HEAD
+ls = ls-tree --full-tree -r --name-only HEAD
+p = push origin HEAD:refs/for/master
+s = status -sb
+undopush = push -f origin HEAD^:master
+unstage = reset HEAD --
+
 [color]
-  ui = true
+ui = true
+
+[commit]
+gpgsign = true
 
 [core]
-  excludesfile = ~/.config/git/ignore
-  autocrlf = input
-  whitespace = trailing-space,space-before-tab
-  editor = nvim
+excludesfile = ~/.config/git/ignore
+autocrlf = input
+whitespace = trailing-space,space-before-tab
+editor = nvim
 
 [credential]
-  helper = store --file ~/.cache/git/secrets
+helper = store --file ~/.cache/git/secrets
 
 [diff]
-  renames = copies
+renames = copies
 
 [filter "lfs"]
-  clean = git lfs clean %f
-  smudge = git lfs smudge %f
-  required = true
+clean = git lfs clean %f
+smudge = git lfs smudge %f
+required = true
 
 [gc]
-  auto = 1
+auto = 1
+
+[http]
+sslVerify = false
 
 [merge]
-  stat = true
-
-[push]
-  default = simple
-
-[url "https://github.com"]
-  insteadOf = git://github.com
-
-[alias]
-  d = diff HEAD --patch-with-stat --summary
-  follow = log -p --follow --
-  l = log --stat --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  last = log --decorate=full --stat -1 HEAD
-  ls = ls-tree --full-tree -r --name-only HEAD
-  p = push origin HEAD:refs/for/master
-  s = status -sb
-  undopush = push -f origin HEAD^:master
-  unstage = reset HEAD --
+stat = true
 
 [pull]
-	ff = only
-[http]
-	sslVerify = false
+ff = only
+
+[push]
+default = simple
+
+[url "https://github.com"]
+insteadOf = git://github.com

@@ -7,7 +7,7 @@
 
 # Enables or disables Xwayland support, which allows X11 applications to be used
 # :rage: Electron requires it
-xwayland disable
+xwayland enable
 
 # Outputs
 output eDP-1 scale 2
@@ -15,7 +15,7 @@ output eDP-1 scale 2
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:Anonymice Nerd Font 9
-font pango:Noto Sans 9
+font pango:NotoSans Nerd Font 8
 
 # Default border style for new windows on workspaces with only one window visible
 default_border pixel 2
@@ -38,7 +38,7 @@ workspace_auto_back_and_forth yes
 smart_gaps on
 
 # Global gap size
-gaps inner 4
+#gaps inner 4
 
 # Wallpaper
 output "*" bg ~/Pictures/sway-wallpaper fill
@@ -79,6 +79,13 @@ set $menu BEMENU_BACKEND='wayland' bemenu-run -i -b \
   --fb '#282828' --ff '#a89984' \
   --sb '#98971a' --sf '#1d2021' \
   --hb '#98971a' --hf '#1d2021'
+
+# Locker
+set $locker swayidle -w \
+  timeout 300 'swaylock -f -c 282828' \
+  timeout 600 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -f -c 282828'
 
 # Terminal
 set $term alacritty
@@ -193,6 +200,9 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+# Notifications
+bindsym $mod+grave exec makoctl dismiss -a
+
 ### Mouse bindings
 
 # Use Mouse+$alt to drag floating windows to their wanted position
@@ -217,6 +227,7 @@ client.background       #ffffff
 ### Status Bar
 bar {
     swaybar_command waybar
+    # swaybar_command i3status-rs /home/waltlenu/.config/i3status-rust/config.toml
 }
 
 # Dont idle on windows that are full screen
@@ -225,21 +236,30 @@ for_window [app_id="^.*"] inhibit_idle full
 
 ### Applications
 
-## WM_CLASS assignments (try xprop)
+## WM_CLASS assignments (swaymsg -t get_tree)
 
-# Assign Visual Studio Code to workspace 2
-assign [class="Code"] $ws2
+# Assign Slack to workspace 2
+assign [class="Slack"] $ws2
 
-# Assign Slack to workspace 3
-assign [class="Slack"] $ws3
+# Assign Firefox to workspace 3
+#assign [class="Firefox"] $ws3
+assign [app_id="firefox"] $ws3
 
-# Assign Firefox to workspace 4
-assign [class="firefox"] $ws4
+# Assign Chrome to workspace 4
+assign [app_id="Google-chrome"] $ws4
 
-# Assign Chrome to workspace 5
-assign [class="Google-chrome"] $ws5
+# Assign Visual Studio Code to workspace 5
+assign [class="Code"] $ws5
 
 ## Specific windows
+
+# print all Alacritty window titles bold
+for_window [app_id="Alacritty"] title_format "<b>%title</b>"
+
+# set normal border for all pavucontrol windows
+for_window [class="Pavucontrol"] border normal
+# enable floating mode for Volume Control
+for_window [class="Pavucontrol"] floating enable
 
 # set normal border for all Slack windows
 #for_window [class="Slack"] border normal
@@ -247,13 +267,6 @@ assign [class="Google-chrome"] $ws5
 #for_window [class="Firefox"] border normal
 # set normal border for all Firefox windows
 #for_window [class="Google-chrome"] border normal
-# set normal border for all pavucontrol windows
-for_window [class="Pavucontrol"] border normal
-# enable floating mode for Volume Control
-for_window [class="Pavucontrol"] floating enable
-
-# print all window titles bold
-#for_window [class=".*"] title_format "<b>%title</b>"
 
 ## Keybindings launchers
 
@@ -269,28 +282,21 @@ bindsym $mod+d exec $menu
 ## Launch at startup
 
 ### screen locker
-exec swayidle -w \
-  timeout 300 'swaylock -f -c 282828' \
-  timeout 600 'swaymsg "output * dpms off"' \
-  resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock -f -c 282828'
+#exec $locker
 
 # notifications
 exec mako
 
 # NetworkManager
-exec nm-applet
-
-# PulseAudio
-exec pasystray
+#exec nm-applet --indicator
 
 # UDiskie
-exec udiskie --automount --notify --tray
+#exec udiskie --automount --notify --tray
 
 ## Launchers:apps
 exec $term
-#exec firefox
-#exec google-chrome-stable
+exec firefox
+#exec chrome-wayland
 #exec slack
 
 ### Modes

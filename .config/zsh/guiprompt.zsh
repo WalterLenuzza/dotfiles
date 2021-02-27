@@ -12,6 +12,7 @@ prompt spaceship
 
 # Configure spaceship prompt
 SPACESHIP_PROMPT_ORDER=(
+  kubectl       # Kubernetes
   dir           # Current directory section
   git           # Git section (git_branch + git_status)
   exec_time     # Execution time
@@ -34,6 +35,13 @@ SPACESHIP_DIR_TRUNC_PREFIX='…/'
 
 # While in git repo, show only root directory and folders inside it
 SPACESHIP_DIR_TRUNC_REPO=false
+
+# Show Kubernetes section
+SPACESHIP_KUBECTL_SHOW=true
+SPACESHIP_KUBECTL_VERSION_SHOW=false
+SPACESHIP_KUBECONTEXT_SHOW=true
+SPACESHIP_KUBECONTEXT_SUFFIX=''
+SPACESHIP_KUBECONTEXT_COLOR=blue
 
 # Prefix before execution time section
 SPACESHIP_EXEC_TIME_PREFIX='(took '

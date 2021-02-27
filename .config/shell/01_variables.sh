@@ -56,7 +56,7 @@ export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 
 # GnuPG
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-#gpg2 --homedir "$XDG_DATA_HOME"/gnupg
+export GPG_TTY=$(tty)
 
 # wget
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"

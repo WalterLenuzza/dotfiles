@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# Mass rename
+autoload zmv
+
 # ZSH completion
 
 # enable autocomplete
@@ -10,6 +13,9 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump
 setopt autocd nomatch notify
 unsetopt beep extendedglob
 setopt appendhistory autocd
+
+# Comments
+setopt interactivecomments
 
 # arrow-key driven interface
 zstyle ':completion:*' menu select
