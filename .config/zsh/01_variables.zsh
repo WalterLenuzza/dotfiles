@@ -12,10 +12,6 @@ typeset -U PATH path
 path=("$HOME/bin" "$path[@]")
 export PATH
 
-typeset -U PATH path
-path=("$HOME/bin" "$path[@]")
-export PATH
-
 # Add Kubectl Krew
 test -d "$HOME/.krew/bin" && export PATH="$PATH:$HOME/.krew/bin"
 

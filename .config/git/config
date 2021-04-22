@@ -42,6 +42,9 @@ auto = 1
 [http]
 sslVerify = false
 
+[init]
+defaultBranch = main
+
 [merge]
 stat = true
 

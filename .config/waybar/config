@@ -90,7 +90,7 @@
   "backlight": {
     "interval": 5,
     "format": "{percent}% {icon}",
-    "format-icons": ["🌕", "🌔", "🌓", "🌒", "🌑"],
+    "format-icons": ["", "", "", ""],
     "on-scroll-down": "brightnessctl -c backlight set 5%-",
     "on-scroll-up": "brightnessctl -c backlight set +5%"
   },

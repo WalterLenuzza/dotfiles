@@ -58,6 +58,9 @@ export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GPG_TTY=$(tty)
 
+# SSH agent
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 # wget
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
@@ -70,10 +73,10 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 
 # Xorg GTK
-export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
+#export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export RXVT_SOCKET="$XDG_RUNTIME_DIR"/urxvtd
+#export RXVT_SOCKET="$XDG_RUNTIME_DIR"/urxvtd
 
 # Vagrant
-export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
-export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
+#export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
+#export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
