@@ -1,0 +1,28 @@
+# Look for 'source'd files relative to the checked script,
+# and also look for absolute paths in directories
+source-path=SCRIPTDIR
+
+# Suggest adding a default case in `case` statements
+enable=add-default-case
+
+# Suggest explicitly using -n in `[ $var ]`
+#enable=avoid-nullary-conditions
+
+# Warn when uppercase variables are unassigned
+enable=check-unassigned-uppercase
+
+# Suggest quoting variables without metacharacters
+enable=quote-safe-variables
+
+# Suggest putting braces around all variable references
+# Prefer double quote, ex. "$TMP"
+#enable=require-variable-braces
+
+# Can't follow non-constant source. Use a directive to specify location
+disable=SC1090
+
+# Not following: EXTERNAL_FILE was not specified as input (see shellcheck -x)
+disable=SC1091
+
+# Allow using `which` since it gives full paths and is common enough
+#disable=SC2230

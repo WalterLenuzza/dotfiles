@@ -1,0 +1,199 @@
+ls -lhA
+chezmoi add .bash*
+cd
+ls -lhA
+cd .config
+ls
+ls -lhA
+ls -lhA
+cd chezmoi
+ls
+ls -lhA
+cd ..
+ls
+cd git
+ls
+ls -lhA
+pwd
+cd ..
+ls
+chezmoi add readline shell zsh
+chezmoi add --help
+chezmoi add --autotemplate git readline shell zsh
+pwd
+ls -lhA
+rm -rf readline shell zsh git
+cd
+ls -lhA
+mkdir tmp
+mkdir bin
+echo $TERM
+echo $COLORTERM
+echo $LANG
+echo $LC_ALL
+echo $CLICOLOR
+chezmoi data
+cd
+cd .config/chezmoi
+ls
+ls -lhA
+vi ~/.config/chezmoi/chezmoi.toml
+chezmoi add ~/.config/chezmoi/chezmoi.toml
+chezmoi data
+chezmoi diff
+chezmoi diff
+chezmoi apply
+ls -lhA
+git status
+cat .chezmoiignore
+ls -llhA
+cat dot_bashrc_linux
+pwd
+ls -lhA
+mv dot_bash_logout dot_bash_logout_linux
+mv dot_bash_profile dot_bash_profile_linux
+rm dot_bashrc_linux
+mv dot_bashrc dot_bashrc_linux
+ls -lhA
+vi .chezmoiignore
+ls -lhA
+chezmoi diff
+pwd
+ls -lhA
+git status
+ls -lhA
+ls -lhA
+ls -lhAR .cache
+chezmoi
+chezmoi state
+chezmoi state data
+chezmoi apply
+chezmoi apply -v
+chezmoi diff
+chezmoi apply
+git s
+cat .chezmoiignore
+git s
+git s
+ls -lhA
+cd dot_
+cd dot_config
+ls -lhA
+ls -lhAR
+cd ..
+ls
+chezmoi diff
+chezmoi dump
+rm -rf dot_config
+ls -lhA
+tree
+chezmoi diff
+chezmoi
+chezmoi status
+chezmoi diff
+chezmoi diff
+chezmoi diff | less
+brew search most
+vi ~/setup.sh
+brew install most
+most
+ls -lhA
+most dot_config/git/config.tmpl
+chezmoi diff | most
+chezmoi diff
+chezmoi apply
+ls
+ls -lhA
+cat .chezmoiignore
+chezmoi diff
+chezmoi diff
+chezmoi cd
+ls -lhA
+ls -lhA
+ls -lhAR
+cd .cache
+ls
+ls -lhA
+rm .keep
+rmdir .keep
+mkdir git
+cd git
+touch .keep
+chezmoi diff
+chezmoi apply
+cd
+cd .cache/git
+ls
+ls -lhA
+rm .gitkeep
+cd ..
+ls
+ls -lhA
+cd ..
+rm -rf .cache
+chezmoi diff
+chezmoi apply
+chezmoi
+chezmoi data
+chezmoi list
+chezmoi managed
+chezmoi dump
+ls -lhA
+cd
+chezmoi cd
+pwd
+ls -lhA
+chezmoi diff
+chezmoi dump
+chezmoi managed
+ls -lhA
+git status
+cd
+cd src/{{ .chezmoi.username }}/dotfiles
+ls
+ls -lhA
+cd .cache
+ls -lhAR
+cd ../
+ls -lhA
+cd .cache
+ls
+ls -lhA
+cd ..
+ls
+cd ..
+ls
+cd -
+ls -lhA
+cd .config
+ls
+ls -lhA
+cat autostart
+tree
+v
+ls -lhA
+cp -av git ~/.config
+chezmoi add {{ .chezmoi.homeDir }}/.config/git
+cd
+vi
+pwd
+cd -
+cat readline/inputrc
+ls -lhA
+brew list
+brew search shellcheck
+brew install shellcheck
+vi ~/setup.sh
+ls -lhA
+cp -av readline shell zsh ~/.config
+echo $LANG
+chezmoi diff
+chezmoi apply
+cd src/{{ .chezmoi.username }}/dotfiles
+ls
+ls -lhA
+cat .bash_logout
+cp .bash* ~/
+echo $HOME
+chezmoi init
+chezmoi cd

@@ -1,0 +1,28 @@
+{{ if ne .chezmoi.os "darwin" }}
+.bashrc_darwin
+{{ end }}
+{{ if ne .chezmoi.os "linux" }}
+.bash_logout_linux
+.bash_profile_linux
+.bashrc_linux
+.pam_environment
+.config/alacritty
+.config/autostart
+.config/bash
+.config/dunst
+.config/fontconfig
+.config/gtk-3.0
+.config/htop
+.config/i3
+.config/mako
+.config/nvim
+.config/polybar
+.config/readline
+.config/sway
+.config/systemd
+.config/termite
+.config/waybar
+.config/yay
+.config/user-dirs.dirs.tmpl
+.config/user-dirs.locale.tmpl
+{{ end }}
