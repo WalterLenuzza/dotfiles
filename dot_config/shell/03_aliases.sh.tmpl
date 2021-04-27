@@ -1,16 +1,30 @@
 #!/usr/bin/env sh
 
-# Shared shell settings (bash/zsh)
+## Shared shell settings (bash/zsh)
+## Aliases
 
-# Aliases
+# Aliases: colorize list files
+if [[ $(uname) == "Darwin" ]]; then
+  # Colorize ls
+  export CLICOLOR=1
+  # Always show colors (with less and grep), Experimental
+  export CLICOLOR_FORCE=1
+elif [[ $(uname) == "Linux" ]]; then
+  alias ls='ls --color=auto'
+fi
 
-alias ls='ls --color=auto'
+# Load dircolors
+if [[ "$(command -v dircolors)" && -f "$XDG_CONFIG_HOME"/dircolors ]]; then
+  eval $(dircolors -b "$XDG_CONFIG_HOME"/dircolors)
+fi
+
+# # Aliases: colorize grep files
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias dir='dir --color=auto'
+
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Aliases: list files
 if [ "$(command -v exa)" ]; then
@@ -20,7 +34,7 @@ if [ "$(command -v exa)" ]; then
   alias vx='exa -a --git --long --header --time-style=long-iso --group --extended' # Show ACLs and xattrs
   alias tree='exa -a --ignore-glob=".git" --tree'
 else
-  alias la='ls -A --color=auto'
+  alias la='ls -A'
   alias v='ls -lhA'    # Long listing
   alias vs='ls -lhASr' # Sort by size-reversed
   alias vt='ls -lhAtr' # Sort by mtime-reversed
@@ -45,27 +59,31 @@ alias rm='rm -v'
 
 alias mc='mc -a'
 alias tmux='tmux -2'
-alias top='htop'
 
 alias rg='ag'
 alias ack='ag'
 
-alias docker_nas='export DOCKER_HOST=tcp://192.168.1.254:2376 DOCKER_TLS_VERIFY=1'
 alias clean_DS_Store='find . -name *.DS_Store -type f -print -delete'
-alias dotfiles='git --git-dir="$XDG_DATA_HOME"/dotfiles --work-tree="$HOME"'
+alias dotfiles='chezmoi'
 
-alias yay-install='yay -Sy --needed --noconfirm - < "$XDG_CONFIG_HOME"/yay/packagelist'
-alias yay-upgrade='yay -Syu --devel --timeupdate'
+# OS specifics
+if [[ $(uname) == "Darwin" ]]; then
+  alias yay='brew'
+  alias ps='pstree'
+elif [[ $(uname) == "Linux" ]]; then
+  alias yay-install='yay -Sy --needed --noconfirm - < "$XDG_CONFIG_HOME"/yay/packagelist'
+  alias yay-upgrade='yay -Syu --devel --timeupdate'
 
-# Replace 'ps fax' on MacOSX
-if [ "$(uname)" = 'Darwin' ]; then
-  alias ps='pstree -U | grep -vE (/System/Library/|/usr/)'
+  # Set default browser
+  export BROWSER='firefox'
 fi
 
-# Set default browser
-export BROWSER='firefox'
-
 # Default programs
+
+[ "$(command -v htop)" ] && {
+  alias top='htop'
+}
+
 if [ "$(command -v most)" ]; then
   export PAGER='most'
   alias less='most'
@@ -77,12 +95,14 @@ fi
 # Editor
 [ "$(command -v vim)" ] && {
   alias vi='vim'
+  alias vim='vim'
   export EDITOR='vim'
   export VISUAL='vim'
 }
 
 [ "$(command -v nvim)" ] && {
   alias vi='nvim'
+  alias vim='nvim'
   export EDITOR='nvim'
   export VISUAL='nvim'
 }

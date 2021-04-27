@@ -1,3 +1,10 @@
 [data]
 
-lang = "en_GB.UTF-8"
+encoding = "UTF-8"
+locale = "en_GB"
+
+colorterm = "truecolor"
+term = "xterm-256color"
+
+proxy_address = ""
+proxy_port = ""

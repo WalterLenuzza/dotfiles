@@ -17,13 +17,12 @@ unstage = reset HEAD --
 ui = true
 
 [commit]
-gpgsign = true
+gpgsign = false
 
 [core]
 excludesfile = ~/.config/git/ignore
 autocrlf = input
 whitespace = trailing-space,space-before-tab
-editor = nvim
 
 [credential]
 helper = store --file ~/.cache/git/secrets

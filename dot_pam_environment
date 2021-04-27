@@ -1,5 +1,5 @@
-# Pluggable Authentication Modules (PAM) environment variables
-#
+## Pluggable Authentication Modules (PAM) environment variables
+
 XDG_CACHE_HOME  DEFAULT=@{HOME}/.cache
 XDG_CONFIG_HOME	DEFAULT=@{HOME}/.config
 XDG_DATA_HOME   DEFAULT=@{HOME}/.local/share

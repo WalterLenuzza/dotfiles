@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Shared shell settings (bash/zsh)
-# Functions
+## Shared shell settings (bash/zsh)
+## Functions
 
 # Check if commands exist
 commands_exist() {
@@ -42,10 +42,10 @@ man() {
 
 # Message of the Day
 motd() {
-#  # Print pretty system logo/info (neofetch)
-#  if [ "$(command -v neofetch)" ]; then
-#    neofetch
-#  fi
+  # Print pretty system logo/info (neofetch)
+  if [ "$(command -v neofetch)" ]; then
+    neofetch
+  fi
 
   # Fortune
   if [ "$(command -v fortune)" ]; then

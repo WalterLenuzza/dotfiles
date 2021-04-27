@@ -15,7 +15,6 @@
 .config/htop
 .config/i3
 .config/mako
-.config/nvim
 .config/polybar
 .config/readline
 .config/sway

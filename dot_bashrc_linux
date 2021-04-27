@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# ~/.bashrc: executed by bash(1) for non-login shells (spawned by a GUI terminal)
+## ~/.bashrc: executed by bash(1) for non-login shells (spawned by a GUI terminal)
 
 # If not running interactively, don't do anything else
 case $- in
@@ -13,20 +13,12 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-{{ .chezmoi.homedir }}/.cache}"
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-{{ .chezmoi.homedir }}/.config}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-{{ .chezmoi.homedir }}/.local/share}"
 
-# Source BASH numbered config files
-for file in "$XDG_CONFIG_HOME"/bash/[0-9][0-9]_*.sh; do
-  [ -r "$file" ] && . "$file"
-done
-
 # Source shared numbered config files
 for file in "$XDG_CONFIG_HOME"/shell/[0-9][0-9]_*.sh; do
   [ -r "$file" ] && . "$file"
 done
 
-# If running under a GUI terminal emulator $DISPLAY is set
-if [ -n "$DISPLAY" ]; then
-  # Source enhanced prompt for GUI terminal emulators
-  if [ -r "$XDG_CONFIG_HOME"/bash/prompt ]; then
-    . "$XDG_CONFIG_HOME"/bash/prompt
-  fi
-fi
+# Source BASH numbered config files
+for file in "$XDG_CONFIG_HOME"/bash/[0-9][0-9]_*.bash; do
+  [ -r "$file" ] && . "$file"
+done

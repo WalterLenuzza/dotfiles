@@ -1,0 +1,106 @@
+#!/usr/bin/env sh
+
+## Shared shell settings (bash/zsh)
+## Environment variables
+
+# If running under a GUI terminal emulator
+if [[ -n "$DISPLAY" || -n "$WAYLAND_DISPLAY" || $(uname) == "Darwin" ]]; then
+  # Set TERM variables
+  export TERM="{{ .term }}"
+  export COLORTERM="{{ .colorterm }}"
+fi
+
+# Locale: prefer English and use UTF-8
+export LANG="{{ .locale }}.{{ .encoding }}"
+export LC_ALL="{{ .locale }}.{{ .encoding }}"
+
+# XDG user directories
+# https://wiki.archlinux.org/index.php/XDG_user_directories
+
+export XDG_BIN_DIR="$HOME/bin"
+export XDG_DESKTOP_DIR="$HOME/Desktop"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_PUBLICSHARE_DIR="$HOME/Public"
+export XDG_SOURCE_DIR="$HOME/src"
+export XDG_TEMP_DIR="$HOME/tmp"
+export XDG_TEMPLATES_DIR="$HOME/Templates"
+export XDG_VIDEOS_DIR="$HOME/Videos"
+
+# Path
+# set PATH so it includes user's private bin directory
+test -d "$HOME"/bin || mkdir -p "$HOME"/bin
+export PATH="$HOME"/bin:"$PATH"
+
+# Path: add Kubectl Krew
+if $(kubectl krew >/dev/null 2>&1); then
+  export KREW_ROOT="$XDG_DATA_HOME"/krew
+  test -d "$KREW_ROOT" || mkdir -p "$KREW_ROOT"
+  export PATH="$PATH:$KREW_ROOT/bin"
+fi
+
+# Load direnv (if installed)
+if [ "$(command -v direnv)" ]; then
+  eval "$(direnv hook bash)"
+fi
+
+## Fixes for packages without builtin XDG support
+
+{{- if eq .chezmoi.os "linux" }}
+# Readline
+test -d "$XDG_CONFIG_HOME"/readline || mkdir -p "$XDG_CONFIG_HOME"/readline
+export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+
+# SSH agent
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/ssh-agent.socket
+
+# Xorg GTK 1.0
+test -d "$XDG_CONFIG_HOME"/gtk-1.0/gtkrc || mkdir -p "$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
+export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
+
+# Xorg GTK 2.0
+test -d "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc || mkdir -p "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+
+# Xorg URxvtd
+export RXVT_SOCKET="$XDG_RUNTIME_DIR"/urxvtd
+{{ end -}}
+
+# GnuPG
+export GPG_TTY=$(tty)
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+test -d "$GNUPGHOME" || mkdir -p "$GNUPGHOME"
+
+# less
+test -d "$XDG_CACHE_HOME"/less || mkdir -p "$XDG_CACHE_HOME"/less
+export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+
+# wget
+export WGETRC="$XDG_CONFIG_HOME"/wgetrc
+
+# AWS CLI
+test -d "$XDG_CONFIG_HOME"/aws || mkdir -p "$XDG_CONFIG_HOME"/aws
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+
+# Docker / Docker Machine
+test -d "$XDG_CONFIG_HOME"/docker || mkdir -p "$XDG_CONFIG_HOME"/docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+test -d "$XDG_CONFIG_HOME"/docker-machine || mkdir -p "$XDG_CONFIG_HOME"/docker-machine
+export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
+
+# Vagrant
+export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
+export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
+
+{{- if .proxy_address }}
+# Proxy
+export http_proxy="http://{{ .proxy_address }}:{{ .proxy_port }}"
+export https_proxy="https://{{ .proxy_address }}:{{ .proxy_port }}"
+export ftp_proxy="ftp://{{ .proxy_address }}:{{ .proxy_port }}"
+export rsync_proxy="rsync://{{ .proxy_address }}:{{ .proxy_port }}"
+export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+{{ end -}}
